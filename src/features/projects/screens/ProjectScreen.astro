@@ -1,0 +1,179 @@
+---
+import Heading from '@/components/Heading.astro';
+import { Badge } from '@/components/ui/badge';
+import { buttonVariants } from '@/components/ui/button';
+import { type LanguageCode, defaultLanguage, type ui } from '@/i18n/ui';
+import { Image } from 'astro:assets';
+import { Code, ExternalLink } from 'lucide-react';
+import ProjectGallery from '../components/ProjectGallery';
+import type { TranslatedProject } from '../type';
+
+export type Props = {
+  project: TranslatedProject;
+  t: (typeof ui)[LanguageCode];
+  lang: LanguageCode;
+};
+
+const { project, t, lang } = Astro.props;
+---
+
+<div class="py-12 md:py-16">
+  <article class="prose lg:prose-xl max-w-none dark:prose-invert">
+    <a
+      href={`${lang !== defaultLanguage ? `/${lang}` : ''}/projects`}
+      class={buttonVariants({ variant: 'ghost' }) + ' mb-6 no-underline'}
+    >
+      &larr; {t.projectDetailPage?.backToProjects ?? 'Back to Projects'}
+    </a>
+
+    <Heading title={project.title} />
+    <div
+      class="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-600 dark:text-gray-400"
+    >
+      <!-- Category -->
+      {
+        project.categoryText && (
+          <div class="flex items-center gap-2">
+            <span class="text-foreground">
+              {t.projectDetailPage?.categoryLabel ?? 'Category'}
+            </span>
+            <Badge variant="secondary">{project.categoryText}</Badge>
+          </div>
+        )
+      }
+      <!-- Date -->
+      {
+        project.dateText && (
+          <div class="flex items-center gap-2">
+            <span class="text-foreground">
+              {t.projectDetailPage?.dateLabel ?? 'Date'}
+            </span>
+            <Badge variant="secondary">{project.dateText}</Badge>
+          </div>
+        )
+      }
+    </div>
+
+    <!-- Image -->
+    {
+      project.imageUrl && (
+        <div class="mb-8 aspect-[16/9] overflow-hidden rounded-lg shadow-lg">
+          <Image
+            src={project.imageUrl}
+            alt={project.imageAltText}
+            class="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
+      )
+    }
+
+    <!-- Overview Section -->
+    <section class="mb-8">
+      <h2>{t.projectDetailPage?.aboutTitle ?? 'Overview'}</h2>
+      {project.detailedDescription && <p>{project.detailedDescription}</p>}
+
+      {
+        project.keyFeaturesTranslated &&
+          project.keyFeaturesTranslated.length > 0 && (
+            <>
+              <p class="font-semibold mb-2">
+                {t.projectDetailPage?.keyFeaturesTitle ??
+                  'Key features include:'}
+              </p>
+              <ul class="pl-5 list-disc">
+                {project.keyFeaturesTranslated.map((feature) => (
+                  <li>
+                    <strong>{feature.title}:</strong> {feature.description}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )
+      }
+    </section>
+
+    <!-- Technologies Used Section -->
+    {
+      project.technologiesUsed && project.technologiesUsed.length > 0 && (
+        <section class="mb-8">
+          <h2>
+            {t.projectDetailPage?.technologiesUsedTitle ?? 'Technologies Used'}
+          </h2>
+          <ul class="pl-5 list-disc">
+            {project.technologiesUsed.map((tech) => (
+              <li>
+                <strong>{tech.name}:</strong> {tech.description}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <!-- Outcome Section -->
+    {
+      project.outcome && (
+        <section class="mb-8">
+          <h2>{t.projectDetailPage?.outcomeTitle ?? 'Outcome'}</h2>
+          <p>{project.outcome}</p>
+        </section>
+      )
+    }
+
+    {/* Gallery */}
+
+    {
+      project.galleryImagesTranslated &&
+        project.galleryImagesTranslated.length > 0 && (
+          <div class="mb-8">
+            <h2>{t.projectDetailPage?.galleryTitle ?? 'Gallery'}</h2>
+            <ProjectGallery
+              client:visible
+              images={project.galleryImagesTranslated.map((image) => ({
+                src: image.src.src,
+                alt: image.alt,
+                caption: image.caption,
+                id: image.id,
+              }))}
+            />
+          </div>
+        )
+    }
+
+    {/* Project and Code URLs */}
+    <div class="mt-8 flex flex-wrap gap-4">
+      {
+        project.projectUrl && (
+          <a
+            href={project.projectUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={
+              buttonVariants({ variant: 'default' }) + ' flex-1 no-underline'
+            }
+          >
+            <ExternalLink className="mr-2 size-4" />
+            {t.projectDetailPage?.visitProjectButton ?? 'Visit Project'}
+          </a>
+        )
+      }
+      {
+        project.codeUrl && (
+          <a
+            href={project.codeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={
+              buttonVariants({ variant: 'secondary' }) + ' flex-1 no-underline'
+            }
+          >
+            <Code className="mr-2 size-4" />
+            {t.projectDetailPage?.viewCodeButton ?? 'View Code'}
+          </a>
+        )
+      }
+    </div>
+  </article>
+</div>

@@ -1,0 +1,297 @@
+---
+import Heading from '@/components/Heading.astro';
+import SkillCard from '@/components/SkillCard.astro';
+import { buttonVariants } from '@/components/ui/button';
+import type { LanguageCode } from '@/i18n/ui';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import {
+  Calendar,
+  Dumbbell,
+  Briefcase,
+  GraduationCap,
+  Mail,
+  Instagram,
+  Twitter,
+  Github,
+  Linkedin,
+} from 'lucide-react';
+
+import heroImage from '@/assets/user-hero.jpeg';
+import { Image } from 'astro:assets';
+import FeaturedProjectPreview from '../components/FeaturedProjectPreview.astro';
+import type { TranslatedProject, TranslatedSkill } from '../type';
+
+export type Props = {
+  lang: LanguageCode;
+  projects: Array<TranslatedProject>;
+  skills: Array<TranslatedSkill>;
+  heroGreeting: string;
+  heroSubtitlePart1: string;
+  heroSubtitlePart2: string;
+  heroIntroduction: string;
+  heroViewWorkButton: string;
+  heroContactButton: string;
+  imageNotAvailable: string;
+  featuredProjectsTitle: string;
+  featuredProjectsDescription: string;
+  mySkillsTitle: string;
+  mySkillsDescription: string;
+  projectPreviewCtaText: string; // Added for specific project CTA
+  aboutMeTitle: string;
+  aboutMeDescription: string;
+  experienceTitle: string;
+  experiences: Array<{
+    title: string;
+    company: string;
+    date: string;
+    description: string;
+  }>;
+  educationTitle: string;
+  educations: Array<{
+    degree: string;
+    school: string;
+    date: string;
+    description: string;
+  }>;
+};
+
+const {
+  lang,
+  projects,
+  skills,
+  heroGreeting,
+  heroSubtitlePart1,
+  heroSubtitlePart2,
+  heroIntroduction,
+  heroViewWorkButton,
+  heroContactButton,
+  imageNotAvailable,
+  featuredProjectsTitle,
+  featuredProjectsDescription,
+  mySkillsTitle,
+  mySkillsDescription,
+  projectPreviewCtaText,
+  aboutMeTitle,
+  aboutMeDescription,
+  experienceTitle,
+  experiences,
+  educationTitle,
+  educations,
+} = Astro.props;
+---
+
+<section class="py-12 md:py-16">
+  <div class="grid md:grid-cols-2 gap-12 items-center justify-between">
+    {/* Hero Text Column */}
+    <div class="text-center md:text-left">
+      <h1
+        class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4"
+      >
+        {heroGreeting}
+      </h1>
+      <p class="text-2xl md:text-3xl font-medium text-muted-foreground mb-2">
+        <span>{heroSubtitlePart1}</span>
+        <span class="text-primary"> | </span>
+        <span>{heroSubtitlePart2}</span>
+      </p>
+      <p class="text-lg text-muted-foreground mb-6">
+        {heroIntroduction}
+      </p>
+      <div
+        class="flex gap-4 mb-8 justify-center md:justify-start items-center text-muted-foreground"
+      >
+        <a
+          href="mailto:ahmadsaif7456@gmail.com"
+          class="hover:text-primary transition-colors"
+          aria-label="Email"
+        >
+          <Mail className="size-6" />
+        </a>
+        <a
+          href="https://www.instagram.com/ahmdsaif87"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-primary transition-colors"
+          aria-label="Instagram"
+        >
+          <Instagram className="size-6" />
+        </a>
+        <a
+          href="https://x.com/ahmdsaif_"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-primary transition-colors"
+          aria-label="Twitter"
+        >
+          <Twitter className="size-6" />
+        </a>
+        <a
+          href="https://github.com/ahmdsaif87"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-primary transition-colors"
+          aria-label="GitHub"
+        >
+          <Github className="size-6" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/ahmadsaif-dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-primary transition-colors"
+          aria-label="LinkedIn"
+        >
+          <Linkedin className="size-6" />
+        </a>
+      </div>
+      <div
+        class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+      >
+        <a
+          href="/projects"
+          class={buttonVariants({ variant: 'default', size: 'lg' })}
+        >
+          <Dumbbell className="mr-2 size-4" />
+          {heroViewWorkButton}
+        </a>
+        <a
+          href={getRelativeLocaleUrl(lang, '/contact')}
+          class={buttonVariants({ variant: 'outline', size: 'lg' })}
+        >
+          <Calendar className="mr-2 size-4" />
+          {heroContactButton}
+        </a>
+      </div>
+    </div>
+
+    {/* Hero Image (Placeholder for now) */}
+    <div class="md:text-center">
+      <div
+        class="md:w-[600px] w-full h-92 bg-muted rounded-lg shadow-xl overflow-hidden"
+      >
+        <Image
+          src={heroImage}
+          alt={'User profile image'}
+          width={600}
+          height={368}
+          densities={[1, 1.5, 2]}
+          quality="high"
+          class="h-full w-full object-cover"
+          style="object-position: center 28%;"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* About Me Section */}
+<section id="about" class="py-12 md:py-16">
+  <div class="container mx-auto px-4">
+    <Heading title={aboutMeTitle} className="flex flex-col items-center" />
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-lg text-muted-foreground leading-relaxed">
+        {aboutMeDescription}
+      </p>
+    </div>
+  </div>
+</section>
+
+{/* Experience & Education Section */}
+<section id="resume" class="py-12 md:py-16 bg-muted/20 dark:bg-muted/10">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-12">
+      {/* Experience */}
+      <div>
+        <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+          <Briefcase className="size-8 text-primary" />
+          {experienceTitle}
+        </h2>
+        <div class="space-y-8">
+          {
+            experiences.map((exp) => (
+              <div class="relative pl-8 border-l-2 border-primary/20 hover:border-primary transition-colors duration-300">
+                <div class="absolute -left-[9px] top-0 size-4 rounded-full bg-background border-2 border-primary" />
+                <h3 class="text-xl font-bold">{exp.title}</h3>
+                <p class="text-primary font-medium mb-1">
+                  {exp.company} | {exp.date}
+                </p>
+                <p class="text-muted-foreground">{exp.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      {/* Education */}
+      <div>
+        <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
+          <GraduationCap className="size-8 text-primary" />
+          {educationTitle}
+        </h2>
+        <div class="space-y-8">
+          {
+            educations.map((edu) => (
+              <div class="relative pl-8 border-l-2 border-primary/20 hover:border-primary transition-colors duration-300">
+                <div class="absolute -left-[9px] top-0 size-4 rounded-full bg-background border-2 border-primary" />
+                <h3 class="text-xl font-bold">{edu.degree}</h3>
+                <p class="text-primary font-medium mb-1">
+                  {edu.school} | {edu.date}
+                </p>
+                <p class="text-muted-foreground">{edu.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* Featured Projects Section */}
+<section id="projects" class="py-12 md:py-16 bg-muted/20 dark:bg-muted/10">
+  <Heading
+    title={featuredProjectsTitle}
+    description={featuredProjectsDescription}
+    className="flex flex-col items-center"
+  />
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {
+      projects.slice(0, 3).map((project: TranslatedProject) => {
+        return (
+          <FeaturedProjectPreview
+            lang={lang}
+            slug={project.slug}
+            title={project.title}
+            imageUrl={project.imageUrl}
+            imageAltText={project.imageAltText}
+            ctaText={projectPreviewCtaText}
+          />
+        );
+      })
+    }
+  </div>
+</section>
+
+{/* Skills Section */}
+<section id="skills" class="py-12 md:py-16">
+  <div class="container mx-auto px-4">
+    <Heading
+      title={mySkillsTitle}
+      description={mySkillsDescription}
+      className="flex flex-col items-center"
+    />
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        skills.map((skill) => (
+          <SkillCard
+            title={skill.title}
+            description={skill.description}
+            iconName={skill.iconName}
+            technologies={skill.technologies}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
