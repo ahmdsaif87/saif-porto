@@ -13,8 +13,8 @@ import type {
 import { Resend } from 'resend';
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
-const TO_EMAIL = import.meta.env.CONTACT_FORM_TO_EMAIL || 'ahmadsaif7456@gmail.com';
-const FROM_EMAIL = import.meta.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+const TO_EMAIL = import.meta.env.CONTACT_FORM_TO_EMAIL;
+const FROM_EMAIL = import.meta.env.RESEND_FROM_EMAIL;
 
 export const POST: APIRoute = async ({ request }) => {
   let lang: LanguageCode = 'en'; // Default language
