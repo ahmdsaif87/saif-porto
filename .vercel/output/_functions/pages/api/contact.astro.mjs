@@ -4,9 +4,10 @@ import { Resend } from 'resend';
 export { renderers } from '../../renderers.mjs';
 
 const prerender = false;
-const resend = new Resend("re_gKuo6yBC_M53HQKKebWUYevWphdSnsg6n");
-const TO_EMAIL = "ahmadsaif7456@gmail.com";
-const FROM_EMAIL = "onboarding@resend.dev";
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
+const TO_EMAIL = import.meta.env.CONTACT_FORM_TO_EMAIL;
+const FROM_EMAIL = import.meta.env.RESEND_FROM_EMAIL;
+
 const POST = async ({ request }) => {
   let lang = "en";
   let currentTranslations = ui[lang].contactPage;
