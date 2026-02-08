@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { remarkReadingTime } from './src/lib/remark-reading-time.mjs';
 import rehypeMermaid from 'rehype-mermaid';
 
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 
 // Use different strategies based on environment
 const isProduction = process.env.NODE_ENV === 'production';
