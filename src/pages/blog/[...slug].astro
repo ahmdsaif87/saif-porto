@@ -3,6 +3,8 @@ import { BlogPostDetailScreen } from '@/features/blog';
 import { defaultLanguage, type LanguageCode } from '@/i18n/ui';
 import { getCollection, getEntries, render } from 'astro:content';
 
+export const prerender = true;
+
 let lang = defaultLanguage as LanguageCode;
 
 export async function getStaticPaths() {
