@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { remarkReadingTime } from './src/lib/remark-reading-time.mjs';
 import rehypeMermaid from 'rehype-mermaid';
 
-import vercel from '@astrojs/vercel';
+import vercel from '@astrojs/vercel/serverless';
 
 // Use different strategies based on environment
 const isProduction = process.env.NODE_ENV === 'production';
@@ -21,7 +21,7 @@ console.log(`Using Mermaid strategy: ${mermaidStrategy}`);
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
+  output: 'server',
   site: 'https://example.com', // IMPORTANT: Replace with your actual domain in production
   integrations: [
     react(),
