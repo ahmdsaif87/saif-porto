@@ -18,7 +18,9 @@ const { project, t, lang } = Astro.props;
 ---
 
 <div class="py-12 md:py-16">
-  <article class="prose lg:prose-xl max-w-none dark:prose-invert">
+  <article
+    class="prose lg:prose-xl dark:prose-invert max-w-3xl mx-auto py-8 px-4"
+  >
     <a
       href={`${lang !== defaultLanguage ? `/${lang}` : ''}/projects`}
       class={buttonVariants({ variant: 'ghost' }) + ' mb-6 no-underline'}
@@ -26,46 +28,42 @@ const { project, t, lang } = Astro.props;
       &larr; {t.projectDetailPage?.backToProjects ?? 'Back to Projects'}
     </a>
 
-    <Heading title={project.title} />
-    <div
-      class="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-600 dark:text-gray-400"
-    >
-      <!-- Category -->
-      {
-        project.categoryText && (
-          <div class="flex items-center gap-2">
-            <span class="text-foreground">
-              {t.projectDetailPage?.categoryLabel ?? 'Category'}
-            </span>
-            <Badge variant="secondary">{project.categoryText}</Badge>
-          </div>
-        )
-      }
-      <!-- Date -->
-      {
-        project.dateText && (
-          <div class="flex items-center gap-2">
-            <span class="text-foreground">
-              {t.projectDetailPage?.dateLabel ?? 'Date'}
-            </span>
-            <Badge variant="secondary">{project.dateText}</Badge>
-          </div>
-        )
-      }
-    </div>
+    <header class="mb-8">
+      <h1 class="text-4xl font-bold mb-2">{project.title}</h1>
+      <div
+        class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground"
+      >
+        <!-- Category -->
+        {
+          project.categoryText && (
+            <div class="flex items-center gap-2">
+              <span>{t.projectDetailPage?.categoryLabel ?? 'Category'}:</span>
+              <Badge variant="secondary">{project.categoryText}</Badge>
+            </div>
+          )
+        }
+        <!-- Date -->
+        {
+          project.dateText && (
+            <div class="flex items-center gap-2">
+              <span>{t.projectDetailPage?.dateLabel ?? 'Date'}:</span>
+              <Badge variant="secondary">{project.dateText}</Badge>
+            </div>
+          )
+        }
+      </div>
+    </header>
 
     <!-- Image -->
     {
       project.imageUrl && (
-        <div class="mb-8 aspect-[16/9] overflow-hidden rounded-lg shadow-lg">
-          <Image
-            src={project.imageUrl}
-            alt={project.imageAltText}
-            class="h-full w-full object-cover transition-transform duration-300 ease-in-out hover:scale-105"
-            widths={[400, 800, 1200]}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-        </div>
+        <Image
+          src={project.imageUrl}
+          alt={project.imageAltText}
+          class="w-full h-auto rounded-lg mb-8 shadow-lg"
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
       )
     }
 
