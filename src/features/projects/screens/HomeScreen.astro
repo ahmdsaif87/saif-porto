@@ -85,24 +85,28 @@ const {
     {/* Hero Text Column */}
     <div class="text-center md:text-left">
       <h1
-        class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4"
+        class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 opacity-0 animate-fade-in-up"
       >
         {heroGreeting}
       </h1>
-      <p class="text-2xl md:text-3xl font-medium text-muted-foreground mb-2">
+      <p
+        class="text-2xl md:text-3xl font-medium text-muted-foreground mb-2 opacity-0 animate-fade-in-up animation-delay-100"
+      >
         <span>{heroSubtitlePart1}</span>
         <span class="text-primary"> | </span>
         <span>{heroSubtitlePart2}</span>
       </p>
-      <p class="text-lg text-muted-foreground mb-6">
+      <p
+        class="text-lg text-muted-foreground mb-6 opacity-0 animate-fade-in-up animation-delay-200"
+      >
         {heroIntroduction}
       </p>
       <div
-        class="flex gap-4 mb-8 justify-center md:justify-start items-center text-muted-foreground"
+        class="flex gap-4 mb-8 justify-center md:justify-start items-center text-muted-foreground opacity-0 animate-fade-in-up animation-delay-300"
       >
         <a
           href="mailto:ahmadsaif7456@gmail.com"
-          class="hover:text-primary transition-colors"
+          class="hover:text-primary transition-colors hover:scale-110 duration-300"
           aria-label="Email"
         >
           <Mail className="size-6" />
@@ -111,7 +115,7 @@ const {
           href="https://www.instagram.com/ahmdsaif87"
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:text-primary transition-colors"
+          class="hover:text-primary transition-colors hover:scale-110 duration-300"
           aria-label="Instagram"
         >
           <Instagram className="size-6" />
@@ -120,7 +124,7 @@ const {
           href="https://x.com/ahmdsaif_"
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:text-primary transition-colors"
+          class="hover:text-primary transition-colors hover:scale-110 duration-300"
           aria-label="Twitter"
         >
           <Twitter className="size-6" />
@@ -129,7 +133,7 @@ const {
           href="https://github.com/ahmdsaif87"
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:text-primary transition-colors"
+          class="hover:text-primary transition-colors hover:scale-110 duration-300"
           aria-label="GitHub"
         >
           <Github className="size-6" />
@@ -138,25 +142,27 @@ const {
           href="https://www.linkedin.com/in/ahmadsaif-dev"
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:text-primary transition-colors"
+          class="hover:text-primary transition-colors hover:scale-110 duration-300"
           aria-label="LinkedIn"
         >
           <Linkedin className="size-6" />
         </a>
       </div>
       <div
-        class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+        class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start opacity-0 animate-fade-in-up animation-delay-500"
       >
         <a
           href="/projects"
-          class={buttonVariants({ variant: 'default', size: 'lg' })}
+          class={buttonVariants({ variant: 'default', size: 'lg' }) +
+            ' hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-primary/20'}
         >
           <Dumbbell className="mr-2 size-4" />
           {heroViewWorkButton}
         </a>
         <a
           href={getRelativeLocaleUrl(lang, '/contact')}
-          class={buttonVariants({ variant: 'outline', size: 'lg' })}
+          class={buttonVariants({ variant: 'outline', size: 'lg' }) +
+            ' hover:scale-105 transition-transform duration-300'}
         >
           <Calendar className="mr-2 size-4" />
           {heroContactButton}
@@ -165,9 +171,11 @@ const {
     </div>
 
     {/* Hero Image */}
-    <div class="md:text-center">
+    <div
+      class="md:text-center opacity-0 animate-fade-in-up animation-delay-300"
+    >
       <div
-        class="md:w-[500px] w-full aspect-square bg-muted rounded-lg shadow-xl overflow-hidden mx-auto md:ml-auto"
+        class="md:w-[500px] w-full aspect-square bg-muted rounded-lg shadow-xl overflow-hidden mx-auto md:ml-auto ring-1 ring-border/50 hover:ring-primary/30 transition-all duration-500"
       >
         <Image
           src={heroImage}
@@ -176,7 +184,7 @@ const {
           height={800}
           densities={[1, 1.5, 2]}
           quality="high"
-          class="h-full w-full object-cover"
+          class="h-full w-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
           style="object-position: center 28%;"
         />
       </div>
