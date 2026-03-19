@@ -1,0 +1,182 @@
+---
+import { Menu, X } from 'lucide-react';
+import type { NavItem } from '@/layouts/BaseLayout.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { defaultLanguage, type LanguageCode } from '../i18n/ui';
+
+interface Props {
+  navItems: Array<NavItem>;
+}
+const { navItems } = Astro.props;
+const currentLocale =
+  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
+---
+
+<div class="md:hidden">
+  <button
+    id="mobile-menu-btn"
+    class="p-2 w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground focus:outline-none relative z-[100]"
+    aria-label="Toggle menu"
+  >
+    <div
+      class="relative w-6 h-6 flex items-center justify-center pointer-events-none"
+    >
+      <!-- Menu Icon (Hamburger) -->
+      <svg
+        id="menu-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="absolute transition-all duration-300 transform scale-100 rotate-0 opacity-100"
+      >
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+      <!-- Close Icon (X) -->
+      <svg
+        id="close-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="absolute transition-all duration-300 transform scale-0 -rotate-90 opacity-0"
+      >
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </div>
+  </button>
+
+  <!-- Backdrop (More solid) -->
+  <div
+    id="mobile-menu-backdrop"
+    class="fixed inset-0 z-40 bg-black/60 transition-opacity duration-300 opacity-0 pointer-events-none"
+  >
+  </div>
+
+  <!-- Dropdown (Solid background, 100% width, auto height, no icons) -->
+  <div
+    id="mobile-menu"
+    class="fixed top-[73px] left-0 right-0 z-50 flex flex-col w-full bg-background border-b shadow-2xl transition-all duration-300 transform -translate-y-full opacity-0 pointer-events-none h-auto"
+  >
+    <nav class="flex flex-col p-3 gap-0.5 items-start">
+      {
+        navItems.map((item, index) => {
+          return (
+            <a
+              href={getRelativeLocaleUrl(currentLocale, item.href)}
+              class="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-200 transform translate-y-2 opacity-0 mobile-link w-full py-2 px-3 rounded-md"
+              style={`transition-delay: ${index * 40}ms;`}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const initMobileMenu = () => {
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const backdrop = document.getElementById('mobile-menu-backdrop');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      const links = document.querySelectorAll('.mobile-link');
+
+      if (!btn || !menu || !menuIcon || !closeIcon || !backdrop) return;
+
+      let isOpen = false;
+
+      const toggle = (force) => {
+        isOpen = typeof force === 'boolean' ? force : !isOpen;
+
+        if (isOpen) {
+          menu.classList.remove(
+            '-translate-y-full',
+            'opacity-0',
+            'pointer-events-none'
+          );
+          menu.classList.add(
+            'translate-y-0',
+            'opacity-100',
+            'pointer-events-auto'
+          );
+
+          backdrop.classList.remove('opacity-0', 'pointer-events-none');
+          backdrop.classList.add('opacity-100', 'pointer-events-auto');
+
+          menuIcon.classList.add('scale-0', 'rotate-90', 'opacity-0');
+          menuIcon.classList.remove('scale-100', 'rotate-0', 'opacity-100');
+
+          closeIcon.classList.add('scale-100', 'rotate-0', 'opacity-100');
+          closeIcon.classList.remove('scale-0', '-rotate-90', 'opacity-0');
+
+          links.forEach((link) => {
+            link.classList.remove('translate-y-4', 'opacity-0');
+            link.classList.add('translate-y-0', 'opacity-100');
+          });
+
+          document.body.style.overflow = 'hidden';
+        } else {
+          menu.classList.add(
+            '-translate-y-full',
+            'opacity-0',
+            'pointer-events-none'
+          );
+          menu.classList.remove(
+            'translate-y-0',
+            'opacity-100',
+            'pointer-events-auto'
+          );
+
+          backdrop.classList.add('opacity-0', 'pointer-events-none');
+          backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+
+          menuIcon.classList.remove('scale-0', 'rotate-90', 'opacity-0');
+          menuIcon.classList.add('scale-100', 'rotate-0', 'opacity-100');
+
+          closeIcon.classList.remove('scale-100', 'rotate-0', 'opacity-100');
+          closeIcon.classList.add('scale-0', '-rotate-90', 'opacity-0');
+
+          links.forEach((link) => {
+            link.classList.add('translate-y-4', 'opacity-0');
+            link.classList.remove('translate-y-0', 'opacity-100');
+          });
+
+          document.body.style.overflow = '';
+        }
+      };
+
+      btn.onclick = (e) => {
+        e.preventDefault();
+        toggle();
+      };
+
+      backdrop.onclick = () => toggle(false);
+
+      links.forEach((link) => {
+        link.onclick = () => toggle(false);
+      });
+    };
+
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+    document.addEventListener('astro:after-swap', initMobileMenu);
+    initMobileMenu();
+  })();
+</script>
