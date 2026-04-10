@@ -180,10 +180,11 @@ const {
         <Image
           src={heroImage}
           alt={'User profile image'}
-          width={800}
-          height={800}
-          densities={[1, 1.5, 2]}
-          quality="high"
+          widths={[400, 600, 800, 1000]}
+          sizes="(max-width: 768px) 100vw, 500px"
+          quality="80"
+          loading="eager"
+          fetchpriority="high"
           class="h-full w-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
           style="object-position: center 28%;"
         />
@@ -278,6 +279,15 @@ const {
         );
       })
     }
+  </div>
+
+  <div class="mt-10 flex justify-center">
+    <a
+      href={getRelativeLocaleUrl(lang, '/projects')}
+      class={buttonVariants({ variant: 'default', size: 'lg' }) + ' hover:scale-105 transition-transform duration-300'}
+    >
+      View All Projects
+    </a>
   </div>
 </section>
 

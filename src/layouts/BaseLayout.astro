@@ -142,9 +142,22 @@ const navItems: Array<NavItem> = [
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <script
       src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"
       defer></script>
@@ -152,9 +165,7 @@ const navItems: Array<NavItem> = [
   </head>
   <body class="min-h-screen bg-background font-sans antialiased flex flex-col">
     {/* Tailwind classes for the body */}
-    <header class="sticky top-0 z-50">
-      <Header navItems={navItems as NavItem[]} />
-    </header>
+    <Header navItems={navItems as NavItem[]} />
 
     <main
       class="container mx-auto px-4 py-8 flex-1 max-w-screen-2xl pb-20 md:pb-8"
