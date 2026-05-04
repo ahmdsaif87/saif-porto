@@ -1,13 +1,6 @@
 ---
 // src/components/SkillCard.astro
 import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardFooter,
-} from '@/components/ui/card';
-import {
   MonitorSmartphone,
   ServerCog,
   Database,
@@ -108,57 +101,45 @@ const { title, description, iconName, technologies = [] } = Astro.props;
 const IconComponent = iconComponents[iconName];
 ---
 
-<Card
-  className="flex flex-col h-full hover:shadow-xl transition-all duration-300 gap-3 pt-2 hover:-translate-y-2 group border-border/50 hover:border-primary/50"
->
-  <CardHeader className="pb-3 pt-4">
-    {/* Adjusted padding for consistency */}
-    {/* User's modified header structure - ensure it's correctly aligned */}
-    {/* CardTitle itself is not a flex container, the div inside it is. */}
-    <div class="flex items-start">
-      {/* This div will be the flex container for icon and title text block */}
-      <div class="mr-4 flex-shrink-0">
-        {/* Icon container */}
-        <span
-          class="inline-flex items-center justify-center p-2 bg-primary/10 rounded-lg"
-        >
-          <IconComponent className="size-5 text-primary" />
-        </span>
-      </div>
-      <div class="flex-grow">
-        {/* Title block, allows title to wrap */}
-        <CardTitle
-          className="text-lg font-semibold group-hover:text-primary transition-colors"
-        >
-          {title}
-        </CardTitle>
-      </div>
+<div class="glass-card glass-card-hover group p-6 flex flex-col h-full">
+  {/* Header with icon and title */}
+  <div class="flex items-start gap-4 mb-4">
+    <div
+      class="flex-shrink-0 p-2.5 rounded-xl bg-primary/10 transition-all duration-300 group-hover:shadow-[0_0_20px_var(--primary)/20]"
+    >
+      <IconComponent className="size-5 text-primary" />
     </div>
-  </CardHeader>
+    <div class="flex-grow min-w-0">
+      <h3
+        class="text-lg font-semibold group-hover:text-primary transition-colors duration-300"
+        style="font-family: var(--font-heading);"
+      >
+        {title}
+      </h3>
+    </div>
+  </div>
 
-  <CardContent className="flex-grow pt-2 pb-3">
-    {/* flex-grow pushes footer down, padding adjusted */}
-    {
-      /* Description text indented to align with title. Calculation: icon div's mr-4 (1rem) + icon span's effective width (approx 2.25rem) = 3.25rem */
-    }
-    <p class="text-sm text-muted-foreground line-clamp-3 pl-[3.25rem]">
-      {description}
-    </p>
-  </CardContent>
+  {/* Description */}
+  <p class="text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-5 flex-grow">
+    {description}
+  </p>
 
+  {/* Technology icons */}
   {
     technologies && technologies.length > 0 && (
-      <CardFooter className="pt-3 pb-4 flex flex-wrap gap-x-3 gap-y-2 justify-start items-center">
+      <div class="flex flex-wrap gap-3 items-center pt-4 border-t border-border/50">
         {technologies.map((tech) => {
           const TechIcon = techIconComponents[tech.id.toLowerCase()];
           return TechIcon ? (
-            <TechIcon
-              className="size-5 text-muted-foreground hover:text-primary transition-colors"
-              title={tech.name}
-            />
+            <div class="group/tech relative">
+              <TechIcon
+                className="size-4.5 text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                title={tech.name}
+              />
+            </div>
           ) : null;
         })}
-      </CardFooter>
+      </div>
     )
   }
-</Card>
+</div>

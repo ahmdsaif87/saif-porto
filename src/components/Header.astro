@@ -13,25 +13,43 @@ const { navItems } = Astro.props as Props;
 
 const currentLocale =
   (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
+const currentPath = Astro.url.pathname;
 ---
 
-<header class="py-5 border-b sticky top-0 z-50 w-full bg-background">
-  <nav class="mx-auto px-4 max-w-screen-2xl flex justify-between items-center">
+<header
+  class="sticky top-0 z-50 w-full border-b transition-all duration-300"
+  style="background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border-color: var(--glass-border);"
+>
+  <nav class="mx-auto px-6 max-w-screen-xl h-16 flex justify-between items-center">
     <Logo />
-    <div class="hidden md:flex items-center gap-x-5">
+
+    {/* Desktop navigation */}
+    <div class="hidden md:flex items-center gap-x-1">
       {
-        navItems.map((link) => (
-          <a
-            href={getRelativeLocaleUrl(currentLocale, link.href)}
-            class="font-medium text-muted-foreground transition-colors hover:text-foreground relative group"
-          >
-            {link.label}
-            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-          </a>
-        ))
+        navItems.map((link) => {
+          const href = getRelativeLocaleUrl(currentLocale, link.href);
+          const isActive = currentPath === href || (link.href !== '/' && currentPath.startsWith(href));
+          return (
+            <a
+              href={href}
+              class:list={[
+                'relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300',
+                isActive
+                  ? 'text-foreground bg-accent'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50',
+              ]}
+            >
+              {link.label}
+              {isActive && (
+                <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full bg-primary" />
+              )}
+            </a>
+          );
+        })
       }
     </div>
-    <div class="flex items-center gap-x-3">
+
+    <div class="flex items-center gap-x-2">
       <ThemeToggle />
       <MobileMenu navItems={navItems} />
     </div>

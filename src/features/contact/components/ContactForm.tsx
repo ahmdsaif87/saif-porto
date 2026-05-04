@@ -91,17 +91,18 @@ export function ContactForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <FormField
             control={form.control}
             name="firstName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{formTranslations.firstNameLabel}</FormLabel>
+                <FormLabel className="text-sm font-medium">{formTranslations.firstNameLabel}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder={formTranslations.firstNamePlaceholder}
+                    className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
                     {...field}
                   />
                 </FormControl>
@@ -114,10 +115,11 @@ export function ContactForm({
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{formTranslations.lastNameLabel}</FormLabel>
+                <FormLabel className="text-sm font-medium">{formTranslations.lastNameLabel}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder={formTranslations.lastNamePlaceholder}
+                    className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
                     {...field}
                   />
                 </FormControl>
@@ -131,11 +133,12 @@ export function ContactForm({
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{formTranslations.emailLabel}</FormLabel>
+              <FormLabel className="text-sm font-medium">{formTranslations.emailLabel}</FormLabel>
               <FormControl>
                 <Input
                   type="email"
                   placeholder={formTranslations.emailPlaceholder}
+                  className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
                   {...field}
                 />
               </FormControl>
@@ -148,11 +151,12 @@ export function ContactForm({
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{formTranslations.messageLabel}</FormLabel>
+              <FormLabel className="text-sm font-medium">{formTranslations.messageLabel}</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder={formTranslations.messagePlaceholder}
                   rows={5}
+                  className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300 resize-none"
                   {...field}
                 />
               </FormControl>
@@ -162,7 +166,7 @@ export function ContactForm({
         />
         <Button
           type="submit"
-          className="w-full"
+          className="w-full rounded-xl text-sm font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
           size="lg"
           disabled={form.formState.isSubmitting}
         >

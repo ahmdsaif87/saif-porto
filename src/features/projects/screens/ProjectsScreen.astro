@@ -15,18 +15,28 @@ const { projects, t, lang } = Astro.props;
 const projectsPageTranslations = t.projectsPage; // For easier access
 ---
 
-<div class="py-12 md:py-16">
-  <Heading title={projectsPageTranslations?.title ?? 'Projects'} />
+<div class="py-12 md:py-20">
+  <div class="text-center mb-12">
+    <h1
+      class="text-3xl md:text-4xl font-bold mb-4"
+      style="font-family: var(--font-heading);"
+    >
+      {projectsPageTranslations?.title ?? 'Projects'}
+    </h1>
+    <div class="gradient-divider max-w-24 mx-auto"></div>
+  </div>
+
   {
     projects && projects.length > 0 ? (
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project: TranslatedProject) => {
+        {projects.map((project: TranslatedProject, index: number) => {
           const projectUrl = `/projects/${project.slug}`;
           return (
             <a
               href={projectUrl}
               aria-label={`View project ${project.title}`}
-              class="flex rounded-lg transition-shadow duration-200 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              class="flex rounded-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 scroll-reveal"
+              style={`transition-delay: ${index * 100}ms;`}
             >
               <SectionCard
                 title={project.title}
@@ -37,7 +47,7 @@ const projectsPageTranslations = t.projectsPage; // For easier access
                 imageUrl={project.imageUrl}
                 imageAltText={project.imageAltText}
               >
-                <p class="text-sm text-muted-foreground">
+                <p class="text-sm text-muted-foreground leading-relaxed">
                   {project.description}
                 </p>
               </SectionCard>

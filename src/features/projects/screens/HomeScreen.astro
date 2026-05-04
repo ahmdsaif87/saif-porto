@@ -9,11 +9,8 @@ import {
   Dumbbell,
   Briefcase,
   GraduationCap,
-  Mail,
-  Instagram,
-  Twitter,
-  Github,
-  Linkedin,
+  ArrowRight,
+  Sparkles,
 } from 'lucide-react';
 
 import heroImage from '@/assets/user-hero.jpeg';
@@ -36,7 +33,7 @@ export type Props = {
   featuredProjectsDescription: string;
   mySkillsTitle: string;
   mySkillsDescription: string;
-  projectPreviewCtaText: string; // Added for specific project CTA
+  projectPreviewCtaText: string;
   aboutMeTitle: string;
   aboutMeDescription: string;
   experienceTitle: string;
@@ -80,91 +77,59 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-12 md:py-16">
-  <div class="grid md:grid-cols-2 gap-12 items-center justify-between">
+{/* ===== HERO SECTION ===== */}
+<section class="relative py-16 md:py-24 overflow-hidden">
+  {/* Decorative orbs */}
+  <div class="decorative-orb animate-breathe" aria-hidden="true"></div>
+  <div class="decorative-orb animate-breathe animation-delay-300" aria-hidden="true"></div>
+
+  <div class="relative z-10 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
     {/* Hero Text Column */}
     <div class="text-center md:text-left">
+      {/* Badge */}
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-sm text-muted-foreground mb-6 opacity-0 animate-fade-in-up">
+        <Sparkles className="size-3.5 text-primary" />
+        <span>Full Stack Developer</span>
+      </div>
+
       <h1
-        class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 opacity-0 animate-fade-in-up"
+        class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 opacity-0 animate-fade-in-up animation-delay-100"
+        style="font-family: var(--font-heading);"
       >
-        {heroGreeting}
+        <span class="text-primary">{heroGreeting}</span>
       </h1>
+
       <p
-        class="text-2xl md:text-3xl font-medium text-muted-foreground mb-2 opacity-0 animate-fade-in-up animation-delay-100"
+        class="text-xl md:text-2xl font-medium text-muted-foreground mb-3 opacity-0 animate-fade-in-up animation-delay-200"
       >
         <span>{heroSubtitlePart1}</span>
-        <span class="text-primary"> | </span>
+        <span class="text-primary font-bold"> · </span>
         <span>{heroSubtitlePart2}</span>
       </p>
+
       <p
-        class="text-lg text-muted-foreground mb-6 opacity-0 animate-fade-in-up animation-delay-200"
+        class="text-base md:text-lg text-muted-foreground mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed opacity-0 animate-fade-in-up animation-delay-300"
       >
         {heroIntroduction}
       </p>
-      <div
-        class="flex gap-4 mb-8 justify-center md:justify-start items-center text-muted-foreground opacity-0 animate-fade-in-up animation-delay-300"
-      >
-        <a
-          href="mailto:ahmadsaif7456@gmail.com"
-          class="hover:text-primary transition-colors hover:scale-110 duration-300"
-          aria-label="Email"
-        >
-          <Mail className="size-6" />
-        </a>
-        <a
-          href="https://www.instagram.com/ahmdsaif87"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hover:text-primary transition-colors hover:scale-110 duration-300"
-          aria-label="Instagram"
-        >
-          <Instagram className="size-6" />
-        </a>
-        <a
-          href="https://x.com/ahmdsaif_"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hover:text-primary transition-colors hover:scale-110 duration-300"
-          aria-label="Twitter"
-        >
-          <Twitter className="size-6" />
-        </a>
-        <a
-          href="https://github.com/ahmdsaif87"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hover:text-primary transition-colors hover:scale-110 duration-300"
-          aria-label="GitHub"
-        >
-          <Github className="size-6" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/ahmadsaif-dev"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hover:text-primary transition-colors hover:scale-110 duration-300"
-          aria-label="LinkedIn"
-        >
-          <Linkedin className="size-6" />
-        </a>
-      </div>
+
+      {/* CTA Buttons */}
       <div
         class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start opacity-0 animate-fade-in-up animation-delay-500"
       >
         <a
           href="/projects"
           class={buttonVariants({ variant: 'default', size: 'lg' }) +
-            ' hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-primary/20'}
+            ' rounded-xl hover:scale-[1.03] transition-all duration-300 hover:shadow-lg active:scale-[0.98]'}
         >
           <Dumbbell className="mr-2 size-4" />
           {heroViewWorkButton}
         </a>
         <a
           href={getRelativeLocaleUrl(lang, '/contact')}
-          class={buttonVariants({ variant: 'outline', size: 'lg' }) +
-            ' hover:scale-105 transition-transform duration-300'}
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm glass-card text-foreground transition-all duration-300 hover:scale-[1.03] hover:bg-muted/50 active:scale-[0.98]"
         >
-          <Calendar className="mr-2 size-4" />
+          <Calendar className="size-4" />
           {heroContactButton}
         </a>
       </div>
@@ -172,99 +137,134 @@ const {
 
     {/* Hero Image */}
     <div
-      class="md:text-center opacity-0 animate-fade-in-up animation-delay-300"
+      class="flex justify-center md:justify-end opacity-0 animate-fade-in-up animation-delay-300"
     >
-      <div
-        class="md:w-[500px] w-full aspect-square bg-muted rounded-lg shadow-xl overflow-hidden mx-auto md:ml-auto ring-1 ring-border/50 hover:ring-primary/30 transition-all duration-500"
+      <div class="relative group">
+        <div
+          class="relative w-72 h-72 md:w-[400px] md:h-[400px] rounded-2xl overflow-hidden"
+        >
+          <Image
+            src={heroImage}
+            alt={'User profile image'}
+            widths={[400, 600, 800]}
+            sizes="(max-width: 768px) 288px, 400px"
+            quality="80"
+            loading="eager"
+            fetchpriority="high"
+            class="h-full w-full object-cover transition-all duration-700 group-hover:scale-105"
+            style="object-position: center 28%;"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* ===== ABOUT ME SECTION ===== */}
+<section id="about" class="py-16 md:py-20 scroll-reveal">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2
+      class="text-3xl md:text-4xl font-bold mb-6"
+      style="font-family: var(--font-heading);"
+    >
+      {aboutMeTitle}
+    </h2>
+    <div class="gradient-divider max-w-24 mx-auto mb-8"></div>
+    <p class="text-lg text-muted-foreground leading-relaxed">
+      {aboutMeDescription}
+    </p>
+  </div>
+</section>
+
+{/* ===== EXPERIENCE & EDUCATION SECTION ===== */}
+<section id="resume" class="py-16 md:py-20">
+  <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
+    {/* Experience */}
+    <div class="scroll-reveal">
+      <h2
+        class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3"
+        style="font-family: var(--font-heading);"
       >
-        <Image
-          src={heroImage}
-          alt={'User profile image'}
-          widths={[400, 600, 800, 1000]}
-          sizes="(max-width: 768px) 100vw, 500px"
-          quality="80"
-          loading="eager"
-          fetchpriority="high"
-          class="h-full w-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
-          style="object-position: center 28%;"
-        />
-      </div>
-    </div>
-  </div>
-</section>
-
-{/* About Me Section */}
-<section id="about" class="py-12 md:py-16">
-  <div class="container mx-auto px-4">
-    <Heading title={aboutMeTitle} className="flex flex-col items-center" />
-    <div class="max-w-3xl mx-auto text-center">
-      <p class="text-lg text-muted-foreground leading-relaxed">
-        {aboutMeDescription}
-      </p>
-    </div>
-  </div>
-</section>
-
-{/* Experience & Education Section */}
-<section id="resume" class="py-12 md:py-16 bg-muted/20 dark:bg-muted/10">
-  <div class="container mx-auto px-4">
-    <div class="grid md:grid-cols-2 gap-12">
-      {/* Experience */}
-      <div>
-        <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
-          <Briefcase className="size-8 text-primary" />
-          {experienceTitle}
-        </h2>
-        <div class="space-y-8">
-          {
-            experiences.map((exp) => (
-              <div class="relative pl-8 border-l-2 border-primary/20 hover:border-primary transition-colors duration-300">
-                <div class="absolute -left-[9px] top-0 size-4 rounded-full bg-background border-2 border-primary" />
-                <h3 class="text-xl font-bold">{exp.title}</h3>
-                <p class="text-primary font-medium mb-1">
-                  {exp.company} | {exp.date}
-                </p>
-                <p class="text-muted-foreground">{exp.description}</p>
-              </div>
-            ))
-          }
+        <div class="p-2 rounded-xl bg-primary/10">
+          <Briefcase className="size-5 text-primary" />
         </div>
-      </div>
-
-      {/* Education */}
-      <div>
-        <h2 class="text-3xl font-bold mb-8 flex items-center gap-2">
-          <GraduationCap className="size-8 text-primary" />
-          {educationTitle}
-        </h2>
-        <div class="space-y-8">
-          {
-            educations.map((edu) => (
-              <div class="relative pl-8 border-l-2 border-primary/20 hover:border-primary transition-colors duration-300">
-                <div class="absolute -left-[9px] top-0 size-4 rounded-full bg-background border-2 border-primary" />
-                <h3 class="text-xl font-bold">{edu.degree}</h3>
-                <p class="text-primary font-medium mb-1">
-                  {edu.school} | {edu.date}
+        {experienceTitle}
+      </h2>
+      <div class="space-y-6">
+        {
+          experiences.map((exp) => (
+            <div class="relative pl-8 border-l-2 border-border hover:border-primary/50 transition-colors duration-500 group">
+              <div class="absolute -left-[7px] top-1 size-3 rounded-full bg-primary border-2 border-primary" />
+              <div class="glass-card p-5 rounded-xl glass-card-hover">
+                <h3
+                  class="text-lg font-bold mb-1"
+                  style="font-family: var(--font-heading);"
+                >{exp.title}</h3>
+                <p class="text-sm text-primary font-medium mb-2">
+                  {exp.company}
+                  <span class="text-muted-foreground"> · </span>
+                  <span class="text-muted-foreground">{exp.date}</span>
                 </p>
-                <p class="text-muted-foreground">{edu.description}</p>
+                <p class="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
               </div>
-            ))
-          }
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Education */}
+    <div class="scroll-reveal transition-delay-200">
+      <h2
+        class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3"
+        style="font-family: var(--font-heading);"
+      >
+        <div class="p-2 rounded-xl bg-primary/10">
+          <GraduationCap className="size-5 text-primary" />
         </div>
+        {educationTitle}
+      </h2>
+      <div class="space-y-6">
+        {
+          educations.map((edu) => (
+            <div class="relative pl-8 border-l-2 border-border hover:border-primary/50 transition-colors duration-500 group">
+              <div class="absolute -left-[7px] top-1 size-3 rounded-full bg-primary border-2 border-primary" />
+              <div class="glass-card p-5 rounded-xl glass-card-hover">
+                <h3
+                  class="text-lg font-bold mb-1"
+                  style="font-family: var(--font-heading);"
+                >{edu.degree}</h3>
+                <p class="text-sm text-primary font-medium mb-2">
+                  {edu.school}
+                  <span class="text-muted-foreground"> · </span>
+                  <span class="text-muted-foreground">{edu.date}</span>
+                </p>
+                <p class="text-sm text-muted-foreground leading-relaxed">{edu.description}</p>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>
 </section>
 
-{/* Featured Projects Section */}
-<section id="projects" class="py-12 md:py-16 bg-muted/20 dark:bg-muted/10">
-  <Heading
-    title={featuredProjectsTitle}
-    description={featuredProjectsDescription}
-    className="flex flex-col items-center"
-  />
+{/* ===== FEATURED PROJECTS SECTION ===== */}
+<section id="projects" class="py-16 md:py-20 scroll-reveal">
+  <div class="text-center mb-12">
+    <h2
+      class="text-3xl md:text-4xl font-bold mb-4"
+      style="font-family: var(--font-heading);"
+    >
+      {featuredProjectsTitle}
+    </h2>
+    <div class="gradient-divider max-w-24 mx-auto mb-6"></div>
+    <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+      {featuredProjectsDescription}
+    </p>
+  </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {
       projects.slice(0, 3).map((project: TranslatedProject) => {
         return (
@@ -284,32 +284,39 @@ const {
   <div class="mt-10 flex justify-center">
     <a
       href={getRelativeLocaleUrl(lang, '/projects')}
-      class={buttonVariants({ variant: 'default', size: 'lg' }) + ' hover:scale-105 transition-transform duration-300'}
+      class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm glass-card text-foreground transition-all duration-300 hover:scale-[1.03] hover:bg-muted/50 group"
     >
       View All Projects
+      <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
     </a>
   </div>
 </section>
 
-{/* Skills Section */}
-<section id="skills" class="py-12 md:py-16">
-  <div class="container mx-auto px-4">
-    <Heading
-      title={mySkillsTitle}
-      description={mySkillsDescription}
-      className="flex flex-col items-center"
-    />
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {
-        skills.map((skill) => (
-          <SkillCard
-            title={skill.title}
-            description={skill.description}
-            iconName={skill.iconName}
-            technologies={skill.technologies}
-          />
-        ))
-      }
-    </div>
+{/* ===== SKILLS SECTION ===== */}
+<section id="skills" class="py-16 md:py-20 scroll-reveal">
+  <div class="text-center mb-12">
+    <h2
+      class="text-3xl md:text-4xl font-bold mb-4"
+      style="font-family: var(--font-heading);"
+    >
+      {mySkillsTitle}
+    </h2>
+    <div class="gradient-divider max-w-24 mx-auto mb-6"></div>
+    <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+      {mySkillsDescription}
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {
+      skills.map((skill) => (
+        <SkillCard
+          title={skill.title}
+          description={skill.description}
+          iconName={skill.iconName}
+          technologies={skill.technologies}
+        />
+      ))
+    }
   </div>
 </section>
