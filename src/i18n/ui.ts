@@ -147,6 +147,7 @@ export const ui = {
       blog: 'Blog',
       contact: 'Contact',
       projects: 'Projects',
+      resume: 'Resume',
     },
     footer: {
       rights: 'All rights reserved.',
@@ -178,21 +179,21 @@ export const ui = {
       experienceTitle: 'Experience',
       experiences: [
         {
-          title: 'Full Stack Developer',
-          company: 'Orangaringe',
+          title: 'Freelance',
+          company: 'Self-employed',
           date: '2025 - Present',
           description:
-            'Developing Alysa (Mobile Learning Platform for IELTS Preparation) for capstone project, focusing on flask and flutter.',
+            'Mobile & Web Development',
         },
       ],
       educationTitle: 'Education',
       educations: [
         {
-          degree: 'Bachelor of Computer Engineering',
+          degree: 'Bachelor of Informatics Engineering',
           school: 'Universitas Harkat Negeri',
           date: '2023 - Present',
           description:
-            'Focused on software engineering, data structures, and algorithms.',
+            'Focused on software engineering and mobile application development.',
         },
       ],
     },

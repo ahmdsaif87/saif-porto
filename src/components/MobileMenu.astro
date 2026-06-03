@@ -68,11 +68,10 @@ const currentPath = Astro.url.pathname;
   >
   </div>
 
-  <!-- Dropdown (Glassmorphic panel) -->
+  <!-- Dropdown (Solid panel) -->
   <div
     id="mobile-menu"
-    class="fixed top-[65px] left-0 right-0 z-50 flex flex-col w-full border-b transition-all duration-300 transform -translate-y-full opacity-1 pointer-events-none h-auto"
-    style="background: var(--glass-bg); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-color: var(--glass-border);"
+    class="fixed top-[65px] left-0 right-0 z-50 flex flex-col w-full border-b bg-background border-border transition-all duration-300 transform -translate-y-full opacity-0 pointer-events-none h-auto"
   >
     <nav class="flex flex-col p-4 gap-1 items-start">
       {
