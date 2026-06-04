@@ -1,7 +1,16 @@
 ---
 import type { LanguageCode } from '@/i18n/ui';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { ArrowRight, ArrowDown, Download, Mail, Github, Linkedin, Instagram, Twitter } from 'lucide-react';
+import {
+  ArrowRight,
+  ArrowDown,
+  Download,
+  Mail,
+  Github,
+  Linkedin,
+  Instagram,
+  Twitter,
+} from 'lucide-react';
 
 import heroImage from '@/assets/user-hero.jpeg';
 import { Image } from 'astro:assets';
@@ -74,8 +83,12 @@ const {
 
 const allTechnologies = Array.from(
   new Set([
-    ...skills.flatMap((skillGroup) => skillGroup.technologies.map((tech) => tech.name)),
-    ...projects.flatMap((project) => project.technologiesUsed?.map((tech) => tech.name) || [])
+    ...skills.flatMap((skillGroup) =>
+      skillGroup.technologies.map((tech) => tech.name)
+    ),
+    ...projects.flatMap(
+      (project) => project.technologiesUsed?.map((tech) => tech.name) || []
+    ),
   ])
 );
 
@@ -87,7 +100,10 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
 {/* ═══════════════════════════════════════════════════════ */}
 {/* ===== HERO SECTION ===== */}
 {/* ═══════════════════════════════════════════════════════ */}
-<section id="hero" class="relative min-h-[90vh] flex items-center border-b border-border">
+<section
+  id="hero"
+  class="relative min-h-[90vh] flex items-center border-b border-border"
+>
   <div class="container mx-auto px-6 max-w-screen-xl py-20 md:py-28">
     <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
       {/* Hero Text */}
@@ -113,7 +129,9 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
         </p>
 
         {/* CTA Buttons */}
-        <div class="flex flex-wrap gap-4 opacity-0 animate-fade-in-up animation-delay-300">
+        <div
+          class="flex flex-wrap gap-4 opacity-0 animate-fade-in-up animation-delay-300"
+        >
           <a href="#projects" class="brutalist-btn">
             {heroViewWorkButton}
             <ArrowDown className="size-3.5" />
@@ -124,17 +142,26 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
         </div>
 
         {/* Scroll indicator */}
-        <div class="hidden md:flex items-center gap-3 mt-16 opacity-0 animate-fade-in-up animation-delay-500">
+        <div
+          class="hidden md:flex items-center gap-3 mt-16 opacity-0 animate-fade-in-up animation-delay-500"
+        >
           <div class="w-8 h-px bg-muted-foreground"></div>
-          <span class="text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style="font-family: var(--font-heading);">
+          <span
+            class="text-[10px] uppercase tracking-[0.2em] text-muted-foreground"
+            style="font-family: var(--font-heading);"
+          >
             Scroll to explore
           </span>
         </div>
       </div>
 
       {/* Hero Image */}
-      <div class="order-1 md:order-2 flex justify-center md:justify-end opacity-0 animate-fade-in-up animation-delay-200">
-        <div class="relative w-72 h-80 md:w-[380px] md:h-[460px] overflow-hidden border border-border">
+      <div
+        class="order-1 md:order-2 flex justify-center md:justify-end opacity-0 animate-fade-in-up animation-delay-200"
+      >
+        <div
+          class="relative w-72 h-80 md:w-[380px] md:h-[460px] overflow-hidden border border-border"
+        >
           <Image
             src={heroImage}
             alt={'Ahmad Saif profile photo'}
@@ -155,14 +182,22 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
 {/* ═══════════════════════════════════════════════════════ */}
 {/* ===== SKILLS MARQUEE SECTION ===== */}
 {/* ═══════════════════════════════════════════════════════ */}
-<section class="border-b border-border py-4 md:py-6 overflow-hidden bg-muted/30 flex flex-col gap-4">
+<section
+  class="border-b border-border py-4 md:py-6 overflow-hidden bg-muted/30 flex flex-col gap-4"
+>
   {/* First Line */}
   <div class="flex whitespace-nowrap animate-marquee-slow w-max pause-on-hover">
     {
       [...Array(2)].map((_, index) => (
-        <div class="flex shrink-0 items-center gap-8 md:gap-16 px-4 md:px-8" aria-hidden={index === 1 ? "true" : "false"}>
-          {firstLineTechnologies.map(tech => (
-            <span class="text-sm md:text-base font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-300" style="font-family: var(--font-heading);">
+        <div
+          class="flex shrink-0 items-center gap-8 md:gap-16 px-4 md:px-8"
+          aria-hidden={index === 1 ? 'true' : 'false'}
+        >
+          {firstLineTechnologies.map((tech) => (
+            <span
+              class="text-sm md:text-base font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-300"
+              style="font-family: var(--font-heading);"
+            >
               {tech}
             </span>
           ))}
@@ -172,12 +207,20 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
   </div>
 
   {/* Second Line */}
-  <div class="flex whitespace-nowrap animate-marquee-reverse-slow w-max pause-on-hover">
+  <div
+    class="flex whitespace-nowrap animate-marquee-reverse-slow w-max pause-on-hover"
+  >
     {
       [...Array(2)].map((_, index) => (
-        <div class="flex shrink-0 items-center gap-8 md:gap-16 px-4 md:px-8" aria-hidden={index === 1 ? "true" : "false"}>
-          {secondLineTechnologies.map(tech => (
-            <span class="text-sm md:text-base font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-300" style="font-family: var(--font-heading);">
+        <div
+          class="flex shrink-0 items-center gap-8 md:gap-16 px-4 md:px-8"
+          aria-hidden={index === 1 ? 'true' : 'false'}
+        >
+          {secondLineTechnologies.map((tech) => (
+            <span
+              class="text-sm md:text-base font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-300"
+              style="font-family: var(--font-heading);"
+            >
               {tech}
             </span>
           ))}
@@ -212,7 +255,10 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
       {
         projects.map((project: TranslatedProject, index: number) => {
-          const projectUrl = getRelativeLocaleUrl(lang, `/projects/${project.slug}`);
+          const projectUrl = getRelativeLocaleUrl(
+            lang,
+            `/projects/${project.slug}`
+          );
           const isLarge = index % 3 === 0;
           return (
             <a
@@ -221,19 +267,27 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
               style={`transition-delay: ${index * 100}ms;`}
             >
               {/* Image */}
-              <div class={`overflow-hidden ${isLarge ? 'h-64 md:h-96' : 'h-56 md:h-72'}`}>
+              <div
+                class={`overflow-hidden ${isLarge ? 'h-64 md:h-96' : 'h-56 md:h-72'}`}
+              >
                 {project.imageUrl ? (
                   <Image
                     src={project.imageUrl}
                     alt={project.imageAltText}
                     class="w-full h-full object-cover"
                     widths={[400, 800, 1200]}
-                    sizes={isLarge ? '(max-width: 768px) 100vw, 100vw' : '(max-width: 768px) 100vw, 50vw'}
+                    sizes={
+                      isLarge
+                        ? '(max-width: 768px) 100vw, 100vw'
+                        : '(max-width: 768px) 100vw, 50vw'
+                    }
                     quality="mid"
                   />
                 ) : (
                   <div class="w-full h-full bg-muted flex items-center justify-center">
-                    <p class="text-muted-foreground text-sm">{imageNotAvailable}</p>
+                    <p class="text-muted-foreground text-sm">
+                      {imageNotAvailable}
+                    </p>
                   </div>
                 )}
               </div>
@@ -262,7 +316,10 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
     </div>
 
     <div class="mt-16 flex justify-center scroll-reveal">
-      <a href={getRelativeLocaleUrl(lang, '/projects')} class="brutalist-btn-outline">
+      <a
+        href={getRelativeLocaleUrl(lang, '/projects')}
+        class="brutalist-btn-outline"
+      >
         View All Projects
         <ArrowRight className="size-3.5 ml-2" />
       </a>
@@ -301,7 +358,10 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
                 >
                   {exp.title.toUpperCase()}
                 </h3>
-                <p class="text-xs uppercase tracking-widest text-muted-foreground mb-3" style="font-family: var(--font-heading);">
+                <p
+                  class="text-xs uppercase tracking-widest text-muted-foreground mb-3"
+                  style="font-family: var(--font-heading);"
+                >
                   {exp.company} · {exp.date}
                 </p>
                 <p class="text-sm text-muted-foreground leading-relaxed">
@@ -338,7 +398,10 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
                 >
                   {edu.degree.toUpperCase()}
                 </h3>
-                <p class="text-xs uppercase tracking-widest text-muted-foreground mb-3" style="font-family: var(--font-heading);">
+                <p
+                  class="text-xs uppercase tracking-widest text-muted-foreground mb-3"
+                  style="font-family: var(--font-heading);"
+                >
                   {edu.school} · {edu.date}
                 </p>
                 <p class="text-sm text-muted-foreground leading-relaxed">
@@ -358,7 +421,9 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
 {/* ═══════════════════════════════════════════════════════ */}
 <section id="cv" class="inverted-section py-16 md:py-20 scroll-reveal">
   <div class="container mx-auto px-6 max-w-screen-xl">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+    <div
+      class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6"
+    >
       <div>
         <p
           class="text-xs font-medium uppercase tracking-[0.2em] opacity-60 mb-4"
@@ -374,7 +439,7 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
         </h2>
       </div>
       <a
-        href="https://drive.google.com/uc?export=download&id=193Mo3q_qxWrz0KuMXn_aRngBEN0ZkOPi"
+        href="https://drive.google.com/file/d/1FDlfzSZf1p2PJ4ZFeq6of7wwEf6I2lmn/view?usp=sharing"
         download
         class="brutalist-btn-inverted"
       >
@@ -412,7 +477,10 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
             class="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 group"
           >
             <Mail className="size-4 flex-shrink-0" />
-            <span class="border-b border-transparent group-hover:border-foreground transition-all duration-300">ahmadsaif7456@gmail.com</span>
+            <span
+              class="border-b border-transparent group-hover:border-foreground transition-all duration-300"
+              >ahmadsaif7456@gmail.com</span
+            >
           </a>
         </div>
 
@@ -466,7 +534,11 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
           >
             {contactFormTitle}
           </h3>
-          <ContactForm client:load {lang} formTranslations={contactFormTranslations} />
+          <ContactForm
+            client:load
+            {lang}
+            formTranslations={contactFormTranslations}
+          />
         </div>
       </div>
     </div>
