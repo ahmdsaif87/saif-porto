@@ -1,5 +1,4 @@
 ---
-import { Menu, X } from 'lucide-react';
 import type { NavItem } from '@/layouts/BaseLayout.astro';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { defaultLanguage, type LanguageCode } from '../i18n/ui';
@@ -16,7 +15,7 @@ const currentPath = Astro.url.pathname;
 <div class="md:hidden">
   <button
     id="mobile-menu-btn"
-    class="p-2 w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground focus:outline-none relative z-[100] rounded-lg"
+    class="p-2 w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground focus:outline-none relative z-[100]"
     aria-label="Toggle menu"
   >
     <div
@@ -60,38 +59,39 @@ const currentPath = Astro.url.pathname;
     </div>
   </button>
 
-  <!-- Backdrop (Glassmorphic) -->
+  <!-- Backdrop -->
   <div
     id="mobile-menu-backdrop"
     class="fixed inset-0 z-40 transition-opacity duration-300 opacity-0 pointer-events-none"
-    style="background: rgba(0,0,0,0.2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);"
+    style="background: rgba(0,0,0,0.4);"
   >
   </div>
 
-  <!-- Dropdown (Solid panel) -->
+  <!-- Dropdown panel -->
   <div
     id="mobile-menu"
-    class="fixed top-[65px] left-0 right-0 z-50 flex flex-col w-full border-b bg-background border-border transition-all duration-300 transform -translate-y-full opacity-0 pointer-events-none h-auto"
+    class="fixed top-[65px] left-0 right-0 z-50 flex flex-col w-full border-b border-border bg-background transition-all duration-300 transform -translate-y-full opacity-0 pointer-events-none h-auto"
   >
     <nav class="flex flex-col p-4 gap-1 items-start">
       {
         navItems.map((item, index) => {
-          const href = getRelativeLocaleUrl(currentLocale, item.href);
-          const isActive = currentPath === href || (item.href !== '/' && currentPath.startsWith(href));
+          const isAnchor = item.href.startsWith('#');
+          const href = isAnchor ? item.href : getRelativeLocaleUrl(currentLocale, item.href);
+          const isActive = !isAnchor && (currentPath === href || (item.href !== '/' && currentPath.startsWith(href)));
           return (
             <a
               href={href}
               class:list={[
-                'text-sm font-medium transition-all duration-200 transform translate-y-2 opacity-0 mobile-link w-full py-2.5 px-4 rounded-lg',
+                'text-xs font-medium uppercase tracking-widest transition-all duration-200 transform translate-y-2 opacity-0 mobile-link w-full py-3 px-4 border-b border-border last:border-b-0',
                 isActive
-                  ? 'text-foreground bg-accent'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50',
+                  ? 'text-foreground'
+                  : 'text-muted-foreground hover:text-foreground',
               ]}
-              style={`transition-delay: ${index * 60}ms;`}
+              style={`transition-delay: ${index * 60}ms; font-family: var(--font-heading);`}
             >
               {item.label}
               {isActive && (
-                <span class="inline-block w-1.5 h-1.5 rounded-full bg-primary ml-2 align-middle" />
+                <span class="inline-block w-1.5 h-1.5 bg-foreground ml-2 align-middle" />
               )}
             </a>
           );

@@ -1,8 +1,8 @@
 ---
 import type { LanguageCode, ui } from '@/i18n/ui';
-import SectionCard from '@/components/section-card.astro';
 import { EmptyState } from '@/components/empty-state';
-import Heading from '@/components/Heading.astro';
+import { Image } from 'astro:assets';
+import { ArrowRight } from 'lucide-react';
 import type { TranslatedProject } from '../type';
 
 export type Props = {
@@ -12,54 +12,86 @@ export type Props = {
 };
 
 const { projects, t, lang } = Astro.props;
-const projectsPageTranslations = t.projectsPage; // For easier access
+const projectsPageTranslations = t.projectsPage;
 ---
 
 <div class="py-12 md:py-20">
-  <div class="text-center mb-12">
-    <h1
-      class="text-3xl md:text-4xl font-bold mb-4"
-      style="font-family: var(--font-heading);"
-    >
-      {projectsPageTranslations?.title ?? 'Projects'}
-    </h1>
-    <div class="gradient-divider max-w-24 mx-auto"></div>
-  </div>
+  <div class="container mx-auto px-6 max-w-screen-xl">
+    <div class="mb-16">
+      <p
+        class="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4"
+        style="font-family: var(--font-heading);"
+      >
+        Portfolio
+      </p>
+      <h1
+        class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight uppercase"
+        style="font-family: var(--font-heading);"
+      >
+        {projectsPageTranslations?.title ?? 'Projects'}
+      </h1>
+      <div class="section-divider mt-8"></div>
+    </div>
 
-  {
-    projects && projects.length > 0 ? (
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project: TranslatedProject, index: number) => {
-          const projectUrl = `/projects/${project.slug}`;
-          return (
-            <a
-              href={projectUrl}
-              aria-label={`View project ${project.title}`}
-              class="flex rounded-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 scroll-reveal"
-              style={`transition-delay: ${index * 100}ms;`}
-            >
-              <SectionCard
-                title={project.title}
-                categoryText={project.categoryText}
-                className="w-full"
-                classNameTitle="text-xl"
-                tags={project.tags ?? []}
-                imageUrl={project.imageUrl}
-                imageAltText={project.imageAltText}
+    {
+      projects && projects.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {projects.map((project: TranslatedProject, index: number) => {
+            const projectUrl = `/projects/${project.slug}`;
+            return (
+              <a
+                href={projectUrl}
+                aria-label={`View project ${project.title}`}
+                class="project-card group block scroll-reveal"
+                style={`transition-delay: ${index * 100}ms;`}
               >
-                <p class="text-sm text-muted-foreground leading-relaxed">
-                  {project.description}
-                </p>
-              </SectionCard>
-            </a>
-          );
-        })}
-      </div>
-    ) : (
-      <EmptyState
-        title={projectsPageTranslations?.noProjects}
-        description={projectsPageTranslations?.noProjectsDescription}
-      />
-    )
-  }
+                {project.imageUrl && (
+                  <div class="overflow-hidden h-56 md:h-72">
+                    <Image
+                      src={project.imageUrl}
+                      alt={project.imageAltText}
+                      class="w-full h-full object-cover"
+                      widths={[400, 800]}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      quality="mid"
+                    />
+                  </div>
+                )}
+                <div class="p-5 md:p-6 flex justify-between items-start gap-4">
+                  <div>
+                    <h2
+                      class="text-lg font-bold mb-1 tracking-tight uppercase"
+                      style="font-family: var(--font-heading);"
+                    >
+                      {project.title}
+                    </h2>
+                    <p class="text-sm text-muted-foreground line-clamp-2">
+                      {project.description}
+                    </p>
+                    {project.tags && project.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-2 mt-3">
+                        {project.tags.slice(0, 4).map((tag) => (
+                          <span class="text-[10px] uppercase tracking-widest text-muted-foreground border border-border px-2 py-0.5" style="font-family: var(--font-heading);">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <div class="flex-shrink-0 mt-1">
+                    <ArrowRight className="size-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all duration-300" />
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      ) : (
+        <EmptyState
+          title={projectsPageTranslations?.noProjects}
+          description={projectsPageTranslations?.noProjectsDescription}
+        />
+      )
+    }
+  </div>
 </div>

@@ -1,22 +1,14 @@
 ---
-import Heading from '@/components/Heading.astro';
-import SkillCard from '@/components/SkillCard.astro';
-import { buttonVariants } from '@/components/ui/button';
 import type { LanguageCode } from '@/i18n/ui';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import {
-  Calendar,
-  Dumbbell,
-  Briefcase,
-  GraduationCap,
-  ArrowRight,
-  Sparkles,
-} from 'lucide-react';
+import { ArrowRight, ArrowDown, Download, Mail, Github, Linkedin, Instagram, Twitter } from 'lucide-react';
 
 import heroImage from '@/assets/user-hero.jpeg';
 import { Image } from 'astro:assets';
-import FeaturedProjectPreview from '../components/FeaturedProjectPreview.astro';
 import type { TranslatedProject, TranslatedSkill } from '../type';
+
+import { ContactForm } from '@/features/contact/components/ContactForm.tsx';
+import type { ContactFormTranslations } from '@/features/contact/type';
 
 export type Props = {
   lang: LanguageCode;
@@ -50,6 +42,8 @@ export type Props = {
     date: string;
     description: string;
   }>;
+  contactFormTitle: string;
+  contactFormTranslations: ContactFormTranslations;
 };
 
 const {
@@ -74,84 +68,71 @@ const {
   experiences,
   educationTitle,
   educations,
+  contactFormTitle,
+  contactFormTranslations,
 } = Astro.props;
 ---
 
+{/* ═══════════════════════════════════════════════════════ */}
 {/* ===== HERO SECTION ===== */}
-<section class="relative py-16 md:py-24 overflow-hidden">
-  {/* Decorative orbs */}
-  <div class="decorative-orb animate-breathe" aria-hidden="true"></div>
-  <div class="decorative-orb animate-breathe animation-delay-300" aria-hidden="true"></div>
+{/* ═══════════════════════════════════════════════════════ */}
+<section id="hero" class="relative min-h-[90vh] flex items-center border-b border-border">
+  <div class="container mx-auto px-6 max-w-screen-xl py-20 md:py-28">
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+      {/* Hero Text */}
+      <div class="order-2 md:order-1">
+        <p
+          class="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-6 opacity-0 animate-fade-in-up"
+          style="font-family: var(--font-heading);"
+        >
+          {heroSubtitlePart1} · {heroSubtitlePart2}
+        </p>
 
-  <div class="relative z-10 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-    {/* Hero Text Column */}
-    <div class="text-center md:text-left">
-      {/* Badge */}
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-sm text-muted-foreground mb-6 opacity-0 animate-fade-in-up">
-        <Sparkles className="size-3.5 text-primary" />
-        <span>Full Stack Developer</span>
+        <h1
+          class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[0.95] mb-8 opacity-0 animate-fade-in-up animation-delay-100"
+          style="font-family: var(--font-heading);"
+        >
+          {heroGreeting.toUpperCase()}
+        </h1>
+
+        <p
+          class="text-base md:text-lg text-muted-foreground mb-10 max-w-md leading-relaxed opacity-0 animate-fade-in-up animation-delay-200"
+        >
+          {heroIntroduction}
+        </p>
+
+        {/* CTA Buttons */}
+        <div class="flex flex-wrap gap-4 opacity-0 animate-fade-in-up animation-delay-300">
+          <a href="#projects" class="brutalist-btn">
+            {heroViewWorkButton}
+            <ArrowDown className="size-3.5" />
+          </a>
+          <a href="#contact" class="brutalist-btn-outline">
+            {heroContactButton}
+          </a>
+        </div>
+
+        {/* Scroll indicator */}
+        <div class="hidden md:flex items-center gap-3 mt-16 opacity-0 animate-fade-in-up animation-delay-500">
+          <div class="w-8 h-px bg-muted-foreground"></div>
+          <span class="text-[10px] uppercase tracking-[0.2em] text-muted-foreground" style="font-family: var(--font-heading);">
+            Scroll to explore
+          </span>
+        </div>
       </div>
 
-      <h1
-        class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 opacity-0 animate-fade-in-up animation-delay-100"
-        style="font-family: var(--font-heading);"
-      >
-        <span class="text-primary">{heroGreeting}</span>
-      </h1>
-
-      <p
-        class="text-xl md:text-2xl font-medium text-muted-foreground mb-3 opacity-0 animate-fade-in-up animation-delay-200"
-      >
-        <span>{heroSubtitlePart1}</span>
-        <span class="text-primary font-bold"> · </span>
-        <span>{heroSubtitlePart2}</span>
-      </p>
-
-      <p
-        class="text-base md:text-lg text-muted-foreground mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed opacity-0 animate-fade-in-up animation-delay-300"
-      >
-        {heroIntroduction}
-      </p>
-
-      {/* CTA Buttons */}
-      <div
-        class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start opacity-0 animate-fade-in-up animation-delay-500"
-      >
-        <a
-          href="/projects"
-          class={buttonVariants({ variant: 'default', size: 'lg' }) +
-            ' rounded-xl hover:scale-[1.03] transition-all duration-300 hover:shadow-lg active:scale-[0.98]'}
-        >
-          <Dumbbell className="mr-2 size-4" />
-          {heroViewWorkButton}
-        </a>
-        <a
-          href={getRelativeLocaleUrl(lang, '/contact')}
-          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm glass-card text-foreground transition-all duration-300 hover:scale-[1.03] hover:bg-muted/50 active:scale-[0.98]"
-        >
-          <Calendar className="size-4" />
-          {heroContactButton}
-        </a>
-      </div>
-    </div>
-
-    {/* Hero Image */}
-    <div
-      class="flex justify-center md:justify-end opacity-0 animate-fade-in-up animation-delay-300"
-    >
-      <div class="relative group">
-        <div
-          class="relative w-72 h-72 md:w-[400px] md:h-[400px] rounded-2xl overflow-hidden"
-        >
+      {/* Hero Image */}
+      <div class="order-1 md:order-2 flex justify-center md:justify-end opacity-0 animate-fade-in-up animation-delay-200">
+        <div class="relative w-72 h-80 md:w-[380px] md:h-[460px] overflow-hidden border border-border">
           <Image
             src={heroImage}
-            alt={'User profile image'}
+            alt={'Ahmad Saif profile photo'}
             widths={[400, 600, 800]}
-            sizes="(max-width: 768px) 288px, 400px"
-            quality="80"
+            sizes="(max-width: 768px) 288px, 380px"
+            quality="85"
             loading="eager"
             fetchpriority="high"
-            class="h-full w-full object-cover transition-all duration-700 group-hover:scale-105"
+            class="h-full w-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
             style="object-position: center 28%;"
           />
         </div>
@@ -160,163 +141,288 @@ const {
   </div>
 </section>
 
-{/* ===== ABOUT ME SECTION ===== */}
-<section id="about" class="py-16 md:py-20 scroll-reveal">
-  <div class="max-w-3xl mx-auto text-center">
-    <h2
-      class="text-3xl md:text-4xl font-bold mb-6"
-      style="font-family: var(--font-heading);"
-    >
-      {aboutMeTitle}
-    </h2>
-    <div class="gradient-divider max-w-24 mx-auto mb-8"></div>
-    <p class="text-lg text-muted-foreground leading-relaxed">
-      {aboutMeDescription}
-    </p>
-  </div>
-</section>
-
-{/* ===== EXPERIENCE & EDUCATION SECTION ===== */}
-<section id="resume" class="py-16 md:py-20">
-  <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
-    {/* Experience */}
-    <div class="scroll-reveal">
-      <h2
-        class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3"
+{/* ═══════════════════════════════════════════════════════ */}
+{/* ===== SELECTED PROJECTS SECTION ===== */}
+{/* ═══════════════════════════════════════════════════════ */}
+<section id="projects" class="py-20 md:py-28 border-b border-border">
+  <div class="container mx-auto px-6 max-w-screen-xl">
+    {/* Section Header */}
+    <div class="mb-16 scroll-reveal">
+      <p
+        class="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4"
         style="font-family: var(--font-heading);"
       >
-        <div class="p-2 rounded-xl bg-primary/10">
-          <Briefcase className="size-5 text-primary" />
-        </div>
-        {experienceTitle}
+        Portfolio
+      </p>
+      <h2
+        class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight"
+        style="font-family: var(--font-heading);"
+      >
+        {featuredProjectsTitle.toUpperCase()}
       </h2>
-      <div class="space-y-6">
-        {
-          experiences.map((exp) => (
-            <div class="relative pl-8 border-l-2 border-border hover:border-primary/50 transition-colors duration-500 group">
-              <div class="absolute -left-[7px] top-1 size-3 rounded-full bg-primary border-2 border-primary" />
-              <div class="glass-card p-5 rounded-xl glass-card-hover">
-                <h3
-                  class="text-lg font-bold mb-1"
-                  style="font-family: var(--font-heading);"
-                >{exp.title}</h3>
-                <p class="text-sm text-primary font-medium mb-2">
-                  {exp.company}
-                  <span class="text-muted-foreground"> · </span>
-                  <span class="text-muted-foreground">{exp.date}</span>
-                </p>
-                <p class="text-sm text-muted-foreground leading-relaxed">{exp.description}</p>
-              </div>
-            </div>
-          ))
-        }
-      </div>
     </div>
 
-    {/* Education */}
-    <div class="scroll-reveal transition-delay-200">
-      <h2
-        class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-3"
-        style="font-family: var(--font-heading);"
-      >
-        <div class="p-2 rounded-xl bg-primary/10">
-          <GraduationCap className="size-5 text-primary" />
-        </div>
-        {educationTitle}
-      </h2>
-      <div class="space-y-6">
-        {
-          educations.map((edu) => (
-            <div class="relative pl-8 border-l-2 border-border hover:border-primary/50 transition-colors duration-500 group">
-              <div class="absolute -left-[7px] top-1 size-3 rounded-full bg-primary border-2 border-primary" />
-              <div class="glass-card p-5 rounded-xl glass-card-hover">
-                <h3
-                  class="text-lg font-bold mb-1"
-                  style="font-family: var(--font-heading);"
-                >{edu.degree}</h3>
-                <p class="text-sm text-primary font-medium mb-2">
-                  {edu.school}
-                  <span class="text-muted-foreground"> · </span>
-                  <span class="text-muted-foreground">{edu.date}</span>
-                </p>
-                <p class="text-sm text-muted-foreground leading-relaxed">{edu.description}</p>
+    {/* Asymmetric Project Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      {
+        projects.map((project: TranslatedProject, index: number) => {
+          const projectUrl = getRelativeLocaleUrl(lang, `/projects/${project.slug}`);
+          const isLarge = index % 3 === 0;
+          return (
+            <a
+              href={projectUrl}
+              class={`project-card group block scroll-reveal ${isLarge ? 'md:col-span-2' : ''}`}
+              style={`transition-delay: ${index * 100}ms;`}
+            >
+              {/* Image */}
+              <div class={`overflow-hidden ${isLarge ? 'h-64 md:h-96' : 'h-56 md:h-72'}`}>
+                {project.imageUrl ? (
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.imageAltText}
+                    class="w-full h-full object-cover"
+                    widths={[400, 800, 1200]}
+                    sizes={isLarge ? '(max-width: 768px) 100vw, 100vw' : '(max-width: 768px) 100vw, 50vw'}
+                    quality="mid"
+                  />
+                ) : (
+                  <div class="w-full h-full bg-muted flex items-center justify-center">
+                    <p class="text-muted-foreground text-sm">{imageNotAvailable}</p>
+                  </div>
+                )}
               </div>
-            </div>
-          ))
-        }
-      </div>
+
+              {/* Card Content */}
+              <div class="p-5 md:p-6 flex justify-between items-start gap-4">
+                <div>
+                  <h3
+                    class="text-lg md:text-xl font-bold mb-1 tracking-tight"
+                    style="font-family: var(--font-heading);"
+                  >
+                    {project.title.toUpperCase()}
+                  </h3>
+                  <p class="text-sm text-muted-foreground line-clamp-2">
+                    {project.description}
+                  </p>
+                </div>
+                <div class="flex-shrink-0 mt-1">
+                  <ArrowRight className="size-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all duration-300" />
+                </div>
+              </div>
+            </a>
+          );
+        })
+      }
+    </div>
+
+    <div class="mt-16 flex justify-center scroll-reveal">
+      <a href={getRelativeLocaleUrl(lang, '/projects')} class="brutalist-btn-outline">
+        View All Projects
+        <ArrowRight className="size-3.5 ml-2" />
+      </a>
     </div>
   </div>
 </section>
 
-{/* ===== FEATURED PROJECTS SECTION ===== */}
-<section id="projects" class="py-16 md:py-20 scroll-reveal">
-  <div class="text-center mb-12">
-    <h2
-      class="text-3xl md:text-4xl font-bold mb-4"
-      style="font-family: var(--font-heading);"
-    >
-      {featuredProjectsTitle}
-    </h2>
-    <div class="gradient-divider max-w-24 mx-auto mb-6"></div>
-    <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-      {featuredProjectsDescription}
-    </p>
-  </div>
+{/* ═══════════════════════════════════════════════════════ */}
+{/* ===== PROFESSIONAL JOURNEY SECTION ===== */}
+{/* ═══════════════════════════════════════════════════════ */}
+<section id="journey" class="py-20 md:py-28 border-b border-border">
+  <div class="container mx-auto px-6 max-w-screen-xl">
+    <div class="grid md:grid-cols-2 gap-16 lg:gap-24">
+      {/* Experience */}
+      <div class="scroll-reveal">
+        <p
+          class="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4"
+          style="font-family: var(--font-heading);"
+        >
+          Career
+        </p>
+        <h2
+          class="text-2xl md:text-3xl font-bold tracking-tight mb-10"
+          style="font-family: var(--font-heading);"
+        >
+          {experienceTitle.toUpperCase()}
+        </h2>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {
-      projects.slice(0, 3).map((project: TranslatedProject) => {
-        return (
-          <FeaturedProjectPreview
-            lang={lang}
-            slug={project.slug}
-            title={project.title}
-            imageUrl={project.imageUrl}
-            imageAltText={project.imageAltText}
-            ctaText={projectPreviewCtaText}
-          />
-        );
-      })
-    }
-  </div>
+        <div class="space-y-8">
+          {
+            experiences.map((exp) => (
+              <div class="timeline-item">
+                <h3
+                  class="text-base md:text-lg font-bold tracking-tight mb-1"
+                  style="font-family: var(--font-heading);"
+                >
+                  {exp.title.toUpperCase()}
+                </h3>
+                <p class="text-xs uppercase tracking-widest text-muted-foreground mb-3" style="font-family: var(--font-heading);">
+                  {exp.company} · {exp.date}
+                </p>
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  {exp.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
 
-  <div class="mt-10 flex justify-center">
-    <a
-      href={getRelativeLocaleUrl(lang, '/projects')}
-      class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm glass-card text-foreground transition-all duration-300 hover:scale-[1.03] hover:bg-muted/50 group"
-    >
-      View All Projects
-      <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-    </a>
+      {/* Education */}
+      <div class="scroll-reveal transition-delay-200">
+        <p
+          class="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4"
+          style="font-family: var(--font-heading);"
+        >
+          Education
+        </p>
+        <h2
+          class="text-2xl md:text-3xl font-bold tracking-tight mb-10"
+          style="font-family: var(--font-heading);"
+        >
+          {educationTitle.toUpperCase()}
+        </h2>
+
+        <div class="space-y-8">
+          {
+            educations.map((edu) => (
+              <div class="timeline-item">
+                <h3
+                  class="text-base md:text-lg font-bold tracking-tight mb-1"
+                  style="font-family: var(--font-heading);"
+                >
+                  {edu.degree.toUpperCase()}
+                </h3>
+                <p class="text-xs uppercase tracking-widest text-muted-foreground mb-3" style="font-family: var(--font-heading);">
+                  {edu.school} · {edu.date}
+                </p>
+                <p class="text-sm text-muted-foreground leading-relaxed">
+                  {edu.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-{/* ===== SKILLS SECTION ===== */}
-<section id="skills" class="py-16 md:py-20 scroll-reveal">
-  <div class="text-center mb-12">
-    <h2
-      class="text-3xl md:text-4xl font-bold mb-4"
-      style="font-family: var(--font-heading);"
-    >
-      {mySkillsTitle}
-    </h2>
-    <div class="gradient-divider max-w-24 mx-auto mb-6"></div>
-    <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-      {mySkillsDescription}
-    </p>
+{/* ═══════════════════════════════════════════════════════ */}
+{/* ===== CURRICULUM VITAE SECTION ===== */}
+{/* ═══════════════════════════════════════════════════════ */}
+<section id="cv" class="inverted-section py-16 md:py-20 scroll-reveal">
+  <div class="container mx-auto px-6 max-w-screen-xl">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+      <div>
+        <p
+          class="text-xs font-medium uppercase tracking-[0.2em] opacity-60 mb-4"
+          style="font-family: var(--font-heading);"
+        >
+          Download
+        </p>
+        <h2
+          class="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight"
+          style="font-family: var(--font-heading);"
+        >
+          CURRICULUM VITAE
+        </h2>
+      </div>
+      <a
+        href="https://drive.google.com/uc?export=download&id=193Mo3q_qxWrz0KuMXn_aRngBEN0ZkOPi"
+        download
+        class="brutalist-btn-inverted"
+      >
+        <Download className="size-4" />
+        Download CV
+      </a>
+    </div>
   </div>
+</section>
 
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {
-      skills.map((skill) => (
-        <SkillCard
-          title={skill.title}
-          description={skill.description}
-          iconName={skill.iconName}
-          technologies={skill.technologies}
-        />
-      ))
-    }
+{/* ═══════════════════════════════════════════════════════ */}
+{/* ===== CONTACT SECTION ===== */}
+{/* ═══════════════════════════════════════════════════════ */}
+<section id="contact" class="py-20 md:py-28">
+  <div class="container mx-auto px-6 max-w-screen-xl">
+    <div class="grid md:grid-cols-2 gap-16 lg:gap-24">
+      {/* Contact Info */}
+      <div class="scroll-reveal">
+        <p
+          class="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4"
+          style="font-family: var(--font-heading);"
+        >
+          Get in Touch
+        </p>
+        <h2
+          class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-8"
+          style="font-family: var(--font-heading);"
+        >
+          LET'S START A<br />CONVERSATION.
+        </h2>
+
+        <div class="space-y-5 mb-10">
+          <a
+            href="mailto:ahmadsaif7456@gmail.com"
+            class="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 group"
+          >
+            <Mail className="size-4 flex-shrink-0" />
+            <span class="border-b border-transparent group-hover:border-foreground transition-all duration-300">ahmadsaif7456@gmail.com</span>
+          </a>
+        </div>
+
+        {/* Social Links */}
+        <div class="flex gap-4">
+          <a
+            href="https://www.linkedin.com/in/ahmadsaif-dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-300"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="size-4" />
+          </a>
+          <a
+            href="https://github.com/ahmdsaif87"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-300"
+            aria-label="GitHub"
+          >
+            <Github className="size-4" />
+          </a>
+          <a
+            href="https://www.instagram.com/ahmdsaif87"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-300"
+            aria-label="Instagram"
+          >
+            <Instagram className="size-4" />
+          </a>
+          <a
+            href="https://x.com/ahmdsaif_"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-300"
+            aria-label="Twitter"
+          >
+            <Twitter className="size-4" />
+          </a>
+        </div>
+      </div>
+
+      {/* Contact Form */}
+      <div class="scroll-reveal transition-delay-200">
+        <div class="border border-border p-6 md:p-8">
+          <h3
+            class="text-lg font-bold mb-6 uppercase tracking-wider"
+            style="font-family: var(--font-heading);"
+          >
+            {contactFormTitle}
+          </h3>
+          <ContactForm client:load {lang} formTranslations={contactFormTranslations} />
+        </div>
+      </div>
+    </div>
   </div>
 </section>

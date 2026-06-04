@@ -1,5 +1,4 @@
 ---
-import Heading from '@/components/Heading.astro';
 import type { LanguageCode } from '@/i18n/ui';
 import { Mail, MapPin, Clock } from 'lucide-react';
 
@@ -23,60 +22,56 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative py-16 md:py-20 overflow-hidden">
-  {/* Decorative orbs */}
-  <div class="decorative-orb w-[400px] h-[400px] -top-40 -right-40 animate-breathe" aria-hidden="true"></div>
-  <div class="decorative-orb w-[300px] h-[300px] -bottom-32 -left-32 animate-breathe animation-delay-300" aria-hidden="true"></div>
-
-  <div class="relative z-10">
-    <div class="text-center mb-12">
+<section class="py-16 md:py-20">
+  <div class="container mx-auto px-6 max-w-screen-xl">
+    <div class="mb-12">
+      <p
+        class="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-4"
+        style="font-family: var(--font-heading);"
+      >
+        Contact
+      </p>
       <h1
-        class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4"
+        class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 tracking-tight uppercase"
         style="font-family: var(--font-heading);"
       >
         {mainHeadingTitle}
       </h1>
-      <div class="gradient-divider max-w-24 mx-auto mb-6"></div>
-      <p class="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+      <div class="section-divider mt-6 mb-8"></div>
+      <p class="text-base text-muted-foreground max-w-2xl leading-relaxed">
         {mainHeadingDescription}
       </p>
     </div>
 
-    <div class="grid md:grid-cols-5 gap-8 max-w-4xl mx-auto">
+    <div class="grid md:grid-cols-5 gap-8 max-w-4xl">
       <div class="md:col-span-2 space-y-4">
-        <div class="glass-card rounded-2xl p-5 glass-card-hover">
+        <div class="border border-border p-5 hover:border-foreground transition-colors duration-300">
           <div class="flex items-start gap-4">
-            <div class="p-2.5 rounded-xl bg-primary/10 flex-shrink-0">
-              <Mail className="size-4 text-primary" />
-            </div>
+            <Mail className="size-4 text-muted-foreground flex-shrink-0 mt-0.5" />
             <div>
-              <h3 class="text-sm font-semibold mb-1" style="font-family: var(--font-heading);">Email</h3>
-              <a href="mailto:ahmadsaif7456@gmail.com" class="text-sm text-muted-foreground hover:text-primary transition-colors">
+              <h3 class="text-xs font-semibold mb-1 uppercase tracking-widest" style="font-family: var(--font-heading);">Email</h3>
+              <a href="mailto:ahmadsaif7456@gmail.com" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 ahmadsaif7456@gmail.com
               </a>
             </div>
           </div>
         </div>
 
-        <div class="glass-card rounded-2xl p-5 glass-card-hover">
+        <div class="border border-border p-5 hover:border-foreground transition-colors duration-300">
           <div class="flex items-start gap-4">
-            <div class="p-2.5 rounded-xl bg-primary/10 flex-shrink-0">
-              <MapPin className="size-4 text-primary" />
-            </div>
+            <MapPin className="size-4 text-muted-foreground flex-shrink-0 mt-0.5" />
             <div>
-              <h3 class="text-sm font-semibold mb-1" style="font-family: var(--font-heading);">Location</h3>
+              <h3 class="text-xs font-semibold mb-1 uppercase tracking-widest" style="font-family: var(--font-heading);">Location</h3>
               <p class="text-sm text-muted-foreground">Tegal, Indonesia</p>
             </div>
           </div>
         </div>
 
-        <div class="glass-card rounded-2xl p-5 glass-card-hover">
+        <div class="border border-border p-5 hover:border-foreground transition-colors duration-300">
           <div class="flex items-start gap-4">
-            <div class="p-2.5 rounded-xl bg-primary/10 flex-shrink-0">
-              <Clock className="size-4 text-primary" />
-            </div>
+            <Clock className="size-4 text-muted-foreground flex-shrink-0 mt-0.5" />
             <div>
-              <h3 class="text-sm font-semibold mb-1" style="font-family: var(--font-heading);">Availability</h3>
+              <h3 class="text-xs font-semibold mb-1 uppercase tracking-widest" style="font-family: var(--font-heading);">Availability</h3>
               <p class="text-sm text-muted-foreground">Open for opportunities</p>
             </div>
           </div>
@@ -84,9 +79,9 @@ const {
       </div>
 
       <div class="md:col-span-3">
-        <div class="glass-card rounded-2xl p-6 md:p-8">
+        <div class="border border-border p-6 md:p-8">
           <h2
-            class="text-xl font-bold mb-6"
+            class="text-lg font-bold mb-6 uppercase tracking-wider"
             style="font-family: var(--font-heading);"
           >
             {formTitle}

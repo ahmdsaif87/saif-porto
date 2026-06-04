@@ -12,12 +12,30 @@ import {
 const lang =
   (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
 const t = useTranslations(lang, 'homePage');
+const tContact = useTranslations(lang, 'contactPage');
 
 const pageTitle = t('pageTitle');
 const pageDescription = t('pageDescription');
 
-const projects: Array<TranslatedProject> = getTranslatedProjects(lang);
+const projects: Array<TranslatedProject> = getTranslatedProjects(lang).slice(0, 3);
 const skills: Array<TranslatedSkill> = getTranslatedSkills(lang);
+
+const contactFormTranslations = {
+  firstNameLabel: tContact('firstNameLabel'),
+  lastNameLabel: tContact('lastNameLabel'),
+  emailLabel: tContact('emailLabel'),
+  messageLabel: tContact('messageLabel'),
+  firstNamePlaceholder: tContact('firstNamePlaceholder'),
+  lastNamePlaceholder: tContact('lastNamePlaceholder'),
+  emailPlaceholder: tContact('emailPlaceholder'),
+  messagePlaceholder: tContact('messagePlaceholder'),
+  sendButtonLabel: tContact('sendButtonLabel'),
+  toastSuccessMessageSent: tContact('toastSuccessMessageSent'),
+  toastErrorFailedToSend: tContact('toastErrorFailedToSend'),
+  toastErrorUnexpected: tContact('toastErrorUnexpected'),
+  toastErrorDetails: tContact('toastErrorDetails'),
+  toastErrorValidationFailed: tContact('toastErrorValidationFailed'),
+};
 
 const layoutProps = {
   lang,
@@ -41,9 +59,11 @@ const layoutProps = {
   experiences: t('experiences'),
   educationTitle: t('educationTitle'),
   educations: t('educations'),
+  contactFormTitle: tContact('formTitle'),
+  contactFormTranslations,
 };
 ---
 
-<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
+<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription} isLandingPage={true}>
   <PortfolioScreen {...layoutProps} />
 </BaseLayout>

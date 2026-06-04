@@ -16,31 +16,32 @@ const { project, t, lang } = Astro.props;
 ---
 
 <div class="py-12 md:py-20">
-  <article class="max-w-4xl mx-auto">
+  <article class="container mx-auto px-6 max-w-4xl">
     <a
       href={`${lang !== defaultLanguage ? `/${lang}` : ''}/projects`}
-      class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all duration-300 mb-8 group"
+      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all duration-300 mb-8 group border border-border hover:border-foreground"
+      style="font-family: var(--font-heading);"
     >
-      <ArrowLeft className="size-4 transition-transform duration-300 group-hover:-translate-x-1" />
+      <ArrowLeft className="size-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
       {t.projectDetailPage?.backToProjects ?? 'Back to Projects'}
     </a>
 
     <header class="mb-10">
       <h1
-        class="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight"
+        class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight tracking-tight uppercase"
         style="font-family: var(--font-heading);"
       >
         {project.title}
       </h1>
       <div class="flex flex-wrap items-center gap-3">
         {project.categoryText && (
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-accent text-accent-foreground">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium uppercase tracking-widest bg-muted text-foreground border border-border" style="font-family: var(--font-heading);">
             <Tag className="size-3" />
             {project.categoryText}
           </span>
         )}
         {project.dateText && (
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-muted text-muted-foreground">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium uppercase tracking-widest bg-muted text-muted-foreground border border-border" style="font-family: var(--font-heading);">
             <Calendar className="size-3" />
             {project.dateText}
           </span>
@@ -49,7 +50,7 @@ const { project, t, lang } = Astro.props;
     </header>
 
     {project.imageUrl && (
-      <div class="relative rounded-2xl overflow-hidden mb-10 group">
+      <div class="relative overflow-hidden mb-10 group border border-border">
         <Image
           src={project.imageUrl}
           alt={project.imageAltText}
@@ -61,8 +62,8 @@ const { project, t, lang } = Astro.props;
     )}
 
     {(project.detailedDescription || (project.keyFeaturesTranslated && project.keyFeaturesTranslated.length > 0)) && (
-      <section class="glass-card rounded-2xl p-6 md:p-8 mb-8">
-        <h2 class="text-xl md:text-2xl font-bold mb-4" style="font-family: var(--font-heading);">
+      <section class="border border-border p-6 md:p-8 mb-8">
+        <h2 class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight" style="font-family: var(--font-heading);">
           {t.projectDetailPage?.aboutTitle ?? 'Overview'}
         </h2>
         {project.detailedDescription && (
@@ -70,16 +71,16 @@ const { project, t, lang } = Astro.props;
         )}
         {project.keyFeaturesTranslated && project.keyFeaturesTranslated.length > 0 && (
           <>
-            <p class="font-semibold mb-3 text-sm uppercase tracking-wider text-primary">
+            <p class="font-semibold mb-3 text-xs uppercase tracking-[0.15em] text-foreground" style="font-family: var(--font-heading);">
               {t.projectDetailPage?.keyFeaturesTitle ?? 'Key features include:'}
             </p>
             <div class="space-y-3">
               {project.keyFeaturesTranslated.map((feature) => (
                 <div class="flex gap-3 items-start">
-                  <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
+                  <div class="mt-2 w-1.5 h-px bg-foreground flex-shrink-0"></div>
                   <div>
-                    <strong class="text-foreground">{feature.title}:</strong>
-                    <span class="text-muted-foreground ml-1">{feature.description}</span>
+                    <strong class="text-foreground text-sm">{feature.title}</strong>
+                    <span class="text-muted-foreground ml-1 text-sm"> — {feature.description}</span>
                   </div>
                 </div>
               ))}
@@ -90,14 +91,14 @@ const { project, t, lang } = Astro.props;
     )}
 
     {project.technologiesUsed && project.technologiesUsed.length > 0 && (
-      <section class="glass-card rounded-2xl p-6 md:p-8 mb-8">
-        <h2 class="text-xl md:text-2xl font-bold mb-4" style="font-family: var(--font-heading);">
+      <section class="border border-border p-6 md:p-8 mb-8">
+        <h2 class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight" style="font-family: var(--font-heading);">
           {t.projectDetailPage?.technologiesUsedTitle ?? 'Technologies Used'}
         </h2>
         <div class="grid gap-4 sm:grid-cols-2">
           {project.technologiesUsed.map((tech) => (
-            <div class="flex gap-3 items-start p-3 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors duration-300">
-              <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
+            <div class="flex gap-3 items-start p-3 border border-border hover:border-foreground transition-colors duration-300">
+              <div class="mt-2 w-1.5 h-px bg-foreground flex-shrink-0"></div>
               <div>
                 <strong class="text-foreground text-sm">{tech.name}</strong>
                 {tech.description && <p class="text-xs text-muted-foreground mt-0.5">{tech.description}</p>}
@@ -109,8 +110,8 @@ const { project, t, lang } = Astro.props;
     )}
 
     {project.outcome && (
-      <section class="glass-card rounded-2xl p-6 md:p-8 mb-8">
-        <h2 class="text-xl md:text-2xl font-bold mb-4" style="font-family: var(--font-heading);">
+      <section class="border border-border p-6 md:p-8 mb-8">
+        <h2 class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight" style="font-family: var(--font-heading);">
           {t.projectDetailPage?.outcomeTitle ?? 'Outcome'}
         </h2>
         <p class="text-muted-foreground leading-relaxed">{project.outcome}</p>
@@ -119,7 +120,7 @@ const { project, t, lang } = Astro.props;
 
     {project.galleryImagesTranslated && project.galleryImagesTranslated.length > 0 && (
       <section class="mb-8">
-        <h2 class="text-xl md:text-2xl font-bold mb-6" style="font-family: var(--font-heading);">
+        <h2 class="text-xl md:text-2xl font-bold mb-6 uppercase tracking-tight" style="font-family: var(--font-heading);">
           {t.projectDetailPage?.galleryTitle ?? 'Gallery'}
         </h2>
         <ProjectGallery
@@ -137,9 +138,9 @@ const { project, t, lang } = Astro.props;
           href={project.projectUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class={buttonVariants({ variant: 'default' }) + ' rounded-xl flex-1 hover:scale-[1.03] transition-all duration-300 hover:shadow-lg active:scale-[0.98]'}
+          class="brutalist-btn flex-1"
         >
-          <ExternalLink className="mr-2 size-4" />
+          <ExternalLink className="size-4" />
           {t.projectDetailPage?.visitProjectButton ?? 'Visit Project'}
         </a>
       )}
@@ -148,7 +149,7 @@ const { project, t, lang } = Astro.props;
           href={project.codeUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm glass-card text-foreground transition-all duration-300 hover:scale-[1.03] hover:bg-muted/50 active:scale-[0.98] flex-1"
+          class="brutalist-btn-outline flex-1"
         >
           <Code className="size-4" />
           {t.projectDetailPage?.viewCodeButton ?? 'View Code'}
