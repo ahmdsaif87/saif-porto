@@ -71,6 +71,17 @@ const {
   contactFormTitle,
   contactFormTranslations,
 } = Astro.props;
+
+const allTechnologies = Array.from(
+  new Set([
+    ...skills.flatMap((skillGroup) => skillGroup.technologies.map((tech) => tech.name)),
+    ...projects.flatMap((project) => project.technologiesUsed?.map((tech) => tech.name) || [])
+  ])
+);
+
+const halfTechIndex = Math.ceil(allTechnologies.length / 2);
+const firstLineTechnologies = allTechnologies.slice(0, halfTechIndex);
+const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
 ---
 
 {/* ═══════════════════════════════════════════════════════ */}
@@ -138,6 +149,41 @@ const {
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+{/* ═══════════════════════════════════════════════════════ */}
+{/* ===== SKILLS MARQUEE SECTION ===== */}
+{/* ═══════════════════════════════════════════════════════ */}
+<section class="border-b border-border py-4 md:py-6 overflow-hidden bg-muted/30 flex flex-col gap-4">
+  {/* First Line */}
+  <div class="flex whitespace-nowrap animate-marquee-slow w-max pause-on-hover">
+    {
+      [...Array(2)].map((_, index) => (
+        <div class="flex shrink-0 items-center gap-8 md:gap-16 px-4 md:px-8" aria-hidden={index === 1 ? "true" : "false"}>
+          {firstLineTechnologies.map(tech => (
+            <span class="text-sm md:text-base font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-300" style="font-family: var(--font-heading);">
+              {tech}
+            </span>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+
+  {/* Second Line */}
+  <div class="flex whitespace-nowrap animate-marquee-reverse-slow w-max pause-on-hover">
+    {
+      [...Array(2)].map((_, index) => (
+        <div class="flex shrink-0 items-center gap-8 md:gap-16 px-4 md:px-8" aria-hidden={index === 1 ? "true" : "false"}>
+          {secondLineTechnologies.map(tech => (
+            <span class="text-sm md:text-base font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-300" style="font-family: var(--font-heading);">
+              {tech}
+            </span>
+          ))}
+        </div>
+      ))
+    }
   </div>
 </section>
 

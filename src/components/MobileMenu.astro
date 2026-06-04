@@ -185,6 +185,13 @@ const currentPath = Astro.url.pathname;
       links.forEach((link) => {
         link.onclick = () => toggle(false);
       });
+
+      // Close menu when clicking anywhere outside the button
+      document.addEventListener('click', (e) => {
+        if (isOpen && !btn.contains(e.target)) {
+          toggle(false);
+        }
+      });
     };
 
     document.addEventListener('DOMContentLoaded', initMobileMenu);
