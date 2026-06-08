@@ -15,7 +15,7 @@ export const ui = {
           'A modern and responsive e-commerce web application designed for fashion enthusiasts.',
         imageAltText: 'Homepage of Dya Collection e-commerce website',
         categoryText: 'E-commerce Web',
-        dateText: 'December 2024',
+        dateText: 'JUNE 2025 - JULY 2025',
         detailedDescription:
           'Dya Collection is a sophisticated e-commerce application designed to provide a premium shopping experience for fashion enthusiasts. It features a clean, high-performance interface that prioritizes user engagement and streamlined navigation.',
         keyFeatures: {
@@ -48,7 +48,7 @@ export const ui = {
           'A comprehensive mobile learning platform designed to help students prepare for the IELTS exam with AI-driven feedback.',
         imageAltText: 'Screenshot of Alysa mobile app showing IELTS practice tests',
         categoryText: 'Mobile Learning Platform',
-        dateText: 'January 2025',
+        dateText: 'NOVEMBER 2025 - JANUARY 2026',
         detailedDescription:
           'Alysa is a sophisticated mobile learning application designed to revolutionize IELTS preparation. It provides a unified platform for students to practice all four exam modules with real-time feedback and structured study plans.',
         keyFeatures: {
@@ -84,7 +84,7 @@ export const ui = {
           'A stylized e-commerce platform for punk-themed merchandise built with Laravel.',
         imageAltText: 'Homepage of Punk Merch e-commerce website',
         categoryText: 'E-commerce Web',
-        dateText: 'November 2024',
+        dateText: 'JUNE 2025 - JULY 2025',
         detailedDescription:
           'Punk Merch is a unique e-commerce application designed to cater to the punk subculture. It provides a specialized platform for merchandise sales, featuring robust backend management and a visually striking frontend.',
         keyFeatures: {
@@ -109,6 +109,42 @@ export const ui = {
         },
         outcome:
           'Punk Merch delivers a specialized e-commerce solution that simplifies interactions between the store and its niche audience, providing a unique and efficient shopping experience.',
+        galleryImages: {},
+      },
+      rembugan: {
+        title: 'Rembugan',
+        description:
+          'A campus-scale mobile platform for finding collaboration partners, showcasing portfolios, and managing projects with built-in workspaces.',
+        imageAltText: 'Rembugan mobile app interface',
+        categoryText: 'Mobile Application',
+        dateText: 'MARCH 2026 - PRESENT',
+        detailedDescription:
+          'Rembugan is a comprehensive mobile platform designed for students to connect and collaborate on campus-level competitions and projects. It features partner matching, portfolio showcases, social connections, and integrated workspaces for seamless communication and task management once a team is formed. Built as a full-stack monorepo with a Flutter frontend, FastAPI backend, and a Next.js admin dashboard.',
+        keyFeatures: {
+          partnerMatching: {
+            title: 'Partner Matchmaking',
+            description: 'Find and connect with potential collaborators for competitions and projects within your campus.',
+          },
+          showcasePortfolio: {
+            title: 'Showcase Portfolio',
+            description: 'Upload and display your work, projects, and achievements to build your personal portfolio.',
+          },
+          workspaceCollaboration: {
+            title: 'Workspace & Collaboration',
+            description: 'Dedicated workspaces for teams with communication tools and task management to streamline project workflows.',
+          },
+        },
+        technologiesUsed: {
+          flutter: { name: 'Flutter', description: 'Cross-platform UI toolkit for building the mobile application.' },
+          fastapi: { name: 'FastAPI', description: 'Modern Python web framework for building the backend API.' },
+          python: { name: 'Python', description: 'Programming language used for backend services and AI integration.' },
+          dart: { name: 'Dart', description: 'Client-optimized language for fast mobile app development.' },
+          nextjs: { name: 'Next.js', description: 'React framework for building the admin dashboard.' },
+          postgresql: { name: 'PostgreSQL', description: 'Relational database for storing application data.' },
+          firebase: { name: 'Firebase', description: 'Authentication and backend services integration.' },
+        },
+        outcome:
+          'Rembugan provides a unified ecosystem for students to discover collaborators, showcase their work, and manage team projects efficiently within a campus environment.',
         galleryImages: {},
       },
     },

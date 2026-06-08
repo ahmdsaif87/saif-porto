@@ -3,6 +3,7 @@ import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
 import alysa from '@/assets/alysa.jpeg';
 import dyaCollection from '@/assets/dya-collection.png';
 import punkMerch from '@/assets/punk-merch.png';
+import rembugan from '@/assets/rembugan.jpg';
 import type {
   ProjectData,
   SkillData,
@@ -15,6 +16,7 @@ const projectsListUnsorted: Array<ProjectData> = [
     id: 'dyaCollection', // Unique identifier for translations
     slug: 'dya-collection', // Used in the URL
     imageUrl: dyaCollection, // Use imported ImageMetadata
+    projectUrl: 'https://dya-collection.vercel.app/',
     codeUrl: 'https://github.com/ahmdsaif87/dya-collection',
     tags: ['React', 'Next.js', 'TailwindCSS', 'Ecommerce'],
     category: 'E-commerce Web',
@@ -29,6 +31,12 @@ const projectsListUnsorted: Array<ProjectData> = [
       { id: 'nextjs', name: 'Next.js' },
       { id: 'tailwindcss', name: 'TailwindCSS' },
       { id: 'nodejs', name: 'Node.js' },
+    ],
+    collaborators: [
+      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Backend Developer'] },
+      { githubUsername: 'fadilsflow', name: 'Wahyu Akhmad Fadillah', roles: ['Fullstack Developer'] },
+      { githubUsername: 'ddfrnnd', name: 'Dede Fernanda', roles: ['Frontend Developer'] },
+      { githubUsername: 'alifiashasa', name: 'Alifia Shasa', roles: ['UI/UX Designer'] },
     ],
   },
   {
@@ -50,11 +58,18 @@ const projectsListUnsorted: Array<ProjectData> = [
       { id: 'python', name: 'Python' },
       { id: 'dart', name: 'Dart' },
     ],
+    collaborators: [
+      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Backend Developer'] },
+      { githubUsername: 'fadilsflow', name: 'Wahyu Akhmad Fadillah', roles: ['Fullstack Developer'] },
+      { githubUsername: 'ddfrnnd', name: 'Dede Fernanda', roles: ['Frontend Developer'] },
+      { githubUsername: 'alifiashasa', name: 'Alifia Shasa', roles: ['UI/UX Designer'] },
+    ],
   },
   {
     id: 'punkMerch',
     slug: 'punk-merch',
     imageUrl: punkMerch,
+    projectUrl: 'https://punkmerch.biz.id/',
     codeUrl: 'https://github.com/fadilsflow/campus-web-programing-2',
     tags: ['Laravel', 'PHP', 'MySQL', 'Ecommerce', 'TailwindCSS'],
     category: 'E-commerce Web',
@@ -69,6 +84,39 @@ const projectsListUnsorted: Array<ProjectData> = [
       { id: 'php', name: 'PHP' },
       { id: 'mysql', name: 'MySQL' },
       { id: 'tailwindcss', name: 'TailwindCSS' },
+    ],
+    collaborators: [
+      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['DevOps'] },
+      { githubUsername: 'fadilsflow', name: 'Wahyu Akhmad Fadillah', roles: ['Backend Developer'] },
+      { githubUsername: 'alifiashasa', name: 'Alifia Shasa', roles: ['Frontend Developer', 'UI/UX Designer'] },
+      { githubUsername: 'ddfrnnd', name: 'Dede Fernanda', roles: ['Frontend Developer', 'UI/UX Designer'] },
+    ],
+  },
+  {
+    id: 'rembugan',
+    slug: 'rembugan',
+    imageUrl: rembugan,
+    codeUrl: 'https://github.com/ahmdsaif87/Rembugan',
+    tags: ['Flutter', 'FastAPI', 'Python', 'Next.js', 'Dart', 'PostgreSQL', 'Firebase'],
+    category: 'Mobile Application',
+    date: '2025-04-01',
+    keyFeatures: [
+      { id: 'partnerMatching' },
+      { id: 'showcasePortfolio' },
+      { id: 'workspaceCollaboration' },
+    ],
+    technologiesUsed: [
+      { id: 'flutter', name: 'Flutter' },
+      { id: 'fastapi', name: 'FastAPI' },
+      { id: 'python', name: 'Python' },
+      { id: 'dart', name: 'Dart' },
+      { id: 'nextjs', name: 'Next.js' },
+      { id: 'postgresql', name: 'PostgreSQL' },
+      { id: 'firebase', name: 'Firebase' },
+    ],
+    collaborators: [
+      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Backend Developer', 'DevOps'] },
+      { githubUsername: 'ddfrnnd', name: 'Dede Fernanda', roles: ['Frontend Developer', 'UI/UX Designer'] },
     ],
   },
 ];

@@ -3,6 +3,12 @@ export type KeyFeature = {
   // icon?: string; // Optional: if you want to associate an icon from lucide-react or similar
 };
 
+export type Collaborator = {
+  githubUsername: string;
+  name: string;
+  roles: string[];
+};
+
 export type TechnologyDetail = {
   id: string; // e.g., 'react', 'typescript'
   name: string; // e.g., 'React', 'TypeScript'
@@ -39,6 +45,7 @@ export type ProjectData = {
   technologiesUsed?: Array<TechnologyDetail>; // More structured than tags
 
   outcome?: string; // New: Summary of the project's impact or result
+  collaborators?: Array<Collaborator>;
 };
 
 // Define the type for a project once its content is translated
