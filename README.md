@@ -22,7 +22,7 @@ Personal portfolio built with [Astro](https://astro.build/), TypeScript, and Tai
 
 ## Links
 
-- **Website**: [ahmadsaif.dev](https://ahmadsaif.dev)
-- **Email**: [ahmadsaif7456@gmail.com](mailto:ahmadsaif7456@gmail.com)
+- **Website**: [ahmadsaif.dev](https://ahmadsaif.web.id)
+- **Email**: [ahmadsaif7456@gmail.com](mailto:ahmadsaifpy@gmail.com)
 - **GitHub**: [@ahmdsaif87](https://github.com/ahmdsaif87)
 - **LinkedIn**: [ahmadsaif-dev](https://www.linkedin.com/in/ahmadsaif-dev)
