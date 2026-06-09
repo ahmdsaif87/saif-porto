@@ -5,7 +5,6 @@ import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 
 import tailwindcss from '@tailwindcss/vite';
-import { remarkReadingTime } from './src/lib/remark-reading-time.mjs';
 import rehypeMermaid from 'rehype-mermaid';
 
 import vercel from '@astrojs/vercel';
@@ -26,7 +25,6 @@ export default defineConfig({
   integrations: [
     react(),
     mdx({
-      remarkPlugins: [remarkReadingTime],
       rehypePlugins: [
         [
           rehypeMermaid,

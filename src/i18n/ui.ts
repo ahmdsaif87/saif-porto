@@ -213,7 +213,6 @@ export const ui = {
     },
     nav: {
       home: 'Home',
-      blog: 'Blog',
       contact: 'Contact',
       projects: 'Projects',
       resume: 'Resume',
@@ -265,37 +264,6 @@ export const ui = {
             'Focused on software engineering and mobile application development.',
         },
       ],
-    },
-    blogPage: {
-      pageTitle: 'My Technical Blog',
-      pageDescription:
-        'Articles and thoughts on web development, software architecture, and new technologies.',
-      title: 'My Technical Blog',
-      description:
-        'Articles and thoughts on web development, software architecture, and new technologies.',
-      comingSoon: 'Blog posts will appear here soon. Check back later!',
-      heroImageAlt: 'Hero image for article: ',
-      publishedOn: 'Published on: ',
-      readMore: 'Read more',
-      readingTimeSuffix: 'min read',
-      searchPlaceholder: 'Search articles...',
-      filterByTagButtonLabel: 'Filter by tag',
-      noTagFound: 'No tag found.',
-      selectTagCommandPlaceholder: 'Search tag...',
-      allTagsLabel: 'All tags',
-      noPostsFound: 'No posts found.',
-    },
-    blogPost: {
-      publishedOn: 'Published on: ',
-      updatedOn: 'Updated on: ',
-      heroImageAlt: 'Hero image for article: ',
-      backToList: 'Back to blog list',
-      readingTimeSuffix: 'min read',
-      relatedPostsTitle: 'Continue Reading',
-      readMore: 'Read more',
-    },
-    toc: {
-      title: 'Table of Contents',
     },
     contactPage: {
       pageTitle: 'Contact Me',
