@@ -4,6 +4,7 @@ import alysa from '@/assets/alysa.jpeg';
 import dyaCollection from '@/assets/dya-collection.png';
 import punkMerch from '@/assets/punk-merch.png';
 import rembugan from '@/assets/rembugan.jpg';
+import parkingSimulator from '@/assets/parkingSimulator.png';
 import type {
   ProjectData,
   SkillData,
@@ -117,6 +118,29 @@ const projectsListUnsorted: Array<ProjectData> = [
     collaborators: [
       { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Backend Developer', 'DevOps'] },
       { githubUsername: 'ddfrnnd', name: 'Dede Fernanda', roles: ['Frontend Developer', 'UI/UX Designer'] },
+    ],
+  },
+  {
+    id: 'parkingSimulator',
+    slug: 'parking-simulator',
+    imageUrl: parkingSimulator,
+    codeUrl: 'https://github.com/ahmdsaif87/ParkingSimulator.git',
+    tags: ['Unity', 'C#', 'Game Development', '3D'],
+    category: 'Game',
+    date: '2026-05-17',
+    keyFeatures: [
+      { id: 'vehiclePhysics' },
+      { id: 'twoLevels' },
+      { id: 'aiTraffic' },
+    ],
+    technologiesUsed: [
+      { id: 'unity', name: 'Unity' },
+      { id: 'csharp', name: 'C#' },
+      { id: 'urp', name: 'Universal Render Pipeline' },
+      { id: 'cinemachine', name: 'Cinemachine' },
+    ],
+    collaborators: [
+      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Game Designer', 'Artist', 'Programmer', 'Sound Engineer', 'Producer'] },
     ],
   },
 ];

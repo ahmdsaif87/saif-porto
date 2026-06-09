@@ -147,6 +147,39 @@ export const ui = {
           'Rembugan provides a unified ecosystem for students to discover collaborators, showcase their work, and manage team projects efficiently within a campus environment.',
         galleryImages: {},
       },
+      parkingSimulator: {
+        title: 'In The End: Parking Simulator',
+        description:
+          'A 3D parking simulation game that tests players\' precision in parking a vehicle within designated areas. Inspired by Dr. Driving (2013).',
+        imageAltText: 'Screenshot of In The End: Parking Simulator gameplay',
+        categoryText: 'Game',
+        dateText: 'MAY 2026',
+        detailedDescription:
+          'In The End: Parking Simulator is a 3D parking simulation game that challenges players to precisely control a vehicle and park in designated zones. Built with Unity, the game features realistic physics using WheelCollider, two distinct levels (static and dynamic parking), AI traffic systems, minimap navigation, and environmental details including traffic lights, street lights, and dynamic obstacles.',
+        keyFeatures: {
+          vehiclePhysics: {
+            title: 'Vehicle Physics',
+            description: 'Realistic driving experience using Unity WheelCollider with full vehicle controls including acceleration, braking, and turn signals.',
+          },
+          twoLevels: {
+            title: '2 Game Levels',
+            description: 'Level 1: Static Parking against fixed obstacles. Level 2: Dynamic Parking with moving AI traffic as an additional challenge.',
+          },
+          aiTraffic: {
+            title: 'AI Traffic System',
+            description: 'Bot cars that move along predefined waypoints, creating dynamic traffic scenarios in Level 2.',
+          },
+        },
+        technologiesUsed: {
+          unity: { name: 'Unity', description: 'Game engine used for 3D rendering, physics, and game logic.' },
+          csharp: { name: 'C#', description: 'Primary scripting language for game mechanics and behavior.' },
+          urp: { name: 'Universal Render Pipeline', description: 'High-performance render pipeline for optimized 3D graphics.' },
+          cinemachine: { name: 'Cinemachine', description: 'Camera system for smooth and dynamic camera movements.' },
+        },
+        outcome:
+          'In The End: Parking Simulator successfully delivers an engaging 3D parking simulation experience with two distinct difficulty levels, realistic vehicle physics, and a polished visual presentation.',
+        galleryImages: {},
+      },
     },
     skillsContent: {
       frontendDevelopment: {
