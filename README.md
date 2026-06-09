@@ -19,10 +19,3 @@ Personal portfolio built with [Astro](https://astro.build/), TypeScript, and Tai
 | `bun dev`      | Start dev server on `localhost:4321` |
 | `bun build`    | Build for production to `./dist/`   |
 | `bun preview`  | Preview production build            |
-
-## Links
-
-- **Website**: [ahmadsaif.dev](https://ahmadsaif.web.id)
-- **Email**: [ahmadsaifpy@gmail.com](mailto:ahmadsaifpy@gmail.com)
-- **GitHub**: [@ahmdsaif87](https://github.com/ahmdsaif87)
-- **LinkedIn**: [ahmadsaif-dev](https://www.linkedin.com/in/ahmadsaif-dev)
