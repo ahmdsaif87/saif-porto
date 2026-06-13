@@ -144,26 +144,21 @@ const navItems: Array<NavItem> = isLandingPage
     </script>
     <title>{pageTitle || tSite('title')}</title>
 
-    {/* Fonts — Space Grotesk (headings) + Inter (body) */}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
+    <!-- Canonical URL -->
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site.origin).href} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle || tSite('title')} />
+    <meta property="og:description" content={pageDescription || tSite('description')} />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site.origin).href} />
+    <meta property="og:site_name" content={tSite('title')} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle || tSite('title')} />
+    <meta name="twitter:description" content={pageDescription || tSite('description')} />
+
     <ClientRouter />
   </head>
   <body class="min-h-screen bg-background font-sans antialiased flex flex-col relative overflow-x-hidden">
@@ -178,7 +173,7 @@ const navItems: Array<NavItem> = isLandingPage
 
     <Footer />
 
-    <Toaster position="bottom-right" richColors client:load />
+    <Toaster position="bottom-right" richColors client:visible />
 
     {/* Scroll-triggered reveal observer */}
     <script is:inline>

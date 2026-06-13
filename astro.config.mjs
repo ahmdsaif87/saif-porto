@@ -21,7 +21,7 @@ console.log(`Using Mermaid strategy: ${mermaidStrategy}`);
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  site: 'https://example.com', // IMPORTANT: Replace with your actual domain in production
+  site: process.env.PUBLIC_SITE_URL || process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://ahmdsaif.vercel.app',
   integrations: [
     react(),
     mdx({

@@ -1,10 +1,10 @@
 // Import i18n utilities
 import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
-import alysa from '@/assets/alysa.jpeg';
-import dyaCollection from '@/assets/dya-collection.png';
-import punkMerch from '@/assets/punk-merch.png';
-import rembugan from '@/assets/rembugan.jpg';
-import parkingSimulator from '@/assets/parkingSimulator.png';
+import alysa from '@/assets/alysa.webp';
+import dyaCollection from '@/assets/dya-collection.webp';
+import punkMerch from '@/assets/punk-merch.webp';
+import rembugan from '@/assets/rembugan.webp';
+import parkingSimulator from '@/assets/parkingSimulator.webp';
 import type {
   ProjectData,
   SkillData,
