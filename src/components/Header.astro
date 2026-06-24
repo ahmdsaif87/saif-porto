@@ -42,9 +42,6 @@ const currentPath = Astro.url.pathname;
               style={`font-family: var(--font-heading);`}
             >
               {link.label}
-              {isActive && (
-                <span class="absolute bottom-0 left-4 right-4 h-px bg-foreground" />
-              )}
             </a>
           );
         })

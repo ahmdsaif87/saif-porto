@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-24T00:00:00.000Z",
+  "title": "Design System: The Monochrome Studio",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "primary", "displayName": "Ink", "canonical": "#0a0a0a", "tonalRamp": ["#000000", "#050505", "#0a0a0a", "#1a1a1a", "#333333", "#4d4d4d", "#808080", "#cccccc"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#ffffff", "tonalRamp": ["#ffffff", "#fafafa", "#f5f5f5", "#ebebeb", "#d4d4d4", "#a3a3a3", "#808080", "#4d4d4d"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines and major section titles only. Used sparingly." },
+      "heading": { "displayName": "Heading", "purpose": "Section headings, card titles." },
+      "body": { "displayName": "Body", "purpose": "All prose content. Line length capped at 65-75ch." },
+      "label": { "displayName": "Label", "purpose": "Navigation items, button text, form labels. Always uppercase with 0.08em tracking." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-standard", "value": "cubic-bezier(0.4, 0, 0.2, 1)", "purpose": "Default easing for state transitions (buttons, cards)." },
+      { "name": "ease-expressive", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Expressive easing for scroll-reveal and entrance animations." },
+      { "name": "ease-marquee", "value": "linear", "purpose": "Linear for infinitely looping marquee ticker." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary call-to-action. Black filled, uppercase, zero radius.",
+      "html": "<button class=\"ds-btn-primary\">VIEW WORK</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 14px 32px; font-family: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; background: #0a0a0a; color: #ffffff; border: 1px solid #0a0a0a; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-primary:hover { background: transparent; color: #0a0a0a; } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.5); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action. Transparent with border, inverts on hover.",
+      "html": "<button class=\"ds-btn-outline\">CONTACT</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 14px 32px; font-family: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; background: transparent; color: #0a0a0a; border: 1px solid #e5e5e5; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-outline:hover { background: #0a0a0a; color: #ffffff; border-color: #0a0a0a; } .ds-btn-outline:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.5); }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Text input with zero radius, border-based separation, focus ring.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Your name\" />",
+      "css": ".ds-input { display: flex; height: 36px; width: 100%; min-width: 0; border-radius: 0; border: 1px solid #e5e5e5; background: transparent; padding: 8px 12px; font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 0.9375rem; color: #0a0a0a; transition: border-color 0.2s, box-shadow 0.2s; outline: none; } .ds-input::placeholder { color: #737373; } .ds-input:focus { border-color: #0a0a0a; box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.5); }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Content container. Flat, zero radius, border-separated, no shadow.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-body\"><h3 style=\"font-family: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 8px 0;\">Project Title</h3><p style=\"font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 0.9375rem; color: #737373; margin: 0;\">Description of the project goes here.</p></div></div>",
+      "css": ".ds-card { background: #ffffff; border: 1px solid #e5e5e5; border-radius: 0; padding: 24px; transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1); } .ds-card:hover { border-color: #0a0a0a; } .ds-card-body { display: flex; flex-direction: column; gap: 8px; }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Desktop nav item. Uppercase, tracked, Space Grotesk.",
+      "html": "<nav style=\"display: flex; gap: 32px;\"><a class=\"ds-nav-link ds-nav-active\" href=\"#\">WORK</a><a class=\"ds-nav-link\" href=\"#\">CONTACT</a></nav>",
+      "css": ".ds-nav-link { font-family: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #0a0a0a; text-decoration: none; position: relative; padding-bottom: 4px; transition: color 0.2s; } .ds-nav-link:hover { color: #737373; } .ds-nav-active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: #0a0a0a; }"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Small uppercase label tag. Zero radius.",
+      "html": "<span class=\"ds-badge\">WEB APP</span>",
+      "css": ".ds-badge { display: inline-flex; align-items: center; padding: 2px 8px; font-family: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 0; background: #f5f5f5; color: #0a0a0a; border: none; white-space: nowrap; }"
+    },
+    {
+      "name": "Project Card (Featured)",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Featured project preview with image zoom on hover.",
+      "html": "<div class=\"ds-project-card\"><div class=\"ds-project-card-image\"><img src=\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Crect width='600' height='400' fill='%23e5e5e5'/%3E%3C/svg%3E\" alt=\"Project\" /></div><div class=\"ds-project-card-body\"><span class=\"ds-badge\" style=\"margin-bottom: 8px;\">WEB APP</span><h3 style=\"font-family: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif; font-size: 1.25rem; font-weight: 600; margin: 0 0 8px 0;\">Project Title</h3></div></div>",
+      "css": ".ds-project-card { position: relative; overflow: hidden; border: 1px solid #e5e5e5; background: #ffffff; border-radius: 0; transition: border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1); } .ds-project-card:hover { border-color: #0a0a0a; } .ds-project-card-image { overflow: hidden; } .ds-project-card-image img { display: block; width: 100%; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); } .ds-project-card:hover .ds-project-card-image img { transform: scale(1.05); } .ds-project-card-body { padding: 24px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Monochrome Studio",
+    "overview": "A personal portfolio that doubles as its own credential. Every pixel, every interaction, every typographic choice is a demonstration of craft. The design doesn't frame the work — it is the work. This system operates in black, white, and carefully calibrated grays. There is no color accent, no gradient, no shadow. Hierarchy comes from weight, size, and spacing alone. Surfaces are flat. Borders are real (1px, solid). Radius is zero. The grain texture overlay at 0.018 opacity is the only concession to texture — a nod to the tactile without breaking the honesty. The portfolio rejects every AI-generated design reflex: no purple gradients, no glassmorphism, no bounce easings, no side-stripe accents, no numbered section markers, no uppercase kickers above every section. The structure reveals itself through layout, not ornament.",
+    "keyCharacteristics": [
+      "Monochrome-only palette (no accent color)",
+      "Zero border radius throughout",
+      "No shadows — flat surfaces only",
+      "Space Grotesk for display, Inter for body",
+      "Uppercase, letter-spaced labels and nav",
+      "Noise grain at 0.018–0.025 opacity for subtle tactility",
+      "Scroll-reveal animations with exponential easing",
+      "Generous whitespace and open line lengths"
+    ],
+    "rules": [
+      { "name": "The Monochrome Rule", "body": "The palette is intentionally colorless. No hue is added to any neutral. Warmth is carried by imagery, typography weight, and layout — never by tinting the background.", "section": "colors" },
+      { "name": "The Two-Family Rule", "body": "Display/heading roles use Space Grotesk. Body/label roles use Inter. These families should never swap roles. No additional fonts are introduced.", "section": "typography" },
+      { "name": "The No-Shadow Rule", "body": "Every shadow token resolves to none. If a surface needs separation from its background, use a border or a tonal shift. Box-shadows are prohibited.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use black (#0a0a0a) and white (#ffffff) as the anchoring poles of every composition.",
+      "Do use Space Grotesk for all headings, uppercase labels, and navigation.",
+      "Do use Inter for body copy, descriptions, and prose content.",
+      "Do keep radius at 0px everywhere — no exceptions.",
+      "Do use solid 1px borders (gray-200 light, gray-700 dark) to separate surfaces.",
+      "Do use exponential easing (cubic-bezier(0.16, 1, 0.3, 1) or cubic-bezier(0.4, 0, 0.2, 1)) for transitions and animations.",
+      "Do respect prefers-reduced-motion — all animations must degrade gracefully.",
+      "Do maintain WCAG AA contrast (4.5:1 body, 3:1 large text) on every surface pairing."
+    ],
+    "donts": [
+      "Don't introduce any accent color. The palette is strictly monochrome.",
+      "Don't use gradients, gradient text, or background-clip: text.",
+      "Don't add shadows of any kind. Every shadow token resolves to none.",
+      "Don't use glassmorphism, blur overlays, or translucent surfaces.",
+      "Don't use bounce or elastic easing — feels dated and AI-generated.",
+      "Don't wrap everything in cards or nest cards inside cards.",
+      "Don't use side-stripe borders (border-left/border-right >1px as decoration).",
+      "Don't use numbered section markers (01 / 02 / 03) as default scaffolding.",
+      "Don't use tiny uppercase tracked kickers above every section.",
+      "Don't use Inter for display/heading roles — that's Space Grotesk's job.",
+      "Don't use pure black (#000) or pure white (#fff) — always use the defined tokens.",
+      "Don't let hero heading clamp exceed 6rem, and never tighten letter-spacing below -0.04em.",
+      "Don't use icons as decoration — they must serve a functional purpose."
+    ]
+  }
+}

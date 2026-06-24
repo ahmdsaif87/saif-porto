@@ -25,5 +25,7 @@ pnpm-debug.log*
 .vercel
 .env*.local
 
+.agents
+
 #md
 EditContent.md

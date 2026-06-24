@@ -5,7 +5,6 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { Image } from 'astro:assets';
 import errorIllustration from '@/assets/error.webp';
 import errorIllustrationDark from '@/assets/error-dark.webp';
-import { buttonVariants } from '@/components/ui/button';
 import { Home } from 'lucide-react';
 
 const lang =
@@ -57,9 +56,9 @@ const pageDescription = t('message');
 
       <a
         href={getRelativeLocaleUrl(lang, '/')}
-        class={buttonVariants({ variant: 'default', size: 'lg' }) + ' rounded-xl hover:scale-[1.03] transition-all duration-300 hover:shadow-lg active:scale-[0.98]'}
+        class="brutalist-btn"
       >
-        <Home className="mr-2 size-4" />
+        <Home className="size-4" />
         {t('homeLink')}
       </a>
     </div>
