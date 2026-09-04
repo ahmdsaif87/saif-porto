@@ -117,7 +117,7 @@ export const ui = {
           'A campus-scale mobile platform for finding collaboration partners, showcasing portfolios, and managing projects with built-in workspaces.',
         imageAltText: 'Rembugan mobile app interface',
         categoryText: 'Mobile Application',
-        dateText: 'MARCH 2026 - PRESENT',
+        dateText: 'MARCH 2026 - JULY 2026',
         detailedDescription:
           'Rembugan is a comprehensive mobile platform designed for students to connect and collaborate on campus-level competitions and projects. It features partner matching, portfolio showcases, social connections, and integrated workspaces for seamless communication and task management once a team is formed. Built as a full-stack monorepo with a Flutter frontend, FastAPI backend, and a Next.js admin dashboard.',
         keyFeatures: {
@@ -153,7 +153,7 @@ export const ui = {
           'A 3D parking simulation game that tests players\' precision in parking a vehicle within designated areas. Inspired by Dr. Driving (2013).',
         imageAltText: 'Screenshot of In The End: Parking Simulator gameplay',
         categoryText: 'Game',
-        dateText: 'MAY 2026',
+        dateText: 'MAY 2026 - JULY 2026',
         detailedDescription:
           'In The End: Parking Simulator is a 3D parking simulation game that challenges players to precisely control a vehicle and park in designated zones. Built with Unity, the game features realistic physics using WheelCollider, two distinct levels (static and dynamic parking), AI traffic systems, minimap navigation, and environmental details including traffic lights, street lights, and dynamic obstacles.',
         keyFeatures: {
