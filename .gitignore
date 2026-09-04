@@ -30,5 +30,5 @@ pnpm-debug.log*
 #md
 EditContent.md
 
-.vscode/
-.impeccable/
+.vscode
+.impeccable
