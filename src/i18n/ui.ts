@@ -21,22 +21,40 @@ export const ui = {
         keyFeatures: {
           productCatalog: {
             title: 'Product Catalog',
-            description: 'Dynamic product listing with categorization and detailed item views.',
+            description:
+              'Dynamic product listing with categorization and detailed item views.',
           },
           shoppingCart: {
             title: 'Interactive Cart',
-            description: 'Real-time cart management allowing users to add, remove, and adjust quantities.',
+            description:
+              'Real-time cart management allowing users to add, remove, and adjust quantities.',
           },
           checkoutSystem: {
             title: 'Secure Checkout',
-            description: 'Streamlined checkout process ensuring a smooth path to purchase.',
+            description:
+              'Streamlined checkout process ensuring a smooth path to purchase.',
           },
         },
         technologiesUsed: {
-          react: { name: 'React', description: 'JavaScript library for building user interfaces.' },
-          nextjs: { name: 'Next.js', description: 'React framework for server-side rendering and static site generation.' },
-          tailwindcss: { name: 'TailwindCSS', description: 'Utility-first CSS framework for rapid UI development.' },
-          nodejs: { name: 'Node.js', description: 'JavaScript runtime built on Chrome\'s V8 engine for server-side logic.' },
+          react: {
+            name: 'React',
+            description: 'JavaScript library for building user interfaces.',
+          },
+          nextjs: {
+            name: 'Next.js',
+            description:
+              'React framework for server-side rendering and static site generation.',
+          },
+          tailwindcss: {
+            name: 'TailwindCSS',
+            description:
+              'Utility-first CSS framework for rapid UI development.',
+          },
+          nodejs: {
+            name: 'Node.js',
+            description:
+              "JavaScript runtime built on Chrome's V8 engine for server-side logic.",
+          },
         },
         outcome:
           'Dya Collection successfully provides a scalable and efficient e-commerce solution, offering users a seamless journey from product discovery to secure checkout.',
@@ -46,7 +64,8 @@ export const ui = {
         title: 'Alysa - IELTS Preparation Platform',
         description:
           'A comprehensive mobile learning platform designed to help students prepare for the IELTS exam with AI-driven feedback.',
-        imageAltText: 'Screenshot of Alysa mobile app showing IELTS practice tests',
+        imageAltText:
+          'Screenshot of Alysa mobile app showing IELTS practice tests',
         categoryText: 'Mobile Learning Platform',
         dateText: 'NOVEMBER 2025 - JANUARY 2026',
         detailedDescription:
@@ -65,14 +84,30 @@ export const ui = {
           personalizedPath: {
             title: 'Personalized Learning',
             description:
-              'Dynamic study plans that adapt to the user\'s performance and focus on weak areas.',
+              "Dynamic study plans that adapt to the user's performance and focus on weak areas.",
           },
         },
         technologiesUsed: {
-          flutter: { name: 'Flutter', description: 'UI toolkit for building natively compiled applications for mobile from a single codebase.' },
-          flask: { name: 'Flask', description: 'Lightweight WSGI web application framework in Python for backend services.' },
-          python: { name: 'Python', description: 'Programming language used for AI model integration and backend logic.' },
-          dart: { name: 'Dart', description: 'Client-optimized language for fast apps on any platform.' },
+          flutter: {
+            name: 'Flutter',
+            description:
+              'UI toolkit for building natively compiled applications for mobile from a single codebase.',
+          },
+          flask: {
+            name: 'Flask',
+            description:
+              'Lightweight WSGI web application framework in Python for backend services.',
+          },
+          python: {
+            name: 'Python',
+            description:
+              'Programming language used for AI model integration and backend logic.',
+          },
+          dart: {
+            name: 'Dart',
+            description:
+              'Client-optimized language for fast apps on any platform.',
+          },
         },
         outcome:
           'Alysa delivers a scalable and efficient solution for IELTS students, simplifying the complex process of preparation and enhancing the learning experience through immediate AI feedback.',
@@ -90,22 +125,39 @@ export const ui = {
         keyFeatures: {
           merchInventory: {
             title: 'Inventory Management',
-            description: 'Powerful backend tools to manage and display a unique collection of merchandise.',
+            description:
+              'Powerful backend tools to manage and display a unique collection of merchandise.',
           },
           userAuthentication: {
             title: 'Secure Accounts',
-            description: 'Integrated user authentication system for secure shopping and order tracking.',
+            description:
+              'Integrated user authentication system for secure shopping and order tracking.',
           },
           orderManagement: {
             title: 'Order Processing',
-            description: 'Efficient workflow for handling customer purchases and maintaining order history.',
+            description:
+              'Efficient workflow for handling customer purchases and maintaining order history.',
           },
         },
         technologiesUsed: {
-          laravel: { name: 'Laravel', description: 'PHP framework with expressive, elegant syntax for backend operations.' },
-          php: { name: 'PHP', description: 'General-purpose scripting language especially suited to web development.' },
-          mysql: { name: 'MySQL', description: 'Open-source relational database management system.' },
-          tailwindcss: { name: 'TailwindCSS', description: 'Modern CSS framework for rapid and custom styling.' },
+          laravel: {
+            name: 'Laravel',
+            description:
+              'PHP framework with expressive, elegant syntax for backend operations.',
+          },
+          php: {
+            name: 'PHP',
+            description:
+              'General-purpose scripting language especially suited to web development.',
+          },
+          mysql: {
+            name: 'MySQL',
+            description: 'Open-source relational database management system.',
+          },
+          tailwindcss: {
+            name: 'TailwindCSS',
+            description: 'Modern CSS framework for rapid and custom styling.',
+          },
         },
         outcome:
           'Punk Merch delivers a specialized e-commerce solution that simplifies interactions between the store and its niche audience, providing a unique and efficient shopping experience.',
@@ -123,25 +175,53 @@ export const ui = {
         keyFeatures: {
           partnerMatching: {
             title: 'Partner Matchmaking',
-            description: 'Find and connect with potential collaborators for competitions and projects within your campus.',
+            description:
+              'Find and connect with potential collaborators for competitions and projects within your campus.',
           },
           showcasePortfolio: {
             title: 'Showcase Portfolio',
-            description: 'Upload and display your work, projects, and achievements to build your personal portfolio.',
+            description:
+              'Upload and display your work, projects, and achievements to build your personal portfolio.',
           },
           workspaceCollaboration: {
             title: 'Workspace & Collaboration',
-            description: 'Dedicated workspaces for teams with communication tools and task management to streamline project workflows.',
+            description:
+              'Dedicated workspaces for teams with communication tools and task management to streamline project workflows.',
           },
         },
         technologiesUsed: {
-          flutter: { name: 'Flutter', description: 'Cross-platform UI toolkit for building the mobile application.' },
-          fastapi: { name: 'FastAPI', description: 'Modern Python web framework for building the backend API.' },
-          python: { name: 'Python', description: 'Programming language used for backend services and AI integration.' },
-          dart: { name: 'Dart', description: 'Client-optimized language for fast mobile app development.' },
-          nextjs: { name: 'Next.js', description: 'React framework for building the admin dashboard.' },
-          postgresql: { name: 'PostgreSQL', description: 'Relational database for storing application data.' },
-          firebase: { name: 'Firebase', description: 'Authentication and backend services integration.' },
+          flutter: {
+            name: 'Flutter',
+            description:
+              'Cross-platform UI toolkit for building the mobile application.',
+          },
+          fastapi: {
+            name: 'FastAPI',
+            description:
+              'Modern Python web framework for building the backend API.',
+          },
+          python: {
+            name: 'Python',
+            description:
+              'Programming language used for backend services and AI integration.',
+          },
+          dart: {
+            name: 'Dart',
+            description:
+              'Client-optimized language for fast mobile app development.',
+          },
+          nextjs: {
+            name: 'Next.js',
+            description: 'React framework for building the admin dashboard.',
+          },
+          postgresql: {
+            name: 'PostgreSQL',
+            description: 'Relational database for storing application data.',
+          },
+          firebase: {
+            name: 'Firebase',
+            description: 'Authentication and backend services integration.',
+          },
         },
         outcome:
           'Rembugan provides a unified ecosystem for students to discover collaborators, showcase their work, and manage team projects efficiently within a campus environment.',
@@ -150,7 +230,7 @@ export const ui = {
       parkingSimulator: {
         title: 'In The End: Parking Simulator',
         description:
-          'A 3D parking simulation game that tests players\' precision in parking a vehicle within designated areas. Inspired by Dr. Driving (2013).',
+          "A 3D parking simulation game that tests players' precision in parking a vehicle within designated areas. Inspired by Dr. Driving (2013).",
         imageAltText: 'Screenshot of In The End: Parking Simulator gameplay',
         categoryText: 'Game',
         dateText: 'MAY 2026 - JULY 2026',
@@ -159,22 +239,41 @@ export const ui = {
         keyFeatures: {
           vehiclePhysics: {
             title: 'Vehicle Physics',
-            description: 'Realistic driving experience using Unity WheelCollider with full vehicle controls including acceleration, braking, and turn signals.',
+            description:
+              'Realistic driving experience using Unity WheelCollider with full vehicle controls including acceleration, braking, and turn signals.',
           },
           twoLevels: {
             title: '2 Game Levels',
-            description: 'Level 1: Static Parking against fixed obstacles. Level 2: Dynamic Parking with moving AI traffic as an additional challenge.',
+            description:
+              'Level 1: Static Parking against fixed obstacles. Level 2: Dynamic Parking with moving AI traffic as an additional challenge.',
           },
           aiTraffic: {
             title: 'AI Traffic System',
-            description: 'Bot cars that move along predefined waypoints, creating dynamic traffic scenarios in Level 2.',
+            description:
+              'Bot cars that move along predefined waypoints, creating dynamic traffic scenarios in Level 2.',
           },
         },
         technologiesUsed: {
-          unity: { name: 'Unity', description: 'Game engine used for 3D rendering, physics, and game logic.' },
-          csharp: { name: 'C#', description: 'Primary scripting language for game mechanics and behavior.' },
-          urp: { name: 'Universal Render Pipeline', description: 'High-performance render pipeline for optimized 3D graphics.' },
-          cinemachine: { name: 'Cinemachine', description: 'Camera system for smooth and dynamic camera movements.' },
+          unity: {
+            name: 'Unity',
+            description:
+              'Game engine used for 3D rendering, physics, and game logic.',
+          },
+          csharp: {
+            name: 'C#',
+            description:
+              'Primary scripting language for game mechanics and behavior.',
+          },
+          urp: {
+            name: 'Universal Render Pipeline',
+            description:
+              'High-performance render pipeline for optimized 3D graphics.',
+          },
+          cinemachine: {
+            name: 'Cinemachine',
+            description:
+              'Camera system for smooth and dynamic camera movements.',
+          },
         },
         outcome:
           'In The End: Parking Simulator successfully delivers an engaging 3D parking simulation experience with two distinct difficulty levels, realistic vehicle physics, and a polished visual presentation.',
@@ -205,7 +304,8 @@ export const ui = {
       },
       database: {
         title: 'Databases',
-        description: 'Managing and optimizing relational and non-relational databases.',
+        description:
+          'Managing and optimizing relational and non-relational databases.',
       },
     },
     site: {
@@ -227,7 +327,8 @@ export const ui = {
       heroGreeting: "Hi, I'm Ahmad Saif",
       heroSubtitlePart1: 'Full Stack Developer',
       heroSubtitlePart2: 'Tech Enthusiast',
-      heroIntroduction: 'I am a full-stack developer based in Tegal, Indonesia.',
+      heroIntroduction:
+        'I am a full-stack developer based in Tegal, Indonesia.',
       heroViewWorkButton: 'View My Work',
       heroContactButton: 'Get In Touch',
       heroImageAlt:
@@ -250,12 +351,24 @@ export const ui = {
           title: 'Freelance',
           company: 'Self-employed',
           date: '2025 - Present',
-          description:
-            'Mobile & Web Development',
+          description: 'Mobile & Web Developer',
+        },
+        {
+          title: 'Internship',
+          company: 'IDMETAFORA Indonesia Teknologi',
+          date: 'July 2026 - November 2026',
+          description: 'Software Developer',
         },
       ],
       educationTitle: 'Education',
       educations: [
+        {
+          degree: 'Computer and Network Engineering',
+          school: 'SMK Negeri 2 Adiwerna',
+          date: '2021 - 2023',
+          description:
+            'Focused on computer hardware installation, operating systems, and network infrastructure management.',
+        },
         {
           degree: 'Bachelor of Informatics Engineering',
           school: 'Universitas Harkat Negeri',
