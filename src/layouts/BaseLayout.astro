@@ -9,6 +9,7 @@ import Footer from '@/components/Footer.astro';
 import Header from '@/components/Header.astro';
 import { Home, Briefcase, MessageSquare, FileText } from 'lucide-react';
 import { ClientRouter } from 'astro:transitions';
+import Analytics from '@vercel/analytics/astro';
 
 import { Toaster } from 'sonner';
 
@@ -202,5 +203,6 @@ const navItems: Array<NavItem> = isLandingPage
         document.addEventListener('astro:page-load', initScrollReveal);
       })();
     </script>
+    <Analytics />
   </body>
 </html>
