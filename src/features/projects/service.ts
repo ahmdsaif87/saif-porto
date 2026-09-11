@@ -5,6 +5,7 @@ import dyaCollection from '@/assets/dya-collection.webp';
 import punkMerch from '@/assets/punk-merch.webp';
 import rembugan from '@/assets/rembugan.webp';
 import parkingSimulator from '@/assets/parkingSimulator.webp';
+import typeRacer from '@/assets/type-racer.webp';
 import type {
   ProjectData,
   SkillData,
@@ -143,6 +144,34 @@ const projectsListUnsorted: Array<ProjectData> = [
     ],
     collaborators: [
       { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Game Designer', 'Artist', 'Programmer', 'Sound Engineer', 'Producer'] },
+    ],
+  },
+  {
+    id: 'typeRacerBlitz',
+    slug: 'type-racer-blitz',
+    imageUrl: typeRacer,
+    projectUrl: 'https://type-racer-pearl.vercel.app/',
+    codeUrl: 'https://github.com/ahmdsaif87/type-racer',
+    tags: ['React', 'TypeScript', 'Vite', 'TailwindCSS', 'WebRTC', 'PeerJS', 'WebSocket'],
+    category: 'Web Application',
+    date: '2026-09-10',
+    keyFeatures: [
+      { id: 'realtimeMultiplayer' },
+      { id: 'monkeytypeMetrics' },
+      { id: 'antigravityParticles' },
+      { id: 'raceTrackCustomization' },
+      { id: 'hostAuthoritySystem' },
+    ],
+    technologiesUsed: [
+      { id: 'react', name: 'React 19' },
+      { id: 'typescript', name: 'TypeScript' },
+      { id: 'vite', name: 'Vite' },
+      { id: 'tailwindcss', name: 'TailwindCSS' },
+      { id: 'webrtc', name: 'WebRTC / PeerJS' },
+      { id: 'websocket', name: 'WebSocket' },
+    ],
+    collaborators: [
+      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Fullstack Developer', 'UI/UX Designer'] },
     ],
   },
 ];

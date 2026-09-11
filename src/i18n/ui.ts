@@ -279,6 +279,78 @@ export const ui = {
           'In The End: Parking Simulator successfully delivers an engaging 3D parking simulation experience with two distinct difficulty levels, realistic vehicle physics, and a polished visual presentation.',
         galleryImages: {},
       },
+      typeRacerBlitz: {
+        title: 'TypeRacer Blitz',
+        description:
+          'A futuristic and minimalist speed typing test web app with Real-time Multiplayer, car racing visuals, and Monkeytype-standard metrics.',
+        imageAltText: 'Screenshot of TypeRacer Blitz speed typing application',
+        categoryText: 'Web Application',
+        dateText: '10 SEPTEMBER 2026',
+        detailedDescription:
+          'TypeRacer Blitz is a futuristic and minimalist speed typing test and racing web application. It features real-time multiplayer capability powered by PeerJS WebRTC P2P and WebSocket fallback, interactive Google Antigravity-inspired particle background canvas, car race visualization with custom SVG animations, mobile virtual keyboard optimization, and comprehensive statistics adhering strictly to Monkeytype.com calculation formulas (Net WPM, Raw WPM, Accuracy, and Consistency).',
+        keyFeatures: {
+          realtimeMultiplayer: {
+            title: 'Real-Time P2P & WebSocket Multiplayer',
+            description:
+              'Play together instantly via room codes using PeerJS WebRTC DataChannels and a Node WebSocket relay server without sign-up.',
+          },
+          monkeytypeMetrics: {
+            title: 'Monkeytype-Standard Metrics',
+            description:
+              'Precise real-time calculations for Net WPM, Raw WPM, Accuracy, and per-second WPM Consistency standard deviation curves.',
+          },
+          antigravityParticles: {
+            title: 'Antigravity Particle Canvas',
+            description:
+              'Interactive 2D Canvas particle background inspired by Google Antigravity that reacts dynamically to cursor movement.',
+          },
+          raceTrackCustomization: {
+            title: 'Race Track & Car Customization',
+            description:
+              'Visual racing lanes with 6 customizable car colors, engine heat exhaust SVG animations, and organized lane assignments.',
+          },
+          hostAuthoritySystem: {
+            title: 'Host Authority Control',
+            description:
+              'Room hosts control language selection (Indonesian/English/Custom text), word count duration, race start, and rematch options.',
+          },
+        },
+        technologiesUsed: {
+          react: {
+            name: 'React 19',
+            description:
+              'Modern UI library for building interactive component trees.',
+          },
+          typescript: {
+            name: 'TypeScript',
+            description:
+              'Strongly typed programming language built on JavaScript.',
+          },
+          vite: {
+            name: 'Vite',
+            description:
+              'Next-generation frontend build tool providing fast HMR.',
+          },
+          tailwindcss: {
+            name: 'TailwindCSS',
+            description:
+              'Utility-first CSS framework for rapid UI styling.',
+          },
+          webrtc: {
+            name: 'WebRTC / PeerJS',
+            description:
+              'Peer-to-peer data channels for ultra-low latency multiplayer state sync.',
+          },
+          websocket: {
+            name: 'WebSocket',
+            description:
+              'Reliable fallback relay server for room creation and peer discovery.',
+          },
+        },
+        outcome:
+          'TypeRacer Blitz delivers a seamless and highly responsive typing race experience across desktop and mobile devices, combining competitive multiplayer gameplay with precision typing analytics.',
+        galleryImages: {},
+      },
     },
     skillsContent: {
       frontendDevelopment: {
