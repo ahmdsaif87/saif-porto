@@ -80,13 +80,15 @@ const { project, t, lang } = Astro.props;
 
     {project.imageUrl && (
       <div class="relative overflow-hidden mb-10 group border border-border">
-        <Image
-          src={project.imageUrl}
-          alt={project.imageAltText}
-          class="w-full h-auto transition-transform duration-700 group-hover:scale-105"
-          widths={[400, 800, 1200]}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
-        />
+        <a href={project.imageUrl.src} target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+          <Image
+            src={project.imageUrl}
+            alt={project.imageAltText}
+            class="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+            widths={[400, 800, 1200, 2400, project.imageUrl.width]}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+          />
+        </a>
       </div>
     )}
 

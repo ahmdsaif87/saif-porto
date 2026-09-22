@@ -351,6 +351,53 @@ export const ui = {
           'TypeRacer Blitz delivers a seamless and highly responsive typing race experience across desktop and mobile devices, combining competitive multiplayer gameplay with precision typing analytics.',
         galleryImages: {},
       },
+      moneyTracker: {
+        title: 'Money Tracker',
+        description:
+          'A personal finance tracking application built with Flutter, featuring an AI assistant for financial analysis.',
+        imageAltText: 'Screenshot of Money Tracker mobile application',
+        categoryText: 'Mobile Application',
+        dateText: '18 SEPTEMBER - 21 SEPTEMBER 2026',
+        detailedDescription:
+          'Money Tracker is a comprehensive mobile personal finance application built with Flutter. It allows users to manage multiple accounts, track income and expenses, organize transactions by categories, and receive personalized financial insights through an integrated Gemini AI assistant.',
+        keyFeatures: {
+          dashboard: {
+            title: 'Financial Dashboard',
+            description:
+              'Overview of total balance, monthly income/expenses, and recent transactions.',
+          },
+          transactions: {
+            title: 'Transaction Management',
+            description:
+              'Add, edit, or delete transactions with support for expenses, income, and transfers between accounts.',
+          },
+          aiAssistant: {
+            title: 'AI Financial Assistant',
+            description:
+              'Integrated Gemini AI that provides financial analysis, budgeting recommendations, and can categorize transactions directly from chat.',
+          },
+        },
+        technologiesUsed: {
+          flutter: {
+            name: 'Flutter',
+            description:
+              'Cross-platform UI toolkit for building the mobile application.',
+          },
+          dart: {
+            name: 'Dart',
+            description:
+              'Client-optimized language for fast mobile app development.',
+          },
+          sqlite: {
+            name: 'SQLite',
+            description:
+              'Local relational database for storing financial data on the device.',
+          },
+        },
+        outcome:
+          'Money Tracker provides an intuitive and private solution for managing personal finances, enhanced by AI-driven insights without relying on cloud storage for personal data.',
+        galleryImages: {},
+      },
     },
     skillsContent: {
       frontendDevelopment: {

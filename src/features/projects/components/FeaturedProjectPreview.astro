@@ -26,10 +26,10 @@ const projectUrl = getRelativeLocaleUrl(lang, `/projects/${slug}`);
     imageUrl ? (
       <Image
         src={imageUrl}
-        alt={imageAltText}
-        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-        widths={[400, 800, 1200]}
-        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        alt={imageAltText || title}
+        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        widths={[400, 800, 1200, 2000]}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 1200px"
         quality="mid"
       />
     ) : (

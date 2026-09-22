@@ -6,6 +6,7 @@ import punkMerch from '@/assets/punk-merch.webp';
 import rembugan from '@/assets/rembugan.webp';
 import parkingSimulator from '@/assets/parkingSimulator.webp';
 import typeRacer from '@/assets/type-racer.webp';
+import moneyTracker from '@/assets/money-tracker.webp';
 import type {
   ProjectData,
   SkillData,
@@ -172,6 +173,29 @@ const projectsListUnsorted: Array<ProjectData> = [
     ],
     collaborators: [
       { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Fullstack Developer', 'UI/UX Designer'] },
+    ],
+  },
+  {
+    id: 'moneyTracker',
+    slug: 'money-tracker',
+    imageUrl: moneyTracker,
+    projectUrl: 'https://github.com/ahmdsaif87/self-money-tracker/releases',
+    codeUrl: 'https://github.com/ahmdsaif87/self-money-tracker.git',
+    tags: ['Flutter', 'Dart', 'SQLite', 'Gemini AI'],
+    category: 'Mobile Application',
+    date: '2026-09-18',
+    keyFeatures: [
+      { id: 'dashboard' },
+      { id: 'transactions' },
+      { id: 'aiAssistant' },
+    ],
+    technologiesUsed: [
+      { id: 'flutter', name: 'Flutter' },
+      { id: 'dart', name: 'Dart' },
+      { id: 'sqlite', name: 'SQLite' },
+    ],
+    collaborators: [
+      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Mobile Developer'] },
     ],
   },
 ];
