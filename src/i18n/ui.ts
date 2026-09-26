@@ -463,7 +463,7 @@ export const ui = {
         'Explore the expertise and abilities that define my work and passion.',
       aboutMeTitle: 'About Me',
       aboutMeDescription:
-        'I am a passionate Full-Stack developer based in Tegal, Indonesia, with a strong focus on building modern and performant web applications. I love solving complex problems and constantly learning new technologies to stay at the forefront of the industry.',
+        'I am Ahmad Saifi Khayatu Ulumuddin (professionally known as Ahmad Saif), a passionate Full-Stack developer based in Tegal, Indonesia, with a strong focus on building modern and performant web applications. I love solving complex problems and constantly learning new technologies to stay at the forefront of the industry.',
       experienceTitle: 'Experience',
       experiences: [
         {
