@@ -267,6 +267,8 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
                   <Image
                     src={project.imageUrl}
                     alt={project.imageAltText}
+                    loading="lazy"
+                    decoding="async"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     widths={[400, 800, 1200]}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
@@ -307,8 +309,9 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
       <a
         href={getRelativeLocaleUrl(lang, '/projects')}
         class="brutalist-btn-outline"
+        aria-label="View all projects by Ahmad Saif"
       >
-        View All Projects
+        View All Projects by Ahmad Saif
         <ArrowRight className="size-3.5 ml-2" />
       </a>
     </div>
@@ -459,27 +462,27 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
           <a
             href="https://www.linkedin.com/in/ahmadsaif-dev"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer me"
             class="p-3 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-300"
-            aria-label="LinkedIn"
+            aria-label="Ahmad Saif on LinkedIn"
           >
             <Linkedin className="size-5" />
           </a>
           <a
             href="https://github.com/ahmdsaif87"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer me"
             class="p-3 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-300"
-            aria-label="GitHub"
+            aria-label="Ahmad Saif on GitHub"
           >
             <Github className="size-5" />
           </a>
           <a
             href="https://www.instagram.com/ahmdsaif87"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer me"
             class="p-3 border border-border text-muted-foreground hover:text-foreground hover:border-foreground transition-all duration-300"
-            aria-label="Instagram"
+            aria-label="Ahmad Saif on Instagram"
           >
             <Instagram className="size-5" />
           </a>

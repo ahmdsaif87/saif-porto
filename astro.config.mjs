@@ -7,6 +7,7 @@ import mdx from '@astrojs/mdx';
 import tailwindcss from '@tailwindcss/vite';
 import rehypeMermaid from 'rehype-mermaid';
 
+import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 
 // Use different strategies based on environment
@@ -20,19 +21,19 @@ console.log(`Using Mermaid strategy: ${mermaidStrategy}`);
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
-  site: process.env.PUBLIC_SITE_URL || process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://ahmdsaif.vercel.app',
+  output: 'static',
+  site: 'https://ahmadsaif.web.id',
   integrations: [
     react(),
+    sitemap({
+      filter: (page) => !page.includes('/api/') && !page.includes('/resume'),
+    }),
     mdx({
       rehypePlugins: [
         [
           rehypeMermaid,
           {
-            strategy:
-              process.env.NODE_ENV === 'production'
-                ? 'pre-mermaid'
-                : 'inline-svg',
+            strategy: mermaidStrategy,
           },
         ],
       ],

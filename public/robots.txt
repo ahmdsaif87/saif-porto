@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /resume
+
+Sitemap: https://ahmadsaif.web.id/sitemap-index.xml

@@ -5,36 +5,102 @@ import {
   getTranslatedProjects,
   type TranslatedProject,
 } from '@/features/projects';
-import { ui, type LanguageCode } from '@/i18n/ui';
+import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const lang = Astro.currentLocale as LanguageCode;
-  const paths = [];
-
-  const projects = getTranslatedProjects(lang);
-  for (const project of projects) {
-    paths.push({
-      params: { slug: project.slug },
-      props: { project },
-    });
-  }
-  return paths;
+  const projects = getTranslatedProjects(defaultLanguage);
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
 }
-const lang = Astro.currentLocale as LanguageCode;
-const { project } = Astro.props as { project: TranslatedProject };
 
-const t = ui[lang];
+type Props = {
+  project: TranslatedProject;
+};
+
+const lang =
+  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
+const { project } = Astro.props as Props;
 
 if (!project) {
   return Astro.redirect('/404');
 }
 
-const pageTitle = `${project.title} | ${t.site.title}`;
-const pageDescription = project.detailedDescription ?? project.description;
+const t = ui[lang];
+const categoryLabel = project.categoryText || project.category || 'Project';
+const pageTitle = `${project.title} – Ahmad Saif Portfolio | ${categoryLabel}`;
+
+// Truncate description cleanly to ~155 characters for search snippet
+const rawDescription = project.detailedDescription ?? project.description ?? '';
+const pageDescription =
+  rawDescription.length > 155
+    ? rawDescription.slice(0, 152).trim() + '...'
+    : rawDescription;
+
+const canonicalUrl = `https://ahmadsaif.web.id/projects/${project.slug}`;
+
+// Structured Data
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://ahmadsaif.web.id/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Projects',
+        item: 'https://ahmadsaif.web.id/projects',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: project.title,
+        item: canonicalUrl,
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': ['CreativeWork', 'SoftwareSourceCode'],
+    '@id': `${canonicalUrl}#software`,
+    name: project.title,
+    headline: `${project.title} – Software Project by Ahmad Saif`,
+    description: pageDescription,
+    url: canonicalUrl,
+    datePublished: project.date,
+    author: {
+      '@id': 'https://ahmadsaif.web.id/#person',
+    },
+    creator: {
+      '@id': 'https://ahmadsaif.web.id/#person',
+    },
+    keywords: project.tags?.join(', '),
+    programmingLanguage: project.technologiesUsed
+      ?.map((tech) => tech.name)
+      .join(', '),
+    ...(project.codeUrl ? { codeRepository: project.codeUrl } : {}),
+  },
+];
 ---
 
-<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
+<BaseLayout
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  canonical={canonicalUrl}
+  ogImage={project.imageUrl?.src}
+  ogType="article"
+  publishDate={project.date}
+  keywords={project.tags}
+  jsonLd={jsonLd}
+>
   <ProjectScreen project={project} t={t} lang={lang} />
 </BaseLayout>

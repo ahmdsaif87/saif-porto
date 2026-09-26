@@ -13,9 +13,9 @@ Personal portfolio built with [Astro](https://astro.build/), TypeScript, and Tai
 
 ## Commands
 
-| Command        | Action                              |
-| :------------- | :---------------------------------- |
-| `bun install`  | Install dependencies                |
-| `bun dev`      | Start dev server on `localhost:4321` |
-| `bun build`    | Build for production to `./dist/`   |
-| `bun preview`  | Preview production build            |
+| Command       | Action                               |
+| :------------ | :----------------------------------- |
+| `bun install` | Install dependencies                 |
+| `bun dev`     | Start dev server on `localhost:4321` |
+| `bun build`   | Build for production to `./dist/`    |
+| `bun preview` | Preview production build             |

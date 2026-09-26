@@ -27,10 +27,15 @@ const {
   >
     {title}
   </h1>
-  {showDivider && <div class="gradient-divider max-w-48 mx-auto"></div>}
+  {showDivider && <div class="gradient-divider max-w-48 mx-auto" />}
   {
     description ? (
-      <p class={cn('max-w-3xl text-muted-foreground text-lg leading-relaxed', descriptionClassName)}>
+      <p
+        class={cn(
+          'max-w-3xl text-muted-foreground text-lg leading-relaxed',
+          descriptionClassName
+        )}
+      >
         {description}
       </p>
     ) : null

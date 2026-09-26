@@ -5,7 +5,10 @@ const currentLocale =
   (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
 ---
 
-<a href={getRelativeLocaleUrl(currentLocale)} class="group flex items-center gap-2">
+<a
+  href={getRelativeLocaleUrl(currentLocale)}
+  class="group flex items-center gap-2"
+>
   <span
     class="text-lg font-bold tracking-tight uppercase text-foreground transition-colors duration-300"
     style="font-family: var(--font-heading);"

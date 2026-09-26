@@ -2,90 +2,90 @@
 name: Ahmad Saif — Portfolio
 description: Personal portfolio — minimal, confident, technically excellent
 colors:
-  ink: "#0a0a0a"
-  paper: "#ffffff"
-  gray-100: "#f5f5f5"
-  gray-200: "#e5e5e5"
-  gray-300: "#d4d4d4"
-  gray-400: "#a3a3a3"
-  gray-500: "#737373"
-  gray-600: "#404040"
-  gray-700: "#262626"
-  gray-800: "#1f1f1f"
-  gray-900: "#1a1a1a"
-  gray-950: "#141414"
-  dark-paper: "#0a0a0a"
-  dark-ink: "#fafafa"
-  destructive: "#dc2626"
+  ink: '#0a0a0a'
+  paper: '#ffffff'
+  gray-100: '#f5f5f5'
+  gray-200: '#e5e5e5'
+  gray-300: '#d4d4d4'
+  gray-400: '#a3a3a3'
+  gray-500: '#737373'
+  gray-600: '#404040'
+  gray-700: '#262626'
+  gray-800: '#1f1f1f'
+  gray-900: '#1a1a1a'
+  gray-950: '#141414'
+  dark-paper: '#0a0a0a'
+  dark-ink: '#fafafa'
+  destructive: '#dc2626'
 typography:
   display:
-    fontFamily: "Space Grotesk, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: 'Space Grotesk, Inter, ui-sans-serif, system-ui, sans-serif'
     fontWeight: 700
     lineHeight: 1.1
   heading:
-    fontFamily: "Space Grotesk, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: 'Space Grotesk, Inter, ui-sans-serif, system-ui, sans-serif'
     fontWeight: 600
     lineHeight: 1.2
   body:
-    fontFamily: "Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif'
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: "Space Grotesk, Inter, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: 'Space Grotesk, Inter, ui-sans-serif, system-ui, sans-serif'
     fontWeight: 500
     textTransform: uppercase
-    letterSpacing: "0.08em"
+    letterSpacing: '0.08em'
 rounded:
-  sm: "0px"
-  md: "0px"
-  lg: "0px"
+  sm: '0px'
+  md: '0px'
+  lg: '0px'
 spacing:
-  xs: "4px"
-  sm: "8px"
-  md: "16px"
-  lg: "24px"
-  xl: "32px"
-  xxl: "48px"
+  xs: '4px'
+  sm: '8px'
+  md: '16px'
+  lg: '24px'
+  xl: '32px'
+  xxl: '48px'
 components:
   button-primary:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
-    rounded: "{rounded.sm}"
-    padding: "14px 32px"
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.paper}'
+    rounded: '{rounded.sm}'
+    padding: '14px 32px'
     fontWeight: 500
     textTransform: uppercase
-    letterSpacing: "0.08em"
+    letterSpacing: '0.08em'
   button-primary-hover:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    border: "1px solid {colors.ink}"
+    backgroundColor: '{colors.paper}'
+    textColor: '{colors.ink}'
+    border: '1px solid {colors.ink}'
   button-outline:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
-    border: "1px solid {colors.gray-200}"
-    padding: "14px 32px"
+    backgroundColor: '{colors.paper}'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.sm}'
+    border: '1px solid {colors.gray-200}'
+    padding: '14px 32px'
   button-outline-hover:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.paper}"
-    border: "1px solid {colors.ink}"
+    backgroundColor: '{colors.ink}'
+    textColor: '{colors.paper}'
+    border: '1px solid {colors.ink}'
   card:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
-    border: "1px solid {colors.gray-200}"
-    padding: "24px"
+    backgroundColor: '{colors.paper}'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.sm}'
+    border: '1px solid {colors.gray-200}'
+    padding: '24px'
   card-hover:
-    borderColor: "{colors.ink}"
+    borderColor: '{colors.ink}'
   input:
-    backgroundColor: "{colors.paper}"
-    textColor: "{colors.ink}"
-    rounded: "{rounded.sm}"
-    border: "1px solid {colors.gray-200}"
-    padding: "8px 12px"
+    backgroundColor: '{colors.paper}'
+    textColor: '{colors.ink}'
+    rounded: '{rounded.sm}'
+    border: '1px solid {colors.gray-200}'
+    padding: '8px 12px'
   input-focus:
-    borderColor: "{colors.ink}"
-    ring: "3px {colors.ink} / 0.5"
+    borderColor: '{colors.ink}'
+    ring: '3px {colors.ink} / 0.5'
 ---
 
 # Design System: The Monochrome Studio
@@ -101,6 +101,7 @@ This system operates in black, white, and carefully calibrated grays. There is n
 The portfolio rejects every AI-generated design reflex: no purple gradients, no glassmorphism, no bounce easings, no side-stripe accents, no numbered section markers, no uppercase kickers above every section. The structure reveals itself through layout, not ornament.
 
 **Key Characteristics:**
+
 - Monochrome-only palette (no accent color)
 - Zero border radius throughout
 - No shadows — flat surfaces only
@@ -115,9 +116,11 @@ The portfolio rejects every AI-generated design reflex: no purple gradients, no 
 A strictly monochrome palette. No accent color exists. Variation comes from value (lightness) alone.
 
 ### Primary
+
 - **Ink** (#0a0a0a): Primary text, primary button backgrounds, focus rings, active states. The anchor black.
 
 ### Neutral
+
 - **Paper** (#ffffff): Page background in light mode, inverted-section text in dark mode.
 - **Gray 100** (#f5f5f5): Secondary and muted backgrounds (light mode).
 - **Gray 200** (#e5e5e5): Borders, inputs, dividers (light mode).
@@ -134,6 +137,7 @@ A strictly monochrome palette. No accent color exists. Variation comes from valu
 - **Destructive** (#dc2626): Destructive actions only (error states, delete buttons).
 
 ### The Monochrome Rule
+
 The palette is intentionally colorless. No hue is added to any neutral. Warmth is carried by imagery, typography weight, and layout — never by tinting the background. If a color appears, it comes from project screenshots or the user's avatar, not from the system itself.
 
 ## 3. Typography
@@ -145,6 +149,7 @@ The palette is intentionally colorless. No hue is added to any neutral. Warmth i
 **Character:** Sharp geometric display paired with a neutral, highly readable body. Space Grotesk brings a confident, contemporary edge to headings and labels. Inter handles body copy with quiet efficiency. The contrast is in weight and spacing, not in genre — both are sans-serif, but the roles are distinct.
 
 ### Hierarchy
+
 - **Display** (700, `clamp(2.5rem, 5vw, 4.5rem)`, 1.1): Hero name and major section titles only. Used sparingly.
 - **Headline** (600, `clamp(1.5rem, 3vw, 2.5rem)`, 1.2): Section headings. Text-wrap: balanced.
 - **Title** (600, `1.25rem`, 1.3): Card titles, subsection headings.
@@ -153,6 +158,7 @@ The palette is intentionally colorless. No hue is added to any neutral. Warmth i
 - **Label** (500, `0.8125rem`, 1, uppercase, `0.08em` letter-spacing): Navigation items, button text, form labels. Always uppercase.
 
 ### The Two-Family Rule
+
 Display/heading roles use Space Grotesk. Body/label roles use Inter. These families should never swap roles. No additional fonts are introduced.
 
 ## 4. Elevation
@@ -162,11 +168,13 @@ This system is flat by default and flat by choice. Depth is conveyed entirely th
 Surfaces at the same level share the same background color. A card is distinguished from the page by a 1px solid border (gray-200 in light mode, gray-700 in dark), not by a shadow. Hover states invert the border to the foreground color (ink/dark-ink). No surface ever casts a shadow.
 
 ### The No-Shadow Rule
+
 Every shadow token resolves to `none`. If a surface needs separation from its background, use a border or a tonal shift. Box-shadows are prohibited.
 
 ## 5. Components
 
 ### Buttons
+
 - **Shape:** Zero radius (0px). Solid 1px border.
 - **Primary:** Black background (`--primary`), white text (`--primary-foreground`). Uppercase, 0.08em letter-spacing, Space Grotesk 500 weight. Padding: 14px 32px.
 - **Hover / Focus:** Background inverts to transparent, text flips to black. Focus-visible shows a 3px ring at 50% opacity.
@@ -176,6 +184,7 @@ Every shadow token resolves to `none`. If a surface needs separation from its ba
 - **Link:** Underline on hover only.
 
 ### Cards
+
 - **Corner Style:** Zero radius (0px).
 - **Background:** `--card` (white in light, gray-950 in dark).
 - **Shadow:** None. Separated from the page by a 1px solid `--border`.
@@ -183,25 +192,30 @@ Every shadow token resolves to `none`. If a surface needs separation from its ba
 - **Internal Padding:** 24px (`px-6 py-6`). Content components (header, body, footer) may vary.
 
 ### Inputs & Fields
+
 - **Style:** Zero radius. 1px solid `--border`. Transparent background (`bg-transparent`).
 - **Focus:** Border shifts to `--ring` (ink/dark-ink). 3px ring at 50% opacity appears via `focus-visible`.
 - **Placeholder:** Gray-500 (`--muted-foreground`), maintaining 4.5:1 contrast.
 - **Error / Disabled:** Red designator border for aria-invalid. Disabled at 50% opacity.
 
 ### Navigation
+
 - **Style:** Horizontal bar, uppercase labels, 0.08em letter-spacing, Space Grotesk 500.
 - **Active state:** Thin underline bar below the active link, colored `--foreground`.
 - **Mobile:** Hamburger icon toggles a full-height slide-down overlay with staggered link animations. Body scroll locked when open.
 
 ### Badges
+
 - **Style:** Zero radius. Small uppercase label. Gray background for default, foreground color for outline.
 
 ### Carousel
+
 - **Style:** Embla-based. Arrow navigation on desktop, dot indicators on mobile. No decorative chrome.
 
 ## 6. Do's and Don'ts
 
 ### Do:
+
 - **Do** use black (#0a0a0a) and white (#ffffff) as the anchoring poles of every composition.
 - **Do** use Space Grotesk for all headings, uppercase labels, and navigation.
 - **Do** use Inter for body copy, descriptions, and prose content.
@@ -212,6 +226,7 @@ Every shadow token resolves to `none`. If a surface needs separation from its ba
 - **Do** maintain WCAG AA contrast (4.5:1 body, 3:1 large text) on every surface pairing.
 
 ### Don't:
+
 - **Don't** introduce any accent color. The palette is strictly monochrome.
 - **Don't** use gradients, gradient text, or `background-clip: text`.
 - **Don't** add shadows of any kind. Every shadow token resolves to `none`.

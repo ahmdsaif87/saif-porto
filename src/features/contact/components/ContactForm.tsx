@@ -98,7 +98,9 @@ export function ContactForm({
             name="firstName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm font-medium">{formTranslations.firstNameLabel}</FormLabel>
+                <FormLabel className="text-sm font-medium">
+                  {formTranslations.firstNameLabel}
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder={formTranslations.firstNamePlaceholder}
@@ -115,7 +117,9 @@ export function ContactForm({
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-sm font-medium">{formTranslations.lastNameLabel}</FormLabel>
+                <FormLabel className="text-sm font-medium">
+                  {formTranslations.lastNameLabel}
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder={formTranslations.lastNamePlaceholder}
@@ -133,7 +137,9 @@ export function ContactForm({
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-medium">{formTranslations.emailLabel}</FormLabel>
+              <FormLabel className="text-sm font-medium">
+                {formTranslations.emailLabel}
+              </FormLabel>
               <FormControl>
                 <Input
                   type="email"
@@ -151,7 +157,9 @@ export function ContactForm({
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-sm font-medium">{formTranslations.messageLabel}</FormLabel>
+              <FormLabel className="text-sm font-medium">
+                {formTranslations.messageLabel}
+              </FormLabel>
               <FormControl>
                 <Textarea
                   placeholder={formTranslations.messagePlaceholder}

@@ -17,7 +17,8 @@ const FROM_EMAIL = import.meta.env.RESEND_FROM_EMAIL;
 
 export const POST: APIRoute = async ({ request }) => {
   let lang: LanguageCode = 'en'; // Default language
-  let currentTranslations: ContactFormTranslations = ui[lang].contactPage as ContactFormTranslations;
+  let currentTranslations: ContactFormTranslations = ui[lang]
+    .contactPage as ContactFormTranslations;
 
   let formDataForValidation;
   try {

@@ -333,8 +333,7 @@ export const ui = {
           },
           tailwindcss: {
             name: 'TailwindCSS',
-            description:
-              'Utility-first CSS framework for rapid UI styling.',
+            description: 'Utility-first CSS framework for rapid UI styling.',
           },
           webrtc: {
             name: 'WebRTC / PeerJS',
@@ -440,9 +439,10 @@ export const ui = {
       rights: 'All rights reserved.',
     },
     homePage: {
-      pageTitle: 'Home | Ahmad Saif - FullStack Developer',
+      pageTitle:
+        'Ahmad Saif – Full-Stack Developer (Flutter, React, Laravel) | Tegal, Indonesia',
       pageDescription:
-        'Welcome to the portfolio of Ahmad Saif, a FullStack developer passionate about creating innovative web experiences.',
+        'Portfolio of Ahmad Saif, Full-Stack Developer in Tegal, Indonesia specializing in Flutter mobile apps, modern React web platforms, and scalable Laravel backends.',
       heroGreeting: "Hi, I'm Ahmad Saif",
       heroSubtitlePart1: 'Full Stack Developer',
       heroSubtitlePart2: 'Tech Enthusiast',
@@ -498,13 +498,14 @@ export const ui = {
       ],
     },
     contactPage: {
-      pageTitle: 'Contact Me',
+      pageTitle:
+        'Contact Ahmad Saif – Full-Stack Developer for Hire | Tegal, Indonesia',
       pageDescription:
-        "Let's discuss your project, a potential collaboration, or just chat about tech!",
+        'Get in touch with Ahmad Saif for freelance full-stack development, Flutter mobile apps, web engineering, or software collaboration inquiries.',
 
-      title: 'Contact Me',
+      title: 'Contact Ahmad Saif',
       description:
-        "Let's discuss your project, a potential collaboration, or just chat about tech!",
+        "Let's discuss your project, freelance software development opportunities, or technical collaboration.",
       formTitle: 'Send a message',
       firstNameLabel: 'First Name',
       lastNameLabel: 'Last Name',
@@ -534,9 +535,11 @@ export const ui = {
       viewCodeButton: 'View Code',
     },
     projectsPage: {
-      title: 'My Projects',
-      metaTitle: "My Projects | Ahmad Saif's Portfolio",
-      metaDescription: "Discover all of Ahmad Saif's projects.",
+      title: 'Projects',
+      metaTitle:
+        'Projects by Ahmad Saif | Flutter, Web & Mobile Developer Portfolio',
+      metaDescription:
+        'Explore software engineering projects built by Ahmad Saif using Flutter, React, Next.js, and Laravel, including mobile apps and full-stack web platforms.',
       noProjects: 'No projects to display at the moment.',
       noProjectsDescription:
         "It seems that you don't have any projects to display at the moment.",

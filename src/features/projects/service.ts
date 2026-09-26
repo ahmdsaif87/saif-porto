@@ -36,10 +36,26 @@ const projectsListUnsorted: Array<ProjectData> = [
       { id: 'nodejs', name: 'Node.js' },
     ],
     collaborators: [
-      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Backend Developer'] },
-      { githubUsername: 'fadilsflow', name: 'Wahyu Akhmad Fadillah', roles: ['Fullstack Developer'] },
-      { githubUsername: 'ddfrnnd', name: 'Dede Fernanda', roles: ['Frontend Developer'] },
-      { githubUsername: 'alifiashasa', name: 'Alifia Shasa', roles: ['UI/UX Designer'] },
+      {
+        githubUsername: 'ahmdsaif87',
+        name: 'Ahmad Saifi',
+        roles: ['Backend Developer'],
+      },
+      {
+        githubUsername: 'fadilsflow',
+        name: 'Wahyu Akhmad Fadillah',
+        roles: ['Fullstack Developer'],
+      },
+      {
+        githubUsername: 'ddfrnnd',
+        name: 'Dede Fernanda',
+        roles: ['Frontend Developer'],
+      },
+      {
+        githubUsername: 'alifiashasa',
+        name: 'Alifia Shasa',
+        roles: ['UI/UX Designer'],
+      },
     ],
   },
   {
@@ -62,10 +78,26 @@ const projectsListUnsorted: Array<ProjectData> = [
       { id: 'dart', name: 'Dart' },
     ],
     collaborators: [
-      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Backend Developer'] },
-      { githubUsername: 'fadilsflow', name: 'Wahyu Akhmad Fadillah', roles: ['Fullstack Developer'] },
-      { githubUsername: 'ddfrnnd', name: 'Dede Fernanda', roles: ['Frontend Developer'] },
-      { githubUsername: 'alifiashasa', name: 'Alifia Shasa', roles: ['UI/UX Designer'] },
+      {
+        githubUsername: 'ahmdsaif87',
+        name: 'Ahmad Saifi',
+        roles: ['Backend Developer'],
+      },
+      {
+        githubUsername: 'fadilsflow',
+        name: 'Wahyu Akhmad Fadillah',
+        roles: ['Fullstack Developer'],
+      },
+      {
+        githubUsername: 'ddfrnnd',
+        name: 'Dede Fernanda',
+        roles: ['Frontend Developer'],
+      },
+      {
+        githubUsername: 'alifiashasa',
+        name: 'Alifia Shasa',
+        roles: ['UI/UX Designer'],
+      },
     ],
   },
   {
@@ -90,18 +122,39 @@ const projectsListUnsorted: Array<ProjectData> = [
     ],
     collaborators: [
       { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['DevOps'] },
-      { githubUsername: 'fadilsflow', name: 'Wahyu Akhmad Fadillah', roles: ['Backend Developer'] },
-      { githubUsername: 'alifiashasa', name: 'Alifia Shasa', roles: ['Frontend Developer', 'UI/UX Designer'] },
-      { githubUsername: 'ddfrnnd', name: 'Dede Fernanda', roles: ['Frontend Developer', 'UI/UX Designer'] },
+      {
+        githubUsername: 'fadilsflow',
+        name: 'Wahyu Akhmad Fadillah',
+        roles: ['Backend Developer'],
+      },
+      {
+        githubUsername: 'alifiashasa',
+        name: 'Alifia Shasa',
+        roles: ['Frontend Developer', 'UI/UX Designer'],
+      },
+      {
+        githubUsername: 'ddfrnnd',
+        name: 'Dede Fernanda',
+        roles: ['Frontend Developer', 'UI/UX Designer'],
+      },
     ],
   },
   {
     id: 'rembugan',
     slug: 'rembugan',
     imageUrl: rembugan,
-    projectUrl: 'https://play.google.com/store/apps/details?id=com.hn.rembugan&pcampaignid=web_share',
+    projectUrl:
+      'https://play.google.com/store/apps/details?id=com.hn.rembugan&pcampaignid=web_share',
     codeUrl: 'https://github.com/ahmdsaif87/Rembugan',
-    tags: ['Flutter', 'FastAPI', 'Python', 'Next.js', 'Dart', 'PostgreSQL', 'Firebase'],
+    tags: [
+      'Flutter',
+      'FastAPI',
+      'Python',
+      'Next.js',
+      'Dart',
+      'PostgreSQL',
+      'Firebase',
+    ],
     category: 'Mobile Application',
     date: '2025-04-01',
     keyFeatures: [
@@ -119,15 +172,24 @@ const projectsListUnsorted: Array<ProjectData> = [
       { id: 'firebase', name: 'Firebase' },
     ],
     collaborators: [
-      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Backend Developer', 'DevOps'] },
-      { githubUsername: 'ddfrnnd', name: 'Dede Fernanda', roles: ['Frontend Developer', 'UI/UX Designer'] },
+      {
+        githubUsername: 'ahmdsaif87',
+        name: 'Ahmad Saifi',
+        roles: ['Backend Developer', 'DevOps'],
+      },
+      {
+        githubUsername: 'ddfrnnd',
+        name: 'Dede Fernanda',
+        roles: ['Frontend Developer', 'UI/UX Designer'],
+      },
     ],
   },
   {
     id: 'parkingSimulator',
     slug: 'parking-simulator',
     imageUrl: parkingSimulator,
-    projectUrl: 'https://drive.google.com/file/d/1kwY7C8Bp0IHoxB4h3IBZ7v7SsnPRypPW/view?usp=sharing',
+    projectUrl:
+      'https://drive.google.com/file/d/1kwY7C8Bp0IHoxB4h3IBZ7v7SsnPRypPW/view?usp=sharing',
     codeUrl: 'https://github.com/ahmdsaif87/ParkingSimulator.git',
     tags: ['Unity', 'C#', 'Game Development', '3D'],
     category: 'Game',
@@ -144,7 +206,17 @@ const projectsListUnsorted: Array<ProjectData> = [
       { id: 'cinemachine', name: 'Cinemachine' },
     ],
     collaborators: [
-      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Game Designer', 'Artist', 'Programmer', 'Sound Engineer', 'Producer'] },
+      {
+        githubUsername: 'ahmdsaif87',
+        name: 'Ahmad Saifi',
+        roles: [
+          'Game Designer',
+          'Artist',
+          'Programmer',
+          'Sound Engineer',
+          'Producer',
+        ],
+      },
     ],
   },
   {
@@ -153,7 +225,15 @@ const projectsListUnsorted: Array<ProjectData> = [
     imageUrl: typeRacer,
     projectUrl: 'https://type-racer-pearl.vercel.app/',
     codeUrl: 'https://github.com/ahmdsaif87/type-racer',
-    tags: ['React', 'TypeScript', 'Vite', 'TailwindCSS', 'WebRTC', 'PeerJS', 'WebSocket'],
+    tags: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'TailwindCSS',
+      'WebRTC',
+      'PeerJS',
+      'WebSocket',
+    ],
     category: 'Web Application',
     date: '2026-09-10',
     keyFeatures: [
@@ -172,7 +252,11 @@ const projectsListUnsorted: Array<ProjectData> = [
       { id: 'websocket', name: 'WebSocket' },
     ],
     collaborators: [
-      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Fullstack Developer', 'UI/UX Designer'] },
+      {
+        githubUsername: 'ahmdsaif87',
+        name: 'Ahmad Saifi',
+        roles: ['Fullstack Developer', 'UI/UX Designer'],
+      },
     ],
   },
   {
@@ -195,7 +279,11 @@ const projectsListUnsorted: Array<ProjectData> = [
       { id: 'sqlite', name: 'SQLite' },
     ],
     collaborators: [
-      { githubUsername: 'ahmdsaif87', name: 'Ahmad Saifi', roles: ['Mobile Developer'] },
+      {
+        githubUsername: 'ahmdsaif87',
+        name: 'Ahmad Saifi',
+        roles: ['Mobile Developer'],
+      },
     ],
   },
 ];

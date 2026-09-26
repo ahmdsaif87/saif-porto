@@ -35,8 +35,47 @@ const layoutProps = {
   formTitle: t('formTitle'),
   formTranslations,
 };
+
+const canonicalUrl = 'https://ahmadsaif.web.id/contact';
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://ahmadsaif.web.id/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Contact',
+        item: canonicalUrl,
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    '@id': `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: pageMeta.title,
+    description: pageMeta.description,
+    mainEntity: {
+      '@id': 'https://ahmadsaif.web.id/#person',
+    },
+  },
+];
 ---
 
-<BaseLayout pageTitle={pageMeta.title} pageDescription={pageMeta.description}>
+<BaseLayout
+  pageTitle={pageMeta.title}
+  pageDescription={pageMeta.description}
+  canonical={canonicalUrl}
+  jsonLd={jsonLd}
+>
   <ContactScreen {...layoutProps} />
 </BaseLayout>

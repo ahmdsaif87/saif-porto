@@ -44,6 +44,8 @@ const projectsPageTranslations = t.projectsPage;
                     <Image
                       src={project.imageUrl}
                       alt={project.imageAltText}
+                      loading="lazy"
+                      decoding="async"
                       class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       widths={[400, 800, 1200]}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
@@ -64,7 +66,10 @@ const projectsPageTranslations = t.projectsPage;
                     {project.tags && project.tags.length > 0 && (
                       <div class="flex flex-wrap gap-2 mt-3">
                         {project.tags.slice(0, 4).map((tag) => (
-                          <span class="text-[10px] uppercase tracking-widest text-muted-foreground border border-border px-2 py-0.5" style="font-family: var(--font-heading);">
+                          <span
+                            class="text-[10px] uppercase tracking-widest text-muted-foreground border border-border px-2 py-0.5"
+                            style="font-family: var(--font-heading);"
+                          >
                             {tag}
                           </span>
                         ))}

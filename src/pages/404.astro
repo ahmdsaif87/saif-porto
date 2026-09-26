@@ -15,10 +15,22 @@ const pageTitle = t('pageTitle');
 const pageDescription = t('message');
 ---
 
-<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
+<BaseLayout
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+  noindex={true}
+>
   <section class="relative text-center py-16 md:py-24 overflow-hidden">
-    <div class="decorative-orb w-[400px] h-[400px] -top-40 left-1/4 animate-breathe" aria-hidden="true"></div>
-    <div class="decorative-orb w-[300px] h-[300px] -bottom-20 right-1/4 animate-breathe animation-delay-300" aria-hidden="true"></div>
+    <div
+      class="decorative-orb w-[400px] h-[400px] -top-40 left-1/4 animate-breathe"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="decorative-orb w-[300px] h-[300px] -bottom-20 right-1/4 animate-breathe animation-delay-300"
+      aria-hidden="true"
+    >
+    </div>
 
     <div class="relative z-10 container mx-auto px-4 max-w-2xl">
       <h1
@@ -50,14 +62,13 @@ const pageDescription = t('message');
         {t('title')}
       </h2>
 
-      <p class="text-muted-foreground text-lg mb-8 max-w-md mx-auto leading-relaxed">
+      <p
+        class="text-muted-foreground text-lg mb-8 max-w-md mx-auto leading-relaxed"
+      >
         {t('message')}
       </p>
 
-      <a
-        href={getRelativeLocaleUrl(lang, '/')}
-        class="brutalist-btn"
-      >
+      <a href={getRelativeLocaleUrl(lang, '/')} class="brutalist-btn">
         <Home className="size-4" />
         {t('homeLink')}
       </a>

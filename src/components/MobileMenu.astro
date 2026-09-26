@@ -76,8 +76,13 @@ const currentPath = Astro.url.pathname;
       {
         navItems.map((item, index) => {
           const isAnchor = item.href.startsWith('#');
-          const href = isAnchor ? item.href : getRelativeLocaleUrl(currentLocale, item.href);
-          const isActive = !isAnchor && (currentPath === href || (item.href !== '/' && currentPath.startsWith(href)));
+          const href = isAnchor
+            ? item.href
+            : getRelativeLocaleUrl(currentLocale, item.href);
+          const isActive =
+            !isAnchor &&
+            (currentPath === href ||
+              (item.href !== '/' && currentPath.startsWith(href)));
           return (
             <a
               href={href}

@@ -20,7 +20,10 @@ const currentPath = Astro.url.pathname;
 <header
   class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm transition-all duration-300"
 >
-  <nav class="mx-auto px-6 max-w-screen-xl h-16 flex justify-between items-center">
+  <nav
+    aria-label="Main Navigation"
+    class="mx-auto px-6 max-w-screen-xl h-16 flex justify-between items-center"
+  >
     <Logo />
 
     {/* Desktop navigation */}
@@ -28,11 +31,17 @@ const currentPath = Astro.url.pathname;
       {
         navItems.map((link) => {
           const isAnchor = link.href.startsWith('#');
-          const href = isAnchor ? link.href : getRelativeLocaleUrl(currentLocale, link.href);
-          const isActive = !isAnchor && (currentPath === href || (link.href !== '/' && currentPath.startsWith(href)));
+          const href = isAnchor
+            ? link.href
+            : getRelativeLocaleUrl(currentLocale, link.href);
+          const isActive =
+            !isAnchor &&
+            (currentPath === href ||
+              (link.href !== '/' && currentPath.startsWith(href)));
           return (
             <a
               href={href}
+              aria-label={link.label}
               class:list={[
                 'relative px-4 py-2 text-xs font-medium uppercase tracking-widest transition-all duration-300',
                 isActive

@@ -18,12 +18,55 @@ const projects = getTranslatedProjects(lang);
 const projectsPageTranslations = t.projectsPage;
 const metaTitle =
   projectsPageTranslations?.metaTitle ??
-  projectsPageTranslations?.title ??
-  'Mes Projets';
+  'Projects by Ahmad Saif | Flutter, Web & Mobile Developer Portfolio';
 const metaDescription =
-  projectsPageTranslations?.metaDescription ?? 'Liste de tous mes projets.';
+  projectsPageTranslations?.metaDescription ??
+  'Explore software engineering projects built by Ahmad Saif using Flutter, React, Next.js, and Laravel.';
+
+const canonicalUrl = 'https://ahmadsaif.web.id/projects';
+
+// Structured Data
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://ahmadsaif.web.id/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Projects',
+        item: canonicalUrl,
+      },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Projects by Ahmad Saif',
+    description: metaDescription,
+    url: canonicalUrl,
+    numberOfItems: projects.length,
+    itemListElement: projects.map((project, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: project.title,
+      url: `https://ahmadsaif.web.id/projects/${project.slug}`,
+    })),
+  },
+];
 ---
 
-<BaseLayout pageTitle={metaTitle} pageDescription={metaDescription}>
+<BaseLayout
+  pageTitle={metaTitle}
+  pageDescription={metaDescription}
+  canonical={canonicalUrl}
+  jsonLd={jsonLd}
+>
   <ProjectsScreen projects={projects} t={t} lang={lang} />
 </BaseLayout>

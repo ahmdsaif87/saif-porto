@@ -17,12 +17,44 @@ const { project, t, lang } = Astro.props;
 
 <div class="py-12 md:py-20">
   <article class="container mx-auto px-6 max-w-4xl">
+    {/* Breadcrumb Navigation */}
+    <nav aria-label="Breadcrumb" class="mb-6">
+      <ol
+        class="flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground"
+        style="font-family: var(--font-heading);"
+      >
+        <li>
+          <a
+            href="/"
+            class="hover:text-foreground transition-colors duration-200">Home</a
+          >
+        </li>
+        <li aria-hidden="true" class="text-muted-foreground/60">/</li>
+        <li>
+          <a
+            href="/projects"
+            class="hover:text-foreground transition-colors duration-200"
+            >Projects</a
+          >
+        </li>
+        <li aria-hidden="true" class="text-muted-foreground/60">/</li>
+        <li
+          aria-current="page"
+          class="text-foreground font-medium truncate max-w-[220px] md:max-w-none"
+        >
+          {project.title}
+        </li>
+      </ol>
+    </nav>
+
     <a
       href={`${lang !== defaultLanguage ? `/${lang}` : ''}/projects`}
       class="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all duration-300 mb-8 group border border-border hover:border-foreground"
       style="font-family: var(--font-heading);"
     >
-      <ArrowLeft className="size-3.5 transition-transform duration-300 group-hover:-translate-x-1" />
+      <ArrowLeft
+        className="size-3.5 transition-transform duration-300 group-hover:-translate-x-1"
+      />
       {t.projectDetailPage?.backToProjects ?? 'Back to Projects'}
     </a>
 
@@ -34,163 +66,236 @@ const { project, t, lang } = Astro.props;
         {project.title}
       </h1>
       <div class="flex flex-wrap items-center gap-3">
-        {project.categoryText && (
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium uppercase tracking-widest bg-muted text-foreground border border-border" style="font-family: var(--font-heading);">
-            <Tag className="size-3" />
-            {project.categoryText}
-          </span>
-        )}
-        {project.dateText && (
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium uppercase tracking-widest bg-muted text-muted-foreground border border-border" style="font-family: var(--font-heading);">
-            <Calendar className="size-3" />
-            {project.dateText}
-          </span>
-        )}
+        {
+          project.categoryText && (
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium uppercase tracking-widest bg-muted text-foreground border border-border"
+              style="font-family: var(--font-heading);"
+            >
+              <Tag className="size-3" />
+              {project.categoryText}
+            </span>
+          )
+        }
+        {
+          project.dateText && (
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium uppercase tracking-widest bg-muted text-muted-foreground border border-border"
+              style="font-family: var(--font-heading);"
+            >
+              <Calendar className="size-3" />
+              {project.dateText}
+            </span>
+          )
+        }
       </div>
     </header>
 
-    {project.collaborators && project.collaborators.length > 0 && (
-      <div class="mb-8">
-        <p class="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground mb-3" style="font-family: var(--font-heading);">
-          Collaborators
-        </p>
-        <div class="flex flex-wrap gap-3">
-          {project.collaborators.map((collab) => (
-            <div class="relative group">
-              <a
-                href={`https://github.com/${collab.githubUsername}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={`https://github.com/${collab.githubUsername}.png`}
-                  alt={collab.name}
-                  class="size-11 rounded-full border-2 border-border hover:border-foreground transition-colors duration-300"
-                />
-              </a>
-              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-background border border-border text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10 min-w-max">
-                <p class="font-semibold text-foreground">{collab.name}</p>
-                <p class="text-muted-foreground">{collab.roles.join(', ')}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    )}
-
-    {project.imageUrl && (
-      <div class="relative overflow-hidden mb-10 group border border-border">
-        <a href={project.imageUrl.src} target="_blank" rel="noopener noreferrer" class="block w-full h-full">
-          <Image
-            src={project.imageUrl}
-            alt={project.imageAltText}
-            class="w-full h-auto transition-transform duration-700 group-hover:scale-105"
-            widths={[400, 800, 1200, 2400, project.imageUrl.width]}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-          />
-        </a>
-      </div>
-    )}
-
-    {(project.detailedDescription || (project.keyFeaturesTranslated && project.keyFeaturesTranslated.length > 0)) && (
-      <section class="border border-border p-6 md:p-8 mb-8">
-        <h2 class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight" style="font-family: var(--font-heading);">
-          {t.projectDetailPage?.aboutTitle ?? 'Overview'}
-        </h2>
-        {project.detailedDescription && (
-          <p class="text-muted-foreground leading-relaxed mb-6">{project.detailedDescription}</p>
-        )}
-        {project.keyFeaturesTranslated && project.keyFeaturesTranslated.length > 0 && (
-          <>
-            <p class="font-semibold mb-3 text-xs uppercase tracking-[0.15em] text-foreground" style="font-family: var(--font-heading);">
-              {t.projectDetailPage?.keyFeaturesTitle ?? 'Key features include:'}
-            </p>
-            <div class="space-y-3">
-              {project.keyFeaturesTranslated.map((feature) => (
-                <div class="flex gap-3 items-start">
-                  <div class="mt-2 w-1.5 h-px bg-foreground flex-shrink-0"></div>
-                  <div>
-                    <strong class="text-foreground text-sm">{feature.title}</strong>
-                    <span class="text-muted-foreground ml-1 text-sm"> — {feature.description}</span>
-                  </div>
+    {
+      project.collaborators && project.collaborators.length > 0 && (
+        <div class="mb-8">
+          <p
+            class="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground mb-3"
+            style="font-family: var(--font-heading);"
+          >
+            Collaborators
+          </p>
+          <div class="flex flex-wrap gap-3">
+            {project.collaborators.map((collab) => (
+              <div class="relative group">
+                <a
+                  href={`https://github.com/${collab.githubUsername}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${collab.name} on GitHub`}
+                >
+                  <img
+                    src={`https://github.com/${collab.githubUsername}.png`}
+                    alt={`${collab.name} - ${collab.roles.join(', ')}`}
+                    width="44"
+                    height="44"
+                    loading="lazy"
+                    decoding="async"
+                    class="size-11 rounded-full border-2 border-border hover:border-foreground transition-colors duration-300"
+                  />
+                </a>
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-background border border-border text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10 min-w-max">
+                  <p class="font-semibold text-foreground">{collab.name}</p>
+                  <p class="text-muted-foreground">{collab.roles.join(', ')}</p>
                 </div>
-              ))}
-            </div>
-          </>
-        )}
-      </section>
-    )}
-
-    {project.technologiesUsed && project.technologiesUsed.length > 0 && (
-      <section class="border border-border p-6 md:p-8 mb-8">
-        <h2 class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight" style="font-family: var(--font-heading);">
-          {t.projectDetailPage?.technologiesUsedTitle ?? 'Technologies Used'}
-        </h2>
-        <div class="grid gap-4 sm:grid-cols-2">
-          {project.technologiesUsed.map((tech) => (
-            <div class="flex gap-3 items-start p-3 border border-border hover:border-foreground transition-colors duration-300">
-              <div class="mt-2 w-1.5 h-px bg-foreground flex-shrink-0"></div>
-              <div>
-                <strong class="text-foreground text-sm">{tech.name}</strong>
-                {tech.description && <p class="text-xs text-muted-foreground mt-0.5">{tech.description}</p>}
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </section>
-    )}
+      )
+    }
 
-    {project.outcome && (
-      <section class="border border-border p-6 md:p-8 mb-8">
-        <h2 class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight" style="font-family: var(--font-heading);">
-          {t.projectDetailPage?.outcomeTitle ?? 'Outcome'}
-        </h2>
-        <p class="text-muted-foreground leading-relaxed">{project.outcome}</p>
-      </section>
-    )}
+    {
+      project.imageUrl && (
+        <div class="relative overflow-hidden mb-10 group border border-border">
+          <a
+            href={project.imageUrl.src}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block w-full h-full"
+          >
+            <Image
+              src={project.imageUrl}
+              alt={project.imageAltText}
+              class="w-full h-auto transition-transform duration-700 group-hover:scale-105"
+              widths={[400, 800, 1200, 2400, project.imageUrl.width]}
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+            />
+          </a>
+        </div>
+      )
+    }
 
-    {project.galleryImagesTranslated && project.galleryImagesTranslated.length > 0 && (
-      <section class="mb-8">
-        <h2 class="text-xl md:text-2xl font-bold mb-6 uppercase tracking-tight" style="font-family: var(--font-heading);">
-          {t.projectDetailPage?.galleryTitle ?? 'Gallery'}
-        </h2>
-        <ProjectGallery
-          client:visible
-          images={project.galleryImagesTranslated.map((image) => ({
-            src: image.src.src, alt: image.alt, caption: image.caption, id: image.id,
-          }))}
-        />
-      </section>
-    )}
+    {
+      (project.detailedDescription ||
+        (project.keyFeaturesTranslated &&
+          project.keyFeaturesTranslated.length > 0)) && (
+        <section class="border border-border p-6 md:p-8 mb-8">
+          <h2
+            class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight"
+            style="font-family: var(--font-heading);"
+          >
+            {t.projectDetailPage?.aboutTitle ?? 'Overview'}
+          </h2>
+          {project.detailedDescription && (
+            <p class="text-muted-foreground leading-relaxed mb-6">
+              {project.detailedDescription}
+            </p>
+          )}
+          {project.keyFeaturesTranslated &&
+            project.keyFeaturesTranslated.length > 0 && (
+              <>
+                <p
+                  class="font-semibold mb-3 text-xs uppercase tracking-[0.15em] text-foreground"
+                  style="font-family: var(--font-heading);"
+                >
+                  {t.projectDetailPage?.keyFeaturesTitle ??
+                    'Key features include:'}
+                </p>
+                <div class="space-y-3">
+                  {project.keyFeaturesTranslated.map((feature) => (
+                    <div class="flex gap-3 items-start">
+                      <div class="mt-2 w-1.5 h-px bg-foreground flex-shrink-0" />
+                      <div>
+                        <strong class="text-foreground text-sm">
+                          {feature.title}
+                        </strong>
+                        <span class="text-muted-foreground ml-1 text-sm">
+                          {' '}
+                          — {feature.description}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+        </section>
+      )
+    }
+
+    {
+      project.technologiesUsed && project.technologiesUsed.length > 0 && (
+        <section class="border border-border p-6 md:p-8 mb-8">
+          <h2
+            class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight"
+            style="font-family: var(--font-heading);"
+          >
+            {t.projectDetailPage?.technologiesUsedTitle ?? 'Technologies Used'}
+          </h2>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {project.technologiesUsed.map((tech) => (
+              <div class="flex gap-3 items-start p-3 border border-border hover:border-foreground transition-colors duration-300">
+                <div class="mt-2 w-1.5 h-px bg-foreground flex-shrink-0" />
+                <div>
+                  <strong class="text-foreground text-sm">{tech.name}</strong>
+                  {tech.description && (
+                    <p class="text-xs text-muted-foreground mt-0.5">
+                      {tech.description}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      project.outcome && (
+        <section class="border border-border p-6 md:p-8 mb-8">
+          <h2
+            class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight"
+            style="font-family: var(--font-heading);"
+          >
+            {t.projectDetailPage?.outcomeTitle ?? 'Outcome'}
+          </h2>
+          <p class="text-muted-foreground leading-relaxed">{project.outcome}</p>
+        </section>
+      )
+    }
+
+    {
+      project.galleryImagesTranslated &&
+        project.galleryImagesTranslated.length > 0 && (
+          <section class="mb-8">
+            <h2
+              class="text-xl md:text-2xl font-bold mb-6 uppercase tracking-tight"
+              style="font-family: var(--font-heading);"
+            >
+              {t.projectDetailPage?.galleryTitle ?? 'Gallery'}
+            </h2>
+            <ProjectGallery
+              client:visible
+              images={project.galleryImagesTranslated.map((image) => ({
+                src: image.src.src,
+                alt: image.alt,
+                caption: image.caption,
+                id: image.id,
+              }))}
+            />
+          </section>
+        )
+    }
 
     <div class="flex flex-wrap gap-4 mt-10">
-      {project.projectUrl ? (
-        <a
-          href={project.projectUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="brutalist-btn flex-1"
-        >
-          <ExternalLink className="size-4" />
-          Live Demo
-        </a>
-      ) : (
-        <span class="brutalist-btn-disabled flex-1 cursor-not-allowed opacity-50">
-          <ExternalLink className="size-4" />
-          Live Demo
-        </span>
-      )}
-      {project.codeUrl && (
-        <a
-          href={project.codeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="brutalist-btn-outline flex-1"
-        >
-          <Code className="size-4" />
-          {t.projectDetailPage?.viewCodeButton ?? 'View Code'}
-        </a>
-      )}
+      {
+        project.projectUrl ? (
+          <a
+            href={project.projectUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="brutalist-btn flex-1"
+          >
+            <ExternalLink className="size-4" />
+            Live Demo
+          </a>
+        ) : (
+          <span class="brutalist-btn-disabled flex-1 cursor-not-allowed opacity-50">
+            <ExternalLink className="size-4" />
+            Live Demo
+          </span>
+        )
+      }
+      {
+        project.codeUrl && (
+          <a
+            href={project.codeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="brutalist-btn-outline flex-1"
+          >
+            <Code className="size-4" />
+            {t.projectDetailPage?.viewCodeButton ?? 'View Code'}
+          </a>
+        )
+      }
     </div>
   </article>
 </div>
