@@ -1,9 +1,11 @@
 ---
 name: Ahmad Saif — Portfolio
-description: Personal portfolio — minimal, confident, technically excellent
+description: Personal portfolio — warm editorial, confident, technically polished
 colors:
   ink: '#0a0a0a'
   paper: '#ffffff'
+  accent: '#c46647'
+  accent-hover: '#b5583a'
   gray-100: '#f5f5f5'
   gray-200: '#e5e5e5'
   gray-300: '#d4d4d4'
@@ -19,26 +21,27 @@ colors:
   destructive: '#dc2626'
 typography:
   display:
-    fontFamily: 'Space Grotesk, Inter, ui-sans-serif, system-ui, sans-serif'
-    fontWeight: 700
-    lineHeight: 1.1
-  heading:
-    fontFamily: 'Space Grotesk, Inter, ui-sans-serif, system-ui, sans-serif'
+    fontFamily: 'Lora, serif'
     fontWeight: 600
-    lineHeight: 1.2
+    lineHeight: 1.15
+  heading:
+    fontFamily: 'Lora, serif'
+    fontWeight: 600
+    lineHeight: 1.25
   body:
     fontFamily: 'Inter, ui-sans-serif, system-ui, sans-serif'
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: 'Space Grotesk, Inter, ui-sans-serif, system-ui, sans-serif'
+    fontFamily: 'Space Grotesk, ui-sans-serif, system-ui, sans-serif'
     fontWeight: 500
     textTransform: uppercase
     letterSpacing: '0.08em'
 rounded:
-  sm: '0px'
-  md: '0px'
-  lg: '0px'
+  sm: '0.25rem'
+  md: '0.5rem'
+  lg: '1rem'
+  full: '9999px'
 spacing:
   xs: '4px'
   sm: '8px'
