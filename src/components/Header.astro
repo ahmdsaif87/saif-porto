@@ -1,6 +1,5 @@
 ---
 import type { NavItem } from '@/layouts/BaseLayout.astro';
-import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import MobileMenu from './MobileMenu.astro';
 
@@ -8,40 +7,58 @@ interface Props {
   navItems: Array<NavItem>;
   isLandingPage?: boolean;
 }
-const { navItems } = Astro.props as Props;
+const { navItems, isLandingPage = false } = Astro.props as Props;
 const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/';
 ---
 
 <header
-  class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-sm transition-all duration-300"
+  class="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border/50"
 >
   <nav
     aria-label="Main Navigation"
-    class="mx-auto px-6 max-w-screen-xl h-16 flex justify-between items-center"
+    class="mx-auto px-6 max-w-2xl h-14 flex items-center justify-between"
   >
-    <Logo />
-
-    {/* Desktop navigation */}
-    <div class="hidden md:flex items-center gap-x-1">
+    {/* Navigation Links */}
+    <div id="desktop-nav" class="hidden sm:flex items-center gap-1 -ml-2">
       {
         navItems.map((link) => {
           const isAnchor = link.href.startsWith('#');
           const href = link.href;
-          const isActive =
-            !isAnchor &&
-            (currentPath === href ||
-              (link.href !== '/' && currentPath.startsWith(href)));
+          const isHomeLink =
+            href === '#hero' || href === '/' || href === '/#hero';
+
+          let isActive = false;
+          if (isHome) {
+            isActive = isHomeLink;
+          } else {
+            if (href === '/projects' && currentPath.startsWith('/projects')) {
+              isActive = true;
+            } else if (
+              href === '/contact' &&
+              currentPath.startsWith('/contact')
+            ) {
+              isActive = true;
+            } else if (!isAnchor && currentPath === href) {
+              isActive = true;
+            }
+          }
+
+          // Section key for scrollspy on home page
+          const sectionKey = href.includes('#') ? href.split('#')[1] : '';
+
           return (
             <a
               href={href}
+              data-nav-href={href}
+              data-section={sectionKey}
               aria-label={link.label}
               class:list={[
-                'relative px-4 py-2 text-xs font-medium uppercase tracking-widest transition-all duration-300',
+                'desktop-nav-link px-2.5 py-1 text-sm font-medium rounded-md transition-colors',
                 isActive
-                  ? 'text-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
+                  ? 'text-foreground bg-muted/60'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/40',
               ]}
-              style={`font-family: var(--font-heading);`}
             >
               {link.label}
             </a>
@@ -50,9 +67,135 @@ const currentPath = Astro.url.pathname;
       }
     </div>
 
-    <div class="flex items-center gap-x-2">
+    {/* Mobile Brand / Fallback */}
+    <div
+      class="sm:hidden font-serif font-semibold text-foreground tracking-tight"
+    >
+      <a href={isLandingPage ? '#hero' : '/#hero'}>Ahmad Saif</a>
+    </div>
+
+    {/* Controls */}
+    <div class="flex items-center gap-1">
       <ThemeToggle />
-      <MobileMenu navItems={navItems} />
+      <MobileMenu navItems={navItems} isLandingPage={isLandingPage} />
     </div>
   </nav>
 </header>
+
+<script is:inline>
+  (function () {
+    let scrollSpyCleanup = null;
+
+    const setupScrollSpy = () => {
+      // Always cleanup previous listener first
+      if (scrollSpyCleanup) {
+        scrollSpyCleanup();
+        scrollSpyCleanup = null;
+      }
+
+      // ScrollSpy ONLY runs on the landing page where hero exists
+      if (
+        window.location.pathname !== '/' ||
+        !document.getElementById('hero')
+      ) {
+        return;
+      }
+
+      const sectionIds = ['hero', 'projects', 'journey', 'contact'];
+      const sections = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+
+      if (!sections.length) return;
+
+      const desktopLinks = document.querySelectorAll('.desktop-nav-link');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      let ticking = false;
+
+      const updateActiveNav = () => {
+        // Abort if navigated away
+        if (window.location.pathname !== '/') return;
+
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+
+        let activeId = 'hero';
+
+        // Check if near bottom of page -> activate contact
+        if (scrollY + windowHeight >= docHeight - 80) {
+          activeId = 'contact';
+        } else {
+          // Find which section is currently at/past the top threshold
+          for (const section of sections) {
+            const top = section.offsetTop - 140;
+            if (scrollY >= top) {
+              activeId = section.id;
+            }
+          }
+        }
+
+        // Update desktop links
+        desktopLinks.forEach((link) => {
+          const sec = link.getAttribute('data-section');
+          if (!sec) return;
+          if (sec === activeId) {
+            link.classList.add('text-foreground', 'bg-muted/60');
+            link.classList.remove('text-muted-foreground');
+          } else {
+            link.classList.remove('text-foreground', 'bg-muted/60');
+            link.classList.add('text-muted-foreground');
+          }
+        });
+
+        // Update mobile links & check indicators
+        mobileLinks.forEach((link) => {
+          const sec = link.getAttribute('data-section');
+          if (!sec) return;
+          const indicator = link.querySelector('.nav-check-indicator');
+          if (sec === activeId) {
+            link.classList.add('bg-muted/80', 'text-foreground');
+            link.classList.remove('text-muted-foreground');
+            if (indicator) indicator.classList.remove('hidden');
+          } else {
+            link.classList.remove('bg-muted/80', 'text-foreground');
+            link.classList.add('text-muted-foreground');
+            if (indicator) indicator.classList.add('hidden');
+          }
+        });
+
+        ticking = false;
+      };
+
+      const onScroll = () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateActiveNav);
+          ticking = true;
+        }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      updateActiveNav();
+
+      scrollSpyCleanup = () => {
+        window.removeEventListener('scroll', onScroll);
+      };
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupScrollSpy);
+    } else {
+      setupScrollSpy();
+    }
+    document.addEventListener('astro:page-load', setupScrollSpy);
+
+    // Clean up scroll listener before page swap so it never fires on secondary pages
+    document.addEventListener('astro:before-preparation', () => {
+      if (scrollSpyCleanup) {
+        scrollSpyCleanup();
+        scrollSpyCleanup = null;
+      }
+    });
+  })();
+</script>

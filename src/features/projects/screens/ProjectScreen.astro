@@ -1,8 +1,7 @@
 ---
-import { buttonVariants } from '@/components/ui/button';
-import { type LanguageCode, defaultLanguage, type ui } from '@/i18n/ui';
+import { type LanguageCode, type ui } from '@/i18n/ui';
 import { Image } from 'astro:assets';
-import { Code, ExternalLink, ArrowLeft, Calendar, Tag } from 'lucide-react';
+import { Code, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import ProjectGallery from '../components/ProjectGallery';
 import type { TranslatedProject } from '../type';
 
@@ -12,78 +11,45 @@ export type Props = {
   lang: LanguageCode;
 };
 
-const { project, t, lang } = Astro.props;
+const { project, t } = Astro.props;
 ---
 
-<div class="py-12 md:py-20">
-  <article class="container mx-auto px-6 max-w-4xl">
-    {/* Breadcrumb Navigation */}
-    <nav aria-label="Breadcrumb" class="mb-6">
-      <ol
-        class="flex items-center gap-2 text-xs uppercase tracking-widest text-muted-foreground"
-        style="font-family: var(--font-heading);"
-      >
-        <li>
-          <a
-            href="/"
-            class="hover:text-foreground transition-colors duration-200">Home</a
-          >
-        </li>
-        <li aria-hidden="true" class="text-muted-foreground/60">/</li>
-        <li>
-          <a
-            href="/projects"
-            class="hover:text-foreground transition-colors duration-200"
-            >Projects</a
-          >
-        </li>
-        <li aria-hidden="true" class="text-muted-foreground/60">/</li>
-        <li
-          aria-current="page"
-          class="text-foreground font-medium truncate max-w-[220px] md:max-w-none"
-        >
-          {project.title}
-        </li>
-      </ol>
-    </nav>
-
+<div class="max-w-2xl mx-auto px-6 py-10 md:py-16">
+  <article>
+    {/* Back link */}
     <a
-      href={`${lang !== defaultLanguage ? `/${lang}` : ''}/projects`}
-      class="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium uppercase tracking-widest text-muted-foreground hover:text-foreground transition-all duration-300 mb-8 group border border-border hover:border-foreground"
-      style="font-family: var(--font-heading);"
+      href="/projects"
+      class="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 group"
     >
       <ArrowLeft
-        className="size-3.5 transition-transform duration-300 group-hover:-translate-x-1"
+        className="size-4 transition-transform duration-200 group-hover:-translate-x-1"
       />
-      {t.projectDetailPage?.backToProjects ?? 'Back to Projects'}
+      {t.projectDetailPage?.backToProjects ?? 'Back to projects'}
     </a>
 
-    <header class="mb-10">
+    <header class="mb-8">
       <h1
-        class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight tracking-tight uppercase"
-        style="font-family: var(--font-heading);"
+        class="text-3xl md:text-4xl font-semibold tracking-tight font-serif text-foreground mb-3"
       >
         {project.title}
       </h1>
-      <div class="flex flex-wrap items-center gap-3">
+      <p class="text-base text-muted-foreground leading-relaxed mb-4">
+        {project.description}
+      </p>
+
+      <div
+        class="flex flex-wrap items-center gap-2 pt-1 text-xs text-muted-foreground"
+      >
         {
           project.categoryText && (
-            <span
-              class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium uppercase tracking-widest bg-muted text-foreground border border-border"
-              style="font-family: var(--font-heading);"
-            >
-              <Tag className="size-3" />
+            <span class="px-2.5 py-1 rounded-md border border-border bg-card/60 font-medium">
               {project.categoryText}
             </span>
           )
         }
         {
           project.dateText && (
-            <span
-              class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium uppercase tracking-widest bg-muted text-muted-foreground border border-border"
-              style="font-family: var(--font-heading);"
-            >
-              <Calendar className="size-3" />
+            <span class="px-2.5 py-1 rounded-md border border-border bg-card/60">
               {project.dateText}
             </span>
           )
@@ -93,37 +59,30 @@ const { project, t, lang } = Astro.props;
 
     {
       project.collaborators && project.collaborators.length > 0 && (
-        <div class="mb-8">
-          <p
-            class="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground mb-3"
-            style="font-family: var(--font-heading);"
-          >
+        <div class="mb-8 pb-6 border-b border-border">
+          <p class="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-3">
             Collaborators
           </p>
-          <div class="flex flex-wrap gap-3">
+          <div class="flex flex-wrap gap-2.5">
             {project.collaborators.map((collab) => (
-              <div class="relative group">
-                <a
-                  href={`https://github.com/${collab.githubUsername}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${collab.name} on GitHub`}
-                >
-                  <img
-                    src={`https://github.com/${collab.githubUsername}.png`}
-                    alt={`${collab.name} - ${collab.roles.join(', ')}`}
-                    width="44"
-                    height="44"
-                    loading="lazy"
-                    decoding="async"
-                    class="size-11 rounded-full border-2 border-border hover:border-foreground transition-colors duration-300"
-                  />
-                </a>
-                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-background border border-border text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10 min-w-max">
-                  <p class="font-semibold text-foreground">{collab.name}</p>
-                  <p class="text-muted-foreground">{collab.roles.join(', ')}</p>
-                </div>
-              </div>
+              <a
+                href={`https://github.com/${collab.githubUsername}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-border bg-card/40 hover:border-foreground/40 transition-colors text-xs"
+              >
+                <img
+                  src={`https://github.com/${collab.githubUsername}.png`}
+                  alt={collab.name}
+                  width="20"
+                  height="20"
+                  class="size-5 rounded-full"
+                />
+                <span class="font-medium text-foreground">{collab.name}</span>
+                <span class="text-muted-foreground">
+                  ({collab.roles.join(', ')})
+                </span>
+              </a>
             ))}
           </div>
         </div>
@@ -132,7 +91,7 @@ const { project, t, lang } = Astro.props;
 
     {
       project.imageUrl && (
-        <div class="relative overflow-hidden mb-10 group border border-border">
+        <div class="relative overflow-hidden mb-10 rounded-xl border border-border shadow-sm">
           <a
             href={project.imageUrl.src}
             target="_blank"
@@ -142,9 +101,9 @@ const { project, t, lang } = Astro.props;
             <Image
               src={project.imageUrl}
               alt={project.imageAltText}
-              class="w-full h-auto transition-transform duration-700 group-hover:scale-105"
-              widths={[400, 800, 1200, 2400, project.imageUrl.width]}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+              class="w-full h-auto object-cover"
+              widths={[400, 800, 1200]}
+              sizes="(max-width: 768px) 100vw, 800px"
             />
           </a>
         </div>
@@ -153,73 +112,57 @@ const { project, t, lang } = Astro.props;
 
     {
       (project.detailedDescription ||
-        (project.keyFeaturesTranslated &&
-          project.keyFeaturesTranslated.length > 0)) && (
-        <section class="border border-border p-6 md:p-8 mb-8">
-          <h2
-            class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight"
-            style="font-family: var(--font-heading);"
-          >
+        (project.keyFeatures && project.keyFeatures.length > 0)) && (
+        <section class="mb-10 space-y-4">
+          <h2 class="font-serif text-xl font-semibold tracking-tight text-foreground">
             {t.projectDetailPage?.aboutTitle ?? 'Overview'}
           </h2>
           {project.detailedDescription && (
-            <p class="text-muted-foreground leading-relaxed mb-6">
+            <p class="text-sm md:text-base text-muted-foreground leading-relaxed">
               {project.detailedDescription}
             </p>
           )}
-          {project.keyFeaturesTranslated &&
-            project.keyFeaturesTranslated.length > 0 && (
-              <>
-                <p
-                  class="font-semibold mb-3 text-xs uppercase tracking-[0.15em] text-foreground"
-                  style="font-family: var(--font-heading);"
-                >
-                  {t.projectDetailPage?.keyFeaturesTitle ??
-                    'Key features include:'}
-                </p>
-                <div class="space-y-3">
-                  {project.keyFeaturesTranslated.map((feature) => (
-                    <div class="flex gap-3 items-start">
-                      <div class="mt-2 w-1.5 h-px bg-foreground flex-shrink-0" />
-                      <div>
-                        <strong class="text-foreground text-sm">
-                          {feature.title}
-                        </strong>
-                        <span class="text-muted-foreground ml-1 text-sm">
-                          {' '}
-                          — {feature.description}
-                        </span>
-                      </div>
+          {project.keyFeatures && project.keyFeatures.length > 0 && (
+            <div class="pt-2">
+              <p class="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+                {t.projectDetailPage?.keyFeaturesTitle ?? 'Key Features'}
+              </p>
+              <ul class="space-y-2 text-sm">
+                {project.keyFeatures.map((feature) => (
+                  <li class="flex items-start gap-2.5">
+                    <span class="mt-2 w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                    <div>
+                      <strong class="font-medium text-foreground">
+                        {feature.title}:
+                      </strong>
+                      <span class="text-muted-foreground ml-1">
+                        {feature.description}
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </>
-            )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </section>
       )
     }
 
     {
       project.technologiesUsed && project.technologiesUsed.length > 0 && (
-        <section class="border border-border p-6 md:p-8 mb-8">
-          <h2
-            class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight"
-            style="font-family: var(--font-heading);"
-          >
+        <section class="mb-10 pb-8 border-b border-border">
+          <h2 class="font-serif text-xl font-semibold tracking-tight text-foreground mb-4">
             {t.projectDetailPage?.technologiesUsedTitle ?? 'Technologies Used'}
           </h2>
-          <div class="grid gap-4 sm:grid-cols-2">
+          <div class="grid gap-2.5 sm:grid-cols-2">
             {project.technologiesUsed.map((tech) => (
-              <div class="flex gap-3 items-start p-3 border border-border hover:border-foreground transition-colors duration-300">
-                <div class="mt-2 w-1.5 h-px bg-foreground flex-shrink-0" />
-                <div>
-                  <strong class="text-foreground text-sm">{tech.name}</strong>
-                  {tech.description && (
-                    <p class="text-xs text-muted-foreground mt-0.5">
-                      {tech.description}
-                    </p>
-                  )}
-                </div>
+              <div class="p-3 rounded-lg border border-border bg-card/40">
+                <p class="font-medium text-foreground text-sm">{tech.name}</p>
+                {tech.description && (
+                  <p class="text-xs text-muted-foreground mt-0.5 leading-relaxed">
+                    {tech.description}
+                  </p>
+                )}
               </div>
             ))}
           </div>
@@ -229,14 +172,13 @@ const { project, t, lang } = Astro.props;
 
     {
       project.outcome && (
-        <section class="border border-border p-6 md:p-8 mb-8">
-          <h2
-            class="text-xl md:text-2xl font-bold mb-4 uppercase tracking-tight"
-            style="font-family: var(--font-heading);"
-          >
+        <section class="mb-10 pb-8 border-b border-border">
+          <h2 class="font-serif text-xl font-semibold tracking-tight text-foreground mb-2">
             {t.projectDetailPage?.outcomeTitle ?? 'Outcome'}
           </h2>
-          <p class="text-muted-foreground leading-relaxed">{project.outcome}</p>
+          <p class="text-sm md:text-base text-muted-foreground leading-relaxed">
+            {project.outcome}
+          </p>
         </section>
       )
     }
@@ -244,11 +186,8 @@ const { project, t, lang } = Astro.props;
     {
       project.galleryImagesTranslated &&
         project.galleryImagesTranslated.length > 0 && (
-          <section class="mb-8">
-            <h2
-              class="text-xl md:text-2xl font-bold mb-6 uppercase tracking-tight"
-              style="font-family: var(--font-heading);"
-            >
+          <section class="mb-10">
+            <h2 class="font-serif text-xl font-semibold tracking-tight text-foreground mb-4">
               {t.projectDetailPage?.galleryTitle ?? 'Gallery'}
             </h2>
             <ProjectGallery
@@ -264,23 +203,19 @@ const { project, t, lang } = Astro.props;
         )
     }
 
-    <div class="flex flex-wrap gap-4 mt-10">
+    {/* Project Action Links */}
+    <div class="flex flex-wrap gap-3 pt-4">
       {
-        project.projectUrl ? (
+        project.projectUrl && (
           <a
             href={project.projectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="brutalist-btn flex-1"
+            class="pill-btn-primary"
           >
-            <ExternalLink className="size-4" />
-            Live Demo
+            Visit Live Demo
+            <ArrowUpRight className="size-4" />
           </a>
-        ) : (
-          <span class="brutalist-btn-disabled flex-1 cursor-not-allowed opacity-50">
-            <ExternalLink className="size-4" />
-            Live Demo
-          </span>
         )
       }
       {
@@ -289,10 +224,10 @@ const { project, t, lang } = Astro.props;
             href={project.codeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="brutalist-btn-outline flex-1"
+            class="pill-btn-outline"
           >
             <Code className="size-4" />
-            {t.projectDetailPage?.viewCodeButton ?? 'View Code'}
+            {t.projectDetailPage?.viewCodeButton ?? 'Source Code'}
           </a>
         )
       }

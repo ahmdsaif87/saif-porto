@@ -1,59 +1,141 @@
 ---
-import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
+import { ArrowUpRight } from 'lucide-react';
 
-const lang =
-  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
-const tFooter = useTranslations(lang, 'footer');
-const tSite = useTranslations(lang, 'site');
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="relative mt-auto py-8 z-10 border-t border-border">
-  <div
-    class="container mx-auto px-6 max-w-screen-xl flex flex-col md:flex-row justify-between items-center gap-4"
-  >
-    <p
-      class="text-xs text-muted-foreground uppercase tracking-widest text-center md:text-left"
-      style="font-family: var(--font-heading);"
+<footer class="relative mt-auto border-t border-border/50 py-12 z-10">
+  <div class="max-w-2xl mx-auto px-6 space-y-8">
+    {/* Identity */}
+    <div
+      class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-sm text-muted-foreground"
     >
-      &copy; {new Date().getFullYear()}
-      <span class="font-medium text-foreground"> {tSite('title')}</span>. {
-        tFooter('rights')
-      }
-    </p>
+      <div>
+        <a
+          href="https://github.com/ahmdsaif87"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-mono text-xs text-foreground hover:underline"
+        >
+          @ahmdsaif87
+        </a>
+        <p class="text-xs text-muted-foreground mt-0.5">
+          &copy; {currentYear} Ahmad Saif. All rights reserved.
+        </p>
+      </div>
+    </div>
 
-    <nav
-      aria-label="Footer Navigation"
-      class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
+    {/* Navigation Columns */}
+    <div
+      class="grid grid-cols-2 sm:grid-cols-3 gap-8 pt-4 border-t border-border/40 text-sm"
     >
-      <a
-        href="/"
-        class="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-200"
-        style="font-family: var(--font-heading);"
-      >
-        Home
-      </a>
-      <a
-        href="/projects"
-        class="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-200"
-        style="font-family: var(--font-heading);"
-      >
-        Projects
-      </a>
-      <a
-        href="/contact"
-        class="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-200"
-        style="font-family: var(--font-heading);"
-      >
-        Contact
-      </a>
-      <a
-        href="/sitemap-index.xml"
-        target="_blank"
-        class="text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors duration-200"
-        style="font-family: var(--font-heading);"
-      >
-        Sitemap
-      </a>
-    </nav>
+      {/* Column 1: This Site */}
+      <div class="space-y-2.5">
+        <p
+          class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+        >
+          This Site
+        </p>
+        <ul class="space-y-1.5 text-xs text-muted-foreground">
+          <li>
+            <a href="/" class="hover:text-foreground transition-colors">Home</a>
+          </li>
+          <li>
+            <a href="/projects" class="hover:text-foreground transition-colors"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a href="/#journey" class="hover:text-foreground transition-colors"
+              >Journey</a
+            >
+          </li>
+          <li>
+            <a href="/#contact" class="hover:text-foreground transition-colors"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      {/* Column 2: Resources */}
+      <div class="space-y-2.5">
+        <p
+          class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+        >
+          Resources
+        </p>
+        <ul class="space-y-1.5 text-xs text-muted-foreground">
+          <li>
+            <a
+              href="https://drive.google.com/file/d/1CMHRLsv7uKB4XYWMGiYwJgby1ejnxQ3f/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-0.5 hover:text-foreground transition-colors"
+            >
+              Résumé <ArrowUpRight className="size-3" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="/sitemap-index.xml"
+              target="_blank"
+              class="inline-flex items-center gap-0.5 hover:text-foreground transition-colors"
+            >
+              Sitemap <ArrowUpRight className="size-3" />
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      {/* Column 3: Connect */}
+      <div class="space-y-2.5">
+        <p
+          class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+        >
+          Connect
+        </p>
+        <ul class="space-y-1.5 text-xs text-muted-foreground">
+          <li>
+            <a
+              href="https://github.com/ahmdsaif87"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-0.5 hover:text-foreground transition-colors"
+            >
+              GitHub <ArrowUpRight className="size-3" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/ahmadsaif-dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-0.5 hover:text-foreground transition-colors"
+            >
+              LinkedIn <ArrowUpRight className="size-3" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.instagram.com/ahmdsaif87"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-0.5 hover:text-foreground transition-colors"
+            >
+              Instagram <ArrowUpRight className="size-3" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="mailto:ahmadsaifpy@gmail.com"
+              class="inline-flex items-center gap-0.5 hover:text-foreground transition-colors"
+            >
+              Email <ArrowUpRight className="size-3" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </footer>

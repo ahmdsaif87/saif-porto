@@ -1,200 +1,265 @@
 ---
 import type { NavItem } from '@/layouts/BaseLayout.astro';
+import {
+  ArrowUpRight,
+  Check,
+  FileText,
+  FolderKanban,
+  Github,
+  Home,
+  Linkedin,
+  Mail,
+  Milestone,
+} from 'lucide-react';
 
 interface Props {
   navItems: Array<NavItem>;
+  isLandingPage?: boolean;
 }
 const { navItems } = Astro.props;
 const currentPath = Astro.url.pathname;
+const isHome = currentPath === '/';
+
+const getNavIcon = (label: string) => {
+  const l = label.toLowerCase();
+  if (l.includes('home')) return Home;
+  if (l.includes('project')) return FolderKanban;
+  if (l.includes('journey')) return Milestone;
+  if (l.includes('contact')) return Mail;
+  return Home;
+};
 ---
 
-<div class="md:hidden">
+<div class="relative sm:hidden">
+  {/* Slick 2-line Morphing Hamburger Button */}
   <button
     id="mobile-menu-btn"
-    class="p-2 w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground focus:outline-none relative z-[100]"
-    aria-label="Toggle menu"
+    class="relative z-50 p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors focus:outline-none"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
   >
     <div
-      class="relative w-5 h-5 flex items-center justify-center pointer-events-none"
+      class="w-4 h-4 flex flex-col justify-center items-center gap-1 pointer-events-none"
     >
-      <!-- Menu Icon (Hamburger) -->
-      <svg
-        id="menu-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="absolute transition-all duration-300 transform scale-100 rotate-0 opacity-100"
-      >
-        <line x1="4" x2="20" y1="12" y2="12"></line>
-        <line x1="4" x2="20" y1="6" y2="6"></line>
-        <line x1="4" x2="20" y1="18" y2="18"></line>
-      </svg>
-      <!-- Close Icon (X) -->
-      <svg
-        id="close-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="absolute transition-all duration-300 transform scale-0 -rotate-90 opacity-0"
-      >
-        <path d="M18 6 6 18"></path>
-        <path d="m6 6 12 12"></path>
-      </svg>
+      <span
+        id="burger-line-1"
+        class="w-3.5 h-[1.5px] bg-current rounded-full transition-all duration-200 origin-center"
+      ></span>
+      <span
+        id="burger-line-2"
+        class="w-3.5 h-[1.5px] bg-current rounded-full transition-all duration-200 origin-center"
+      ></span>
     </div>
   </button>
 
-  <!-- Backdrop -->
+  {/* Invisible click-outside dismiss backdrop */}
   <div
-    id="mobile-menu-backdrop"
-    class="fixed inset-0 z-40 transition-opacity duration-300 opacity-0 pointer-events-none"
-    style="background: rgba(0,0,0,0.4);"
+    id="mobile-backdrop"
+    class="fixed inset-0 z-40 bg-black/10 transition-opacity duration-200 opacity-0 pointer-events-none"
   >
   </div>
 
-  <!-- Dropdown panel -->
+  {/* Compact Floating Popover Menu (Matching screenshot width & style) */}
   <div
-    id="mobile-menu"
-    class="fixed top-[65px] left-0 right-0 z-50 flex flex-col w-full border-b border-border bg-background transition-all duration-300 transform -translate-y-full opacity-0 pointer-events-none h-auto"
+    id="mobile-panel"
+    class="absolute right-0 top-full mt-2 z-50 w-52 rounded-2xl border border-border/80 bg-card/95 backdrop-blur-xl shadow-2xl p-1.5 transition-all duration-200 origin-top-right transform scale-95 opacity-0 pointer-events-none"
   >
-    <nav class="flex flex-col p-4 gap-1 items-start">
+    {/* Navigation Section */}
+    <div
+      class="px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground/70"
+    >
+      Navigation
+    </div>
+
+    <nav class="flex flex-col space-y-0.5">
       {
-        navItems.map((item, index) => {
+        navItems.map((item) => {
           const isAnchor = item.href.startsWith('#');
           const href = item.href;
-          const isActive =
-            !isAnchor &&
-            (currentPath === href ||
-              (item.href !== '/' && currentPath.startsWith(href)));
+          const isHomeItem =
+            href === '#hero' || href === '/' || href === '/#hero';
+
+          let isActive = false;
+          if (isHome) {
+            isActive = isHomeItem;
+          } else {
+            if (href === '/projects' && currentPath.startsWith('/projects')) {
+              isActive = true;
+            } else if (
+              href === '/contact' &&
+              currentPath.startsWith('/contact')
+            ) {
+              isActive = true;
+            } else if (!isAnchor && currentPath === href) {
+              isActive = true;
+            }
+          }
+          const Icon = getNavIcon(item.label);
+          const sectionKey = href.includes('#') ? href.split('#')[1] : '';
+
           return (
             <a
               href={href}
+              data-nav-href={href}
+              data-section={sectionKey}
               class:list={[
-                'text-xs font-medium uppercase tracking-widest transition-all duration-200 transform translate-y-2 opacity-0 mobile-link w-full py-3 px-4 border-b border-border last:border-b-0',
+                'mobile-nav-link flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors',
                 isActive
-                  ? 'text-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
+                  ? 'bg-muted/80 text-foreground'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/50',
               ]}
-              style={`transition-delay: ${index * 60}ms; font-family: var(--font-heading);`}
             >
-              {item.label}
-              {isActive && (
-                <span class="inline-block w-1.5 h-1.5 bg-foreground ml-2 align-middle" />
-              )}
+              <div class="flex items-center gap-2">
+                <Icon className="size-3.5 text-muted-foreground" />
+                <span>{item.label}</span>
+              </div>
+              <span
+                class:list={[
+                  'nav-check-indicator shrink-0',
+                  !isActive && 'hidden',
+                ]}
+              >
+                <Check className="size-3.5 text-accent" />
+              </span>
             </a>
           );
         })
       }
     </nav>
+
+    {/* Divider */}
+    <div class="my-1.5 border-t border-border/60"></div>
+
+    {/* Quick Links Section */}
+    <div
+      class="px-2.5 py-1 text-[11px] font-medium uppercase tracking-wider text-muted-foreground/70"
+    >
+      Links
+    </div>
+
+    <div class="flex flex-col space-y-0.5">
+      <a
+        href="https://drive.google.com/file/d/1CMHRLsv7uKB4XYWMGiYwJgby1ejnxQ3f/view?usp=sharing"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-nav-link flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+      >
+        <div class="flex items-center gap-2">
+          <FileText className="size-3.5 text-muted-foreground" />
+          <span>Résumé</span>
+        </div>
+        <ArrowUpRight className="size-3 text-muted-foreground" />
+      </a>
+
+      <a
+        href="https://github.com/ahmdsaif87"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-nav-link flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+      >
+        <div class="flex items-center gap-2">
+          <Github className="size-3.5 text-muted-foreground" />
+          <span>GitHub</span>
+        </div>
+        <ArrowUpRight className="size-3 text-muted-foreground" />
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/ahmadsaif-dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-nav-link flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+      >
+        <div class="flex items-center gap-2">
+          <Linkedin className="size-3.5 text-muted-foreground" />
+          <span>LinkedIn</span>
+        </div>
+        <ArrowUpRight className="size-3 text-muted-foreground" />
+      </a>
+    </div>
   </div>
 </div>
 
 <script is:inline>
   (function () {
-    const initMobileMenu = () => {
+    const setupMenu = () => {
       const btn = document.getElementById('mobile-menu-btn');
-      const menu = document.getElementById('mobile-menu');
-      const backdrop = document.getElementById('mobile-menu-backdrop');
-      const menuIcon = document.getElementById('menu-icon');
-      const closeIcon = document.getElementById('close-icon');
-      const links = document.querySelectorAll('.mobile-link');
+      const panel = document.getElementById('mobile-panel');
+      const backdrop = document.getElementById('mobile-backdrop');
+      const line1 = document.getElementById('burger-line-1');
+      const line2 = document.getElementById('burger-line-2');
+      const links = document.querySelectorAll('.mobile-nav-link');
 
-      if (!btn || !menu || !menuIcon || !closeIcon || !backdrop) return;
+      if (!btn || !panel || !backdrop || !line1 || !line2) return;
 
       let isOpen = false;
 
-      const toggle = (force) => {
-        isOpen = typeof force === 'boolean' ? force : !isOpen;
+      const setOpen = (open) => {
+        isOpen = open;
+        btn.setAttribute('aria-expanded', String(isOpen));
 
         if (isOpen) {
-          menu.classList.remove(
-            '-translate-y-full',
+          // Morph burger lines into X
+          line1.style.transform = 'translateY(2.5px) rotate(45deg)';
+          line2.style.transform = 'translateY(-2.5px) rotate(-45deg)';
+
+          // Open panel
+          panel.classList.remove(
+            'scale-95',
             'opacity-0',
             'pointer-events-none'
           );
-          menu.classList.add(
-            'translate-y-0',
+          panel.classList.add(
+            'scale-100',
             'opacity-100',
             'pointer-events-auto'
           );
 
+          // Open backdrop
           backdrop.classList.remove('opacity-0', 'pointer-events-none');
           backdrop.classList.add('opacity-100', 'pointer-events-auto');
-
-          menuIcon.classList.add('scale-0', 'rotate-90', 'opacity-0');
-          menuIcon.classList.remove('scale-100', 'rotate-0', 'opacity-100');
-
-          closeIcon.classList.add('scale-100', 'rotate-0', 'opacity-100');
-          closeIcon.classList.remove('scale-0', '-rotate-90', 'opacity-0');
-
-          links.forEach((link) => {
-            link.classList.remove('translate-y-4', 'opacity-0');
-            link.classList.add('translate-y-0', 'opacity-100');
-          });
-
-          document.body.style.overflow = 'hidden';
         } else {
-          menu.classList.add(
-            '-translate-y-full',
-            'opacity-0',
-            'pointer-events-none'
-          );
-          menu.classList.remove(
-            'translate-y-0',
+          // Revert burger lines
+          line1.style.transform = '';
+          line2.style.transform = '';
+
+          // Close panel
+          panel.classList.remove(
+            'scale-100',
             'opacity-100',
             'pointer-events-auto'
           );
+          panel.classList.add('scale-95', 'opacity-0', 'pointer-events-none');
 
-          backdrop.classList.add('opacity-0', 'pointer-events-none');
+          // Close backdrop
           backdrop.classList.remove('opacity-100', 'pointer-events-auto');
-
-          menuIcon.classList.remove('scale-0', 'rotate-90', 'opacity-0');
-          menuIcon.classList.add('scale-100', 'rotate-0', 'opacity-100');
-
-          closeIcon.classList.remove('scale-100', 'rotate-0', 'opacity-100');
-          closeIcon.classList.add('scale-0', '-rotate-90', 'opacity-0');
-
-          links.forEach((link) => {
-            link.classList.add('translate-y-4', 'opacity-0');
-            link.classList.remove('translate-y-0', 'opacity-100');
-          });
-
-          document.body.style.overflow = '';
+          backdrop.classList.add('opacity-0', 'pointer-events-none');
         }
       };
 
       btn.onclick = (e) => {
         e.preventDefault();
-        toggle();
+        e.stopPropagation();
+        setOpen(!isOpen);
       };
 
-      backdrop.onclick = () => toggle(false);
+      backdrop.onclick = () => setOpen(false);
 
       links.forEach((link) => {
-        link.onclick = () => toggle(false);
+        link.onclick = () => setOpen(false);
       });
 
-      // Close menu when clicking anywhere outside the button
-      document.addEventListener('click', (e) => {
-        if (isOpen && !btn.contains(e.target)) {
-          toggle(false);
-        }
+      // Escape key closes popup
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen) setOpen(false);
       });
     };
 
-    document.addEventListener('DOMContentLoaded', initMobileMenu);
-    document.addEventListener('astro:after-swap', initMobileMenu);
-    initMobileMenu();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupMenu);
+    } else {
+      setupMenu();
+    }
+    document.addEventListener('astro:page-load', setupMenu);
   })();
 </script>

@@ -22,99 +22,67 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-16 md:py-20">
-  <div class="container mx-auto px-6 max-w-screen-xl">
-    <div class="mb-12">
-      <h1
-        class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 tracking-tight uppercase"
-        style="font-family: var(--font-heading);"
-      >
-        {mainHeadingTitle}
-      </h1>
-      <div class="section-divider mt-6 mb-8"></div>
-      <p class="text-base text-muted-foreground max-w-2xl leading-relaxed">
-        {mainHeadingDescription}
-      </p>
+<div class="max-w-2xl mx-auto px-6 py-10 md:py-16">
+  <div class="mb-10">
+    <h1
+      class="text-3xl md:text-4xl font-semibold tracking-tight font-serif text-foreground pb-2"
+    >
+      {mainHeadingTitle}
+    </h1>
+    <p class="text-sm md:text-base text-muted-foreground leading-relaxed">
+      {mainHeadingDescription}
+    </p>
+  </div>
+
+  <div class="space-y-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div class="rounded-lg border border-border bg-card/40 p-4">
+        <div class="flex items-center gap-2 mb-1.5">
+          <Mail className="size-4 text-primary" />
+          <p
+            class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+          >
+            Email
+          </p>
+        </div>
+        <a
+          href="mailto:ahmadsaifpy@gmail.com"
+          class="text-xs md:text-sm text-foreground hover:underline"
+        >
+          ahmadsaifpy@gmail.com
+        </a>
+      </div>
+
+      <div class="rounded-lg border border-border bg-card/40 p-4">
+        <div class="flex items-center gap-2 mb-1.5">
+          <MapPin className="size-4 text-primary" />
+          <p
+            class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+          >
+            Location
+          </p>
+        </div>
+        <p class="text-xs md:text-sm text-foreground">Tegal, Indonesia</p>
+      </div>
+
+      <div class="rounded-lg border border-border bg-card/40 p-4">
+        <div class="flex items-center gap-2 mb-1.5">
+          <Clock className="size-4 text-primary" />
+          <p
+            class="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+          >
+            Status
+          </p>
+        </div>
+        <p class="text-xs md:text-sm text-foreground">Open for projects</p>
+      </div>
     </div>
 
-    <div class="grid md:grid-cols-5 gap-8 max-w-4xl">
-      <div class="md:col-span-2 space-y-4">
-        <div
-          class="border border-border p-5 hover:border-foreground transition-colors duration-300"
-        >
-          <div class="flex items-start gap-4">
-            <Mail
-              className="size-4 text-muted-foreground flex-shrink-0 mt-0.5"
-            />
-            <div>
-              <h3
-                class="text-xs font-semibold mb-1 uppercase tracking-widest"
-                style="font-family: var(--font-heading);"
-              >
-                Email
-              </h3>
-              <a
-                href="mailto:ahmadsaifpy@gmail.com"
-                class="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                ahmadsaifpy@gmail.com
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="border border-border p-5 hover:border-foreground transition-colors duration-300"
-        >
-          <div class="flex items-start gap-4">
-            <MapPin
-              className="size-4 text-muted-foreground flex-shrink-0 mt-0.5"
-            />
-            <div>
-              <h3
-                class="text-xs font-semibold mb-1 uppercase tracking-widest"
-                style="font-family: var(--font-heading);"
-              >
-                Location
-              </h3>
-              <p class="text-sm text-muted-foreground">Tegal, Indonesia</p>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="border border-border p-5 hover:border-foreground transition-colors duration-300"
-        >
-          <div class="flex items-start gap-4">
-            <Clock
-              className="size-4 text-muted-foreground flex-shrink-0 mt-0.5"
-            />
-            <div>
-              <h3
-                class="text-xs font-semibold mb-1 uppercase tracking-widest"
-                style="font-family: var(--font-heading);"
-              >
-                Availability
-              </h3>
-              <p class="text-sm text-muted-foreground">
-                Open for opportunities
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="md:col-span-3">
-        <div class="border border-border p-6 md:p-8">
-          <h2
-            class="text-lg font-bold mb-6 uppercase tracking-wider"
-            style="font-family: var(--font-heading);"
-          >
-            {formTitle}
-          </h2>
-          <ContactForm client:load {lang} {formTranslations} />
-        </div>
-      </div>
+    <div class="rounded-xl border border-border bg-card/60 p-6 md:p-8">
+      <h2 class="font-serif text-xl font-semibold text-foreground mb-4">
+        {formTitle}
+      </h2>
+      <ContactForm client:load {lang} {formTranslations} />
     </div>
   </div>
-</section>
+</div>
