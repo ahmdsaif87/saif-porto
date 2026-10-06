@@ -1,7 +1,5 @@
 ---
-import { defaultLanguage, type LanguageCode } from '../i18n/ui';
 import type { NavItem } from '@/layouts/BaseLayout.astro';
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import MobileMenu from './MobileMenu.astro';
@@ -10,10 +8,7 @@ interface Props {
   navItems: Array<NavItem>;
   isLandingPage?: boolean;
 }
-const { navItems, isLandingPage = false } = Astro.props as Props;
-
-const currentLocale =
-  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
+const { navItems } = Astro.props as Props;
 const currentPath = Astro.url.pathname;
 ---
 
@@ -31,9 +26,7 @@ const currentPath = Astro.url.pathname;
       {
         navItems.map((link) => {
           const isAnchor = link.href.startsWith('#');
-          const href = isAnchor
-            ? link.href
-            : getRelativeLocaleUrl(currentLocale, link.href);
+          const href = link.href;
           const isActive =
             !isAnchor &&
             (currentPath === href ||

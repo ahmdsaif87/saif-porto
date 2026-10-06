@@ -1,14 +1,8 @@
 ---
-import { defaultLanguage, type LanguageCode } from '@/i18n/ui';
-import { getRelativeLocaleUrl } from 'astro:i18n';
-const currentLocale =
-  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
+
 ---
 
-<a
-  href={getRelativeLocaleUrl(currentLocale)}
-  class="group flex items-center gap-2"
->
+<a href="/" class="group flex items-center gap-2">
   <span
     class="text-lg font-bold tracking-tight uppercase text-foreground transition-colors duration-300"
     style="font-family: var(--font-heading);"

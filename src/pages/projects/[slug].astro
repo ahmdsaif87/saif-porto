@@ -5,12 +5,12 @@ import {
   getTranslatedProjects,
   type TranslatedProject,
 } from '@/features/projects';
-import { ui, defaultLanguage, type LanguageCode } from '@/i18n/ui';
+import { ui, defaultLanguage } from '@/i18n/ui';
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const projects = getTranslatedProjects(defaultLanguage);
+  const projects = getTranslatedProjects();
   return projects.map((project) => ({
     params: { slug: project.slug },
     props: { project },
@@ -21,15 +21,14 @@ type Props = {
   project: TranslatedProject;
 };
 
-const lang =
-  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
+const lang = defaultLanguage;
 const { project } = Astro.props as Props;
 
 if (!project) {
   return Astro.redirect('/404');
 }
 
-const t = ui[lang];
+const t = ui[defaultLanguage];
 const categoryLabel = project.categoryText || project.category || 'Project';
 const pageTitle = `${project.title} – Ahmad Saif Portfolio | ${categoryLabel}`;
 

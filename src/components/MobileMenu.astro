@@ -1,14 +1,10 @@
 ---
 import type { NavItem } from '@/layouts/BaseLayout.astro';
-import { getRelativeLocaleUrl } from 'astro:i18n';
-import { defaultLanguage, type LanguageCode } from '../i18n/ui';
 
 interface Props {
   navItems: Array<NavItem>;
 }
 const { navItems } = Astro.props;
-const currentLocale =
-  (Astro.currentLocale as LanguageCode | undefined) ?? defaultLanguage;
 const currentPath = Astro.url.pathname;
 ---
 
@@ -76,9 +72,7 @@ const currentPath = Astro.url.pathname;
       {
         navItems.map((item, index) => {
           const isAnchor = item.href.startsWith('#');
-          const href = isAnchor
-            ? item.href
-            : getRelativeLocaleUrl(currentLocale, item.href);
+          const href = item.href;
           const isActive =
             !isAnchor &&
             (currentPath === href ||

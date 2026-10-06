@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { defaultLanguage, useTranslations, type LanguageCode } from '@/i18n/ui';
-import { getRelativeLocaleUrl } from 'astro:i18n';
+import { defaultLanguage, useTranslations } from '@/i18n/ui';
 import { Image } from 'astro:assets';
 import errorIllustration from '@/assets/error.webp';
 import errorIllustrationDark from '@/assets/error-dark.webp';
@@ -68,7 +67,7 @@ const pageDescription = t('message');
         {t('message')}
       </p>
 
-      <a href={getRelativeLocaleUrl(lang, '/')} class="brutalist-btn">
+      <a href="/" class="brutalist-btn">
         <Home className="size-4" />
         {t('homeLink')}
       </a>

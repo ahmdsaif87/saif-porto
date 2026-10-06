@@ -1,26 +1,15 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { getTranslatedProjects, ProjectsScreen } from '@/features/projects';
-import { ui, type LanguageCode, defaultLanguage, languages } from '@/i18n/ui';
+import { ui, defaultLanguage } from '@/i18n/ui';
 
-let lang: LanguageCode;
-const currentLocale = Astro.currentLocale;
-
-if (currentLocale && currentLocale in languages) {
-  lang = currentLocale as LanguageCode;
-} else {
-  lang = defaultLanguage;
-}
-
-const t = ui[lang] as (typeof ui)[typeof defaultLanguage];
-const projects = getTranslatedProjects(lang);
-
-const projectsPageTranslations = t.projectsPage;
+const t = ui[defaultLanguage];
+const projects = getTranslatedProjects();
 const metaTitle =
-  projectsPageTranslations?.metaTitle ??
+  t.projectsPage?.metaTitle ??
   'Projects by Ahmad Saif | Flutter, Web & Mobile Developer Portfolio';
 const metaDescription =
-  projectsPageTranslations?.metaDescription ??
+  t.projectsPage?.metaDescription ??
   'Explore software engineering projects built by Ahmad Saif using Flutter, React, Next.js, and Laravel.';
 
 const canonicalUrl = 'https://ahmadsaif.web.id/projects';
@@ -68,5 +57,5 @@ const jsonLd = [
   canonical={canonicalUrl}
   jsonLd={jsonLd}
 >
-  <ProjectsScreen projects={projects} t={t} lang={lang} />
+  <ProjectsScreen projects={projects} t={t} lang={defaultLanguage} />
 </BaseLayout>

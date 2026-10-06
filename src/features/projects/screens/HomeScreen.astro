@@ -1,6 +1,5 @@
 ---
 import type { LanguageCode } from '@/i18n/ui';
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import {
   ArrowRight,
   ArrowDown,
@@ -248,10 +247,7 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
       {
         projects.map((project: TranslatedProject, index: number) => {
-          const projectUrl = getRelativeLocaleUrl(
-            lang,
-            `/projects/${project.slug}`
-          );
+          const projectUrl = `/projects/${project.slug}`;
           const isLarge = index % 3 === 0;
           return (
             <a
@@ -307,7 +303,7 @@ const secondLineTechnologies = allTechnologies.slice(halfTechIndex);
 
     <div class="mt-16 flex justify-center scroll-reveal">
       <a
-        href={getRelativeLocaleUrl(lang, '/projects')}
+        href="/projects"
         class="brutalist-btn-outline"
         aria-label="View all projects by Ahmad Saif"
       >
