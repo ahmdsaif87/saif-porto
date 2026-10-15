@@ -153,20 +153,12 @@
   border-radius: 0.5rem;
   background-color: var(--primary);
   color: #ffffff;
-  transition:
-    background-color 0.15s ease,
-    transform 0.15s ease;
+  transition: background-color 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 .pill-btn-primary:hover,
 .brutalist-btn:hover {
   background-color: #c46647;
-  transform: translateY(-1px);
-}
-.pill-btn-primary:active,
-.brutalist-btn:active {
-  transform: translateY(0);
 }
 
 .pill-btn-outline,
@@ -183,9 +175,7 @@
   border: 1px solid var(--border);
   background-color: transparent;
   color: var(--foreground);
-  transition:
-    background-color 0.15s ease,
-    transform 0.15s ease;
+  transition: background-color 0.15s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
 }
 .pill-btn-outline:hover,
@@ -193,12 +183,6 @@
 .brutalist-btn-inverted:hover {
   background-color: var(--muted);
   border-color: var(--muted-foreground);
-  transform: translateY(-1px);
-}
-.pill-btn-outline:active,
-.brutalist-btn-outline:active,
-.brutalist-btn-inverted:active {
-  transform: translateY(0);
 }
 
 /* ─── Project Item Row (Rimzzlabs style) ─── */
@@ -255,4 +239,247 @@
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* ═══════════════════════════════════════════════════════
+   Motion system — "Ink settles" (animate)
+   Focal: hero entrance only. Support: reveal, continuity, feedback.
+   Timing: 100–150ms feedback / 150–300ms state / 350–550ms
+   overlay & page / 900–1200ms focal. Ease: expo-out, never bounce.
+   ═══════════════════════════════════════════════════════ */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-feedback: 150ms;
+  --dur-state: 250ms;
+  --dur-overlay: 350ms;
+  --dur-focal: 1100ms;
+}
+
+/* Noise grain overlay (tactile, non-interactive) */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.022;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+
+/* Decorative orbs (404) — isolated, low-cost: opacity + transform only */
+.decorative-orb {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--primary) 14%, transparent),
+    transparent 70%
+  );
+  filter: blur(10px);
+  pointer-events: none;
+}
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.06);
+  }
+}
+.animate-breathe {
+  animation: breathe 8s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+.animation-delay-300 {
+  animation-delay: 2.4s;
+}
+
+/* ─── Focal moment: hero "ink settles" entrance ───
+   Runs once on first viewport. Blur + rise + de-clip.
+   Content is visible by default; animation only enhances. */
+@keyframes hero-settle {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(6px);
+    clip-path: inset(0 0 12% 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+    clip-path: inset(0 0 0% 0);
+  }
+}
+.hero-reveal {
+  animation: hero-settle var(--dur-focal) var(--ease-out-expo) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+/* ─── Supporting: single scroll reveal per section block ───
+   Hidden state applies ONLY when JS runs (html.js), so no-JS
+   and failed scripts keep content visible. */
+.scroll-reveal {
+  opacity: 1;
+}
+html.js .scroll-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 900ms var(--ease-out-expo),
+    transform 900ms var(--ease-out-expo);
+}
+html.js .scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Continuity: Astro View Transitions ───
+   Exit faster than entrance; transform + opacity only (no full-page blur). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-timing-function: var(--ease-out-expo);
+}
+::view-transition-old(root) {
+  animation-duration: 300ms;
+}
+::view-transition-old(root) {
+  animation-name: page-out;
+}
+::view-transition-new(root) {
+  animation-duration: 550ms;
+  animation-name: page-in;
+}
+@keyframes page-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Section arrival: anchor navigation lands softly ───
+   Targeted section glows briefly so jumps never feel stiff. */
+@keyframes section-arrive {
+  from {
+    background-color: color-mix(in srgb, var(--primary) 9%, transparent);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+section:target {
+  animation: section-arrive 1600ms var(--ease-out-expo);
+  border-radius: var(--radius);
+}
+
+/* ─── Continuity: contact <details> expansion (grid-rows, no layout anim) ─── */
+details.group\/details > div {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-overlay) var(--ease-out-expo);
+}
+details.group\/details[open] > div {
+  grid-template-rows: 1fr;
+}
+details.group\/details > div > * {
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity var(--dur-state) var(--ease-out-expo),
+    transform var(--dur-state) var(--ease-out-expo);
+}
+details.group\/details[open] > div > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Feedback: unify routine transitions on expo curve ─── */
+.pill-btn-primary,
+.brutalist-btn,
+.pill-btn-outline,
+.brutalist-btn-outline,
+.brutalist-btn-inverted,
+.project-row,
+.inline-link {
+  transition-timing-function: var(--ease-out-expo) !important;
+}
+
+/* Status dot: gentle opacity-only pulse (no scale loop) */
+@keyframes soft-ping {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* Browser surfaces: carry the design */
+::selection {
+  background: rgba(217, 119, 87, 0.25);
+  color: inherit;
+}
+:where(input, textarea) {
+  caret-color: var(--primary);
+}
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ─── Accessibility: reduced motion keeps meaning, removes travel ───
+   Spatial movement and blur go; opacity / color state feedback stays legible. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-reveal {
+    animation: none;
+  }
+  section:target {
+    animation: none;
+  }
+  html.js .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+  html.js .scroll-reveal.is-visible {
+    transition: opacity 150ms ease-out;
+  }
+  .animate-breathe {
+    animation: none;
+  }
+  .animate-pulse,
+  .animate-spin {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.01ms;
+  }
+  details.group\/details > div,
+  details.group\/details > div > * {
+    transform: none;
+    transition:
+      opacity 150ms ease-out,
+      grid-template-rows 0.01ms;
+  }
 }

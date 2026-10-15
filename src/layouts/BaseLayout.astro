@@ -76,9 +76,9 @@ const title = pageTitle || tSite('title');
 const description = pageDescription || tSite('description');
 
 const defaultKeywords = [
-  'Ahmad Saifi Khayatu Ulumuddin',
-  'Ahmad Saif',
   'Ahmad Saifi',
+  'Ahmad Saif',
+  'Ahmad Saifi Khayatu Ulumuddin',
   'Full-Stack Developer',
   'Flutter Developer',
   'React Developer',
@@ -102,10 +102,10 @@ const baseSchemas = [
     '@context': 'https://schema.org',
     '@type': 'Person',
     '@id': 'https://ahmadsaif.web.id/#person',
-    name: 'Ahmad Saif',
+    name: 'Ahmad Saifi',
     alternateName: [
+      'Ahmad Saif',
       'Ahmad Saifi Khayatu Ulumuddin',
-      'Ahmad Saifi',
       'ahmdsaif87',
     ],
     jobTitle: 'Full-Stack Developer',
@@ -119,6 +119,10 @@ const baseSchemas = [
       'https://www.linkedin.com/in/ahmadsaif-dev',
       'https://www.instagram.com/ahmdsaif87',
     ],
+    alumniOf: {
+      '@type': 'EducationalOrganization',
+      name: 'Universitas Harkat Negeri',
+    },
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Tegal',
@@ -144,9 +148,10 @@ const baseSchemas = [
     '@type': 'WebSite',
     '@id': 'https://ahmadsaif.web.id/#website',
     url: 'https://ahmadsaif.web.id/',
-    name: 'Ahmad Saif - Full-Stack Developer Portfolio',
+    name: 'Ahmad Saifi - Full-Stack Developer Portfolio',
+    alternateName: 'Ahmad Saif Portfolio',
     description:
-      'Official portfolio of Ahmad Saif, Full-Stack Developer based in Tegal, Indonesia.',
+      'Official portfolio of Ahmad Saifi (Ahmad Saif), Full-Stack Developer based in Tegal, Indonesia.',
     inLanguage: 'en',
     publisher: {
       '@id': 'https://ahmadsaif.web.id/#person',
@@ -167,7 +172,7 @@ const allSchemas = [...baseSchemas, ...pageSchemas];
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={formattedKeywords} />
-    <meta name="author" content="Ahmad Saif" />
+    <meta name="author" content="Ahmad Saifi" />
     <meta name="theme-color" content="#09090b" />
     <meta
       name="robots"
@@ -191,6 +196,7 @@ const allSchemas = [...baseSchemas, ...pageSchemas];
 
     <script is:inline>
       (function () {
+        document.documentElement.classList.add('js');
         const applyTheme = (doc) => {
           const target = doc || document;
           const stored =
@@ -228,7 +234,7 @@ const allSchemas = [...baseSchemas, ...pageSchemas];
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:site_name" content="Ahmad Saif" />
+    <meta property="og:site_name" content="Ahmad Saifi" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content={resolvedOgImage} />
     <meta property="og:image:width" content="1200" />
@@ -236,7 +242,7 @@ const allSchemas = [...baseSchemas, ...pageSchemas];
     <meta property="og:image:alt" content={title} />
     {
       ogType === 'article' && (
-        <meta property="article:author" content="Ahmad Saif" />
+        <meta property="article:author" content="Ahmad Saifi" />
       )
     }
     {
@@ -289,11 +295,48 @@ const allSchemas = [...baseSchemas, ...pageSchemas];
     {/* Scroll-triggered reveal observer */}
     <script is:inline>
       (function () {
+        document.documentElement.classList.add('js');
+
+        let revealObserver = null;
+        let loopObserver = null;
+
         const initScrollReveal = () => {
-          const els = document.querySelectorAll('.scroll-reveal');
+          if (revealObserver) revealObserver.disconnect();
+          if (loopObserver) loopObserver.disconnect();
+          revealObserver = null;
+          loopObserver = null;
+
+          const els = document.querySelectorAll(
+            '.scroll-reveal:not(.is-visible)'
+          );
           if (!els.length) return;
 
-          const observer = new IntersectionObserver(
+          // Reduced motion: reveal instantly, preserve state without travel
+          if (
+            window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ) {
+            els.forEach((el) => el.classList.add('is-visible'));
+            return;
+          }
+
+          // Pause decorative loops when offscreen
+          const loopEls = document.querySelectorAll(
+            '.animate-breathe, .animate-pulse'
+          );
+          if ('IntersectionObserver' in window && loopEls.length) {
+            loopObserver = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                const target = entry.target;
+                target.style.animationPlayState = entry.isIntersecting
+                  ? 'running'
+                  : 'paused';
+              });
+            });
+            loopEls.forEach((el) => loopObserver.observe(el));
+          }
+
+          const observer = (revealObserver = new IntersectionObserver(
             (entries) => {
               entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -303,7 +346,7 @@ const allSchemas = [...baseSchemas, ...pageSchemas];
               });
             },
             { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-          );
+          ));
 
           els.forEach((el) => observer.observe(el));
         };

@@ -8,6 +8,7 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   output: 'static',
   site: 'https://ahmadsaif.web.id',
+  trailingSlash: 'never',
   integrations: [
     react(),
     sitemap({

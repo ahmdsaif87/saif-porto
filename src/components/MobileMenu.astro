@@ -43,11 +43,11 @@ const getNavIcon = (label: string) => {
     >
       <span
         id="burger-line-1"
-        class="w-3.5 h-[1.5px] bg-current rounded-full transition-all duration-200 origin-center"
+        class="w-3.5 h-[1.5px] bg-current rounded-full transition-transform duration-200 origin-center"
       ></span>
       <span
         id="burger-line-2"
-        class="w-3.5 h-[1.5px] bg-current rounded-full transition-all duration-200 origin-center"
+        class="w-3.5 h-[1.5px] bg-current rounded-full transition-transform duration-200 origin-center"
       ></span>
     </div>
   </button>
@@ -62,7 +62,7 @@ const getNavIcon = (label: string) => {
   {/* Compact Floating Popover Menu (Matching screenshot width & style) */}
   <div
     id="mobile-panel"
-    class="absolute right-0 top-full mt-2 z-50 w-52 rounded-2xl border border-border/80 bg-card/95 backdrop-blur-xl shadow-2xl p-1.5 transition-all duration-200 origin-top-right transform scale-95 opacity-0 pointer-events-none"
+    class="absolute right-0 top-full mt-2 z-50 w-52 rounded-2xl border border-border/80 bg-card/95 backdrop-blur-xl shadow-2xl p-1.5 transition-[opacity,transform] duration-200 origin-top-right translate-y-1 opacity-0 pointer-events-none"
   >
     {/* Navigation Section */}
     <div
@@ -205,12 +205,12 @@ const getNavIcon = (label: string) => {
 
           // Open panel
           panel.classList.remove(
-            'scale-95',
+            'translate-y-1',
             'opacity-0',
             'pointer-events-none'
           );
           panel.classList.add(
-            'scale-100',
+            'translate-y-0',
             'opacity-100',
             'pointer-events-auto'
           );
@@ -225,11 +225,11 @@ const getNavIcon = (label: string) => {
 
           // Close panel
           panel.classList.remove(
-            'scale-100',
+            'translate-y-0',
             'opacity-100',
             'pointer-events-auto'
           );
-          panel.classList.add('scale-95', 'opacity-0', 'pointer-events-none');
+          panel.classList.add('translate-y-1', 'opacity-0', 'pointer-events-none');
 
           // Close backdrop
           backdrop.classList.remove('opacity-100', 'pointer-events-auto');

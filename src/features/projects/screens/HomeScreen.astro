@@ -84,30 +84,31 @@ const getProjectRole = (project: TranslatedProject) => {
     {/* Status badge with interactive link and local context */}
     <a
       href="#contact"
-      class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/60 hover:bg-muted/90 border border-border/70 hover:border-primary/50 text-xs text-muted-foreground hover:text-foreground transition-all mb-6 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap max-w-full"
+      class="hero-reveal inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/60 hover:bg-muted/90 border border-border/70 hover:border-primary/50 text-xs text-muted-foreground hover:text-foreground transition-colors duration-150 mb-6 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none whitespace-nowrap max-w-full"
+      style="--reveal-delay: 0ms;"
     >
       <span class="size-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
       <span class="font-medium text-foreground/90">Available for freelance</span>
       <span class="hidden sm:inline text-muted-foreground/40">·</span>
       <span class="hidden sm:inline font-mono text-[11px] text-muted-foreground">Tegal, ID (GMT+7)</span>
-      <ArrowUpRight className="size-3 text-muted-foreground/60 group-hover:text-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
+      <ArrowUpRight className="size-3 text-muted-foreground/60 group-hover:text-foreground transition-[color,transform] duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0" />
     </a>
 
     {/* Hero Identity with GitHub Avatar */}
-    <div class="flex items-center gap-4 sm:gap-5 mb-6">
+    <div class="hero-reveal flex items-center gap-4 sm:gap-5 mb-6" style="--reveal-delay: 130ms;">
       <a
         href="https://github.com/ahmdsaif87"
         target="_blank"
         rel="noopener noreferrer"
         class="relative shrink-0 group block focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-full"
-        aria-label="View Ahmad Saif on GitHub"
+        aria-label="View Ahmad Saifi on GitHub"
       >
         <img
           src="https://github.com/ahmdsaif87.png"
-          alt="Ahmad Saif"
+          alt="Ahmad Saifi"
           width="72"
           height="72"
-          class="size-16 sm:size-20 rounded-full object-cover ring-2 ring-border/80 group-hover:ring-primary/60 transition-all shadow-sm"
+          class="size-16 sm:size-20 rounded-full object-cover ring-2 ring-border/80 group-hover:ring-primary/60 transition-colors duration-150 shadow-sm"
           loading="eager"
         />
         <span
@@ -119,7 +120,7 @@ const getProjectRole = (project: TranslatedProject) => {
         <h1
           class="text-3xl md:text-4xl font-semibold tracking-tight font-serif text-foreground text-balance"
         >
-          Ahmad Saif
+          Ahmad Saifi
         </h1>
         <a
           href="https://github.com/ahmdsaif87"
@@ -128,13 +129,14 @@ const getProjectRole = (project: TranslatedProject) => {
           class="font-mono text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 mt-1 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded"
         >
           <span>@ahmdsaif87</span>
-          <ArrowUpRight className="size-3 text-muted-foreground transition group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <ArrowUpRight className="size-3 text-muted-foreground transition-[color,transform] duration-150 group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
       </div>
     </div>
 
     <div
-      class="max-w-[65ch] space-y-4 text-sm md:text-base leading-relaxed text-muted-foreground"
+      class="hero-reveal max-w-[65ch] space-y-4 text-sm md:text-base leading-relaxed text-muted-foreground"
+      style="--reveal-delay: 260ms;"
     >
       <p class="text-pretty">
         Software Developer based in Tegal, Indonesia. Gaining hands-on
@@ -145,7 +147,7 @@ const getProjectRole = (project: TranslatedProject) => {
       </p>
     </div>
 
-    <div class="inline-flex flex-wrap items-center gap-3 pt-6">
+    <div class="hero-reveal inline-flex flex-wrap items-center gap-3 pt-6" style="--reveal-delay: 390ms;">
       <a
         href="https://drive.google.com/file/d/1CMHRLsv7uKB4XYWMGiYwJgby1ejnxQ3f/view?usp=sharing"
         target="_blank"
@@ -163,7 +165,7 @@ const getProjectRole = (project: TranslatedProject) => {
   {/* ═══════════════════════════════════════════════════════ */}
   {/* ===== PROJECTS SECTION ===== */}
   {/* ═══════════════════════════════════════════════════════ */}
-  <section id="projects" class="pt-14 md:pt-16 scroll-mt-16">
+  <section id="projects" class="scroll-reveal pt-14 md:pt-16 scroll-mt-16">
     <div class="mb-5">
       <h2
         class="font-serif text-xl md:text-2xl font-semibold tracking-tight text-foreground pb-1 text-balance"
@@ -178,13 +180,13 @@ const getProjectRole = (project: TranslatedProject) => {
     <div class="divide-y divide-border border-y border-border">
       {
         projects.slice(0, 5).map((project) => (
-          <div class="group relative flex items-baseline justify-between gap-4 py-3.5 px-2 hover:bg-muted/40 rounded-lg transition-all duration-200">
+          <div class="group relative flex items-baseline justify-between gap-4 py-3.5 px-2 hover:bg-muted/40 rounded-lg transition-colors duration-150">
             <div class="min-w-0 flex-1">
               <h3 class="font-serif text-[1.025rem] font-medium text-foreground inline-flex items-center gap-1 text-balance">
                 <a href={`/projects/${project.slug}`} class="hover:underline">
                   {project.title}
                 </a>
-                <ArrowUpRight className="size-3.5 text-muted-foreground transition group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="size-3.5 text-muted-foreground transition-[color,transform] duration-150 group-hover:text-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </h3>
               <p class="text-sm text-muted-foreground mt-0.5 line-clamp-2 text-pretty">
                 {project.description}
@@ -234,7 +236,7 @@ const getProjectRole = (project: TranslatedProject) => {
   {/* ═══════════════════════════════════════════════════════ */}
   {/* ===== JOURNEY: EXPERIENCE & EDUCATION (2 DISTINCT SECTIONS) ===== */}
   {/* ═══════════════════════════════════════════════════════ */}
-  <section id="journey" class="pt-14 md:pt-16 space-y-12 scroll-mt-16">
+  <section id="journey" class="scroll-reveal pt-14 md:pt-16 space-y-12 scroll-mt-16">
     {/* Section 1: Experience */}
     <div>
       <div class="mb-4 flex items-center gap-2">
@@ -315,7 +317,7 @@ const getProjectRole = (project: TranslatedProject) => {
   {/* ═══════════════════════════════════════════════════════ */}
   {/* ===== FEATURE CARD: GOT SOMETHING INTERESTING? ===== */}
   {/* ═══════════════════════════════════════════════════════ */}
-  <section id="contact" class="pt-16 md:pt-20 scroll-mt-16">
+  <section id="contact" class="scroll-reveal pt-16 md:pt-20 scroll-mt-16">
     <div class="feature-banner-card overflow-hidden">
       {/* Top Banner Graphic */}
       <div
@@ -323,10 +325,10 @@ const getProjectRole = (project: TranslatedProject) => {
       >
         <Image
           src={heroImage}
-          alt="Ahmad Saif"
+          alt="Ahmad Saifi"
           widths={[400, 800]}
           sizes="100vw"
-          class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 transition-all duration-700"
+          class="w-full h-full object-cover grayscale opacity-80 hover:grayscale-0 transition-[filter,opacity] duration-300"
           style="object-position: center 38%;"
         />
         <div

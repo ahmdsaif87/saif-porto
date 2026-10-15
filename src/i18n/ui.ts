@@ -9,9 +9,9 @@ export type LanguageCode = keyof typeof languages;
 export const ui = {
   en: {
     site: {
-      title: 'Ahmad Saif',
+      title: 'Ahmad Saifi',
       description:
-        'Portfolio of Ahmad Saif, Full-Stack Developer specializing in Flutter mobile apps, modern React web platforms, and scalable Laravel backends.',
+        'Portfolio of Ahmad Saifi (Ahmad Saif), Full-Stack Developer specializing in Flutter mobile apps, modern React web platforms, and scalable Laravel backends.',
     },
     nav: {
       home: 'Home',
@@ -24,10 +24,10 @@ export const ui = {
     },
     homePage: {
       pageTitle:
-        'Ahmad Saif – Full-Stack Developer (Flutter, React, Laravel) | Tegal, Indonesia',
+        'Ahmad Saifi – Full-Stack Developer (Flutter, React, Laravel) | Tegal, Indonesia',
       pageDescription:
-        'Portfolio of Ahmad Saif, Full-Stack Developer in Tegal, Indonesia specializing in Flutter mobile apps, modern React web platforms, and scalable Laravel backends.',
-      heroGreeting: "Hi, I'm Ahmad Saif",
+        'Official portfolio of Ahmad Saifi (Ahmad Saif), Full-Stack Developer based in Tegal, Indonesia specializing in Flutter mobile apps, modern React web platforms, and scalable Laravel backends.',
+      heroGreeting: "Hi, I'm Ahmad Saifi",
       heroSubtitlePart1: 'Full Stack Developer',
       heroSubtitlePart2: 'Tech Enthusiast',
       heroIntroduction:
@@ -81,10 +81,10 @@ export const ui = {
     },
     contactPage: {
       pageTitle:
-        'Contact Ahmad Saif – Full-Stack Developer for Hire | Tegal, Indonesia',
+        'Contact Ahmad Saifi – Full-Stack Developer for Hire | Tegal, Indonesia',
       pageDescription:
-        'Get in touch with Ahmad Saif for freelance full-stack development, Flutter mobile apps, web engineering, or software collaboration inquiries.',
-      title: 'Contact Ahmad Saif',
+        'Get in touch with Ahmad Saifi (Ahmad Saif) for freelance full-stack development, Flutter mobile apps, web engineering, or software collaboration inquiries.',
+      title: 'Contact Ahmad Saifi',
       description:
         "Let's discuss your project, freelance software development opportunities, or technical collaboration.",
       formTitle: 'Send a message',
@@ -118,9 +118,9 @@ export const ui = {
     projectsPage: {
       title: 'Projects',
       metaTitle:
-        'Projects by Ahmad Saif | Flutter, Web & Mobile Developer Portfolio',
+        'Projects by Ahmad Saifi | Flutter, Web & Mobile Developer Portfolio',
       metaDescription:
-        'Explore software engineering projects built by Ahmad Saif using Flutter, React, Next.js, and Laravel, including mobile apps and full-stack web platforms.',
+        'Explore software engineering projects built by Ahmad Saifi (Ahmad Saif) using Flutter, React, Next.js, and Laravel, including mobile apps and full-stack web platforms.',
       noProjects: 'No projects to display at the moment.',
       noProjectsDescription:
         "It seems that you don't have any projects to display at the moment.",

@@ -104,7 +104,7 @@ export function ContactForm({
                 <FormControl>
                   <Input
                     placeholder={formTranslations.firstNamePlaceholder}
-                    className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
+                    className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-[border-color,box-shadow] duration-200"
                     {...field}
                   />
                 </FormControl>
@@ -123,7 +123,7 @@ export function ContactForm({
                 <FormControl>
                   <Input
                     placeholder={formTranslations.lastNamePlaceholder}
-                    className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
+                    className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-[border-color,box-shadow] duration-200"
                     {...field}
                   />
                 </FormControl>
@@ -144,7 +144,7 @@ export function ContactForm({
                 <Input
                   type="email"
                   placeholder={formTranslations.emailPlaceholder}
-                  className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300"
+                  className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-[border-color,box-shadow] duration-200"
                   {...field}
                 />
               </FormControl>
@@ -164,7 +164,7 @@ export function ContactForm({
                 <Textarea
                   placeholder={formTranslations.messagePlaceholder}
                   rows={5}
-                  className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all duration-300 resize-none"
+                  className="rounded-xl bg-muted/30 border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-[border-color,box-shadow] duration-200 resize-none"
                   {...field}
                 />
               </FormControl>
@@ -174,7 +174,7 @@ export function ContactForm({
         />
         <Button
           type="submit"
-          className="w-full rounded-xl text-sm font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]"
+          className="w-full rounded-xl text-sm font-semibold transition-colors duration-150"
           size="lg"
           disabled={form.formState.isSubmitting}
         >
